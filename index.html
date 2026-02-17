@@ -29,7 +29,7 @@
             font-family: 'Noto Sans SC', sans-serif;
         }
 
-        /* Card Flip Effect - Fix lỗi mặt sau trắng */
+        /* Card Flip Effect */
         .card-flip {
             perspective: 1000px;
             background-color: transparent;
@@ -101,29 +101,18 @@
             }
         }
 
-        /* Loader */
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 0px;
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
             background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -132,39 +121,43 @@
 
     <div id="app" class="max-w-md mx-auto h-full bg-white shadow-2xl relative flex flex-col">
 
-        <div v-if="loading"
-            class="absolute inset-0 z-50 bg-white flex flex-col items-center justify-center text-slate-500">
-            <div class="loader mb-4"></div>
-            <p>Đang tải bài học...</p>
-        </div>
-
         <header
-            class="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 shadow-md z-10 shrink-0 text-white flex items-center justify-between">
+            class="bg-gradient-to-r from-blue-400 to-indigo-500 p-4 shadow-md z-10 shrink-0 text-white flex items-center justify-between">
             <button v-if="currentLesson" @click="goHome"
                 class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 transition active:scale-95">
                 <i class="fas fa-chevron-left text-xl"></i>
             </button>
             <div v-else class="w-10"></div>
+
             <h1 class="text-2xl font-extrabold tracking-wide drop-shadow-md truncate px-2">
                 {{ currentLesson ? currentLesson.title.split(':')[0] : 'Bé Học Tiếng Hoa' }}
             </h1>
+
             <div class="w-10"></div>
         </header>
 
         <main class="flex-1 overflow-y-auto p-4 bg-slate-50 relative scroll-smooth">
 
-            <div v-if="!currentLesson" class="grid grid-cols-2 gap-4 pb-10">
-                <div v-for="lesson in lessons" :key="lesson.id" @click="selectLesson(lesson)"
-                    class="bg-white rounded-2xl p-4 shadow-sm border-b-4 border-slate-200 active:border-b-0 active:translate-y-1 transition-all cursor-pointer hover:shadow-md flex flex-col items-center gap-3 group">
-                    <div
-                        class="w-14 h-14 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center text-2xl group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <div class="text-center w-full">
-                        <h3 class="font-bold text-lg text-slate-700 group-hover:text-blue-600 transition-colors">{{
-                            lesson.title.split(':')[0] }}</h3>
-                        <p class="text-xs text-slate-500 line-clamp-1 mt-1">{{ lesson.title.split(':')[1]?.trim() ||
-                            'Bài học' }}</p>
+            <div v-if="!currentLesson" class="space-y-4">
+                <div class="text-center py-4">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3222/3222625.png" alt="Logo"
+                        class="w-24 mx-auto mb-2 opacity-80">
+                    <p class="text-slate-500 text-sm">Chọn bài học để bắt đầu nhé!</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 pb-10">
+                    <div v-for="lesson in lessons" :key="lesson.id" @click="selectLesson(lesson)"
+                        class="bg-white rounded-2xl p-5 shadow-sm border-2 border-slate-100 flex items-center gap-4 cursor-pointer hover:border-blue-300 hover:shadow-md transition-all active:scale-95">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl shrink-0 shadow-inner"
+                            :class="lesson.color">
+                            <i :class="lesson.icon"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-slate-700">{{ lesson.title.split(':')[0] }}</h3>
+                            <p class="text-slate-500 text-sm font-semibold">{{ lesson.title.split(':')[1]?.trim() }}</p>
+                            <p class="text-xs text-slate-400 mt-1">{{ lesson.vocab.length }} từ vựng</p>
+                        </div>
+                        <div class="ml-auto text-slate-300"><i class="fas fa-chevron-right"></i></div>
                     </div>
                 </div>
             </div>
@@ -182,7 +175,7 @@
 
                         <div class="card-inner shadow-xl rounded-3xl">
                             <div
-                                class="card-front bg-white border-2 border-indigo-50 flex flex-col items-center justify-center p-4">
+                                class="card-front bg-white border-2 border-slate-100 flex flex-col items-center justify-center p-4">
                                 <span class="hanzi-font text-8xl text-slate-800 mb-4 select-none">{{ word.hanzi
                                     }}</span>
                                 <div class="flex gap-4 z-20">
@@ -198,7 +191,7 @@
                                 <div class="absolute top-4 right-4 text-slate-200"><i class="fas fa-rotate"></i></div>
                             </div>
                             <div
-                                class="card-back bg-indigo-500 border-4 border-indigo-400 flex flex-col items-center justify-center p-6 text-white">
+                                class="card-back bg-blue-500 border-4 border-blue-400 flex flex-col items-center justify-center p-6 text-white">
                                 <h3 class="text-4xl font-bold mb-2 font-mono select-none">{{ word.pinyin }}</h3>
                                 <div class="w-12 h-1 bg-white/30 rounded-full mb-6"></div>
                                 <p class="text-3xl font-bold text-center select-none">{{ word.mean }}</p>
@@ -214,21 +207,22 @@
                 <div v-if="currentLesson.examples && currentLesson.examples.length > 0"
                     class="pt-6 border-t border-slate-200 animate-slide-up">
                     <div class="flex items-center gap-2 mb-4">
-                        <div class="h-6 w-1.5 bg-indigo-500 rounded-full"></div>
-                        <h3 class="text-lg font-bold text-slate-700">Mẫu câu</h3>
+                        <div class="h-8 w-1.5 bg-indigo-500 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-slate-700">Hội thoại mẫu</h3>
                     </div>
+
                     <div class="space-y-3">
                         <div v-for="(example, idx) in currentLesson.examples" :key="idx"
-                            class="bg-white rounded-xl p-3 shadow-sm border border-slate-100 flex gap-3 hover:border-indigo-200 transition-colors cursor-pointer active:scale-[0.98]"
+                            class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex gap-3 hover:border-indigo-200 transition-colors cursor-pointer active:scale-[0.99]"
                             @click="speak(example.hanzi)">
                             <div
                                 class="w-10 h-10 rounded-full bg-indigo-50 text-indigo-500 flex items-center justify-center shrink-0 mt-1">
-                                <i class="fas fa-volume-high text-sm"></i>
+                                <i class="fas fa-volume-high"></i>
                             </div>
                             <div>
-                                <p class="hanzi-font text-xl text-slate-800 mb-1 leading-snug">{{ example.hanzi }}</p>
-                                <p class="text-xs font-mono text-indigo-600 mb-0.5">{{ example.pinyin }}</p>
-                                <p class="text-sm text-slate-500 italic">{{ example.mean }}</p>
+                                <p class="hanzi-font text-2xl text-slate-800 leading-tight mb-1">{{ example.hanzi }}</p>
+                                <p class="text-sm font-mono text-indigo-600 mb-0.5">{{ example.pinyin }}</p>
+                                <p class="text-base text-slate-500 italic">{{ example.mean }}</p>
                             </div>
                         </div>
                     </div>
@@ -246,17 +240,17 @@
 
                 <h3 class="text-xl font-bold text-slate-700 mb-4">Tập viết</h3>
 
-                <div class="flex gap-2 mb-4 overflow-x-auto p-1">
+                <div class="flex gap-2 mb-4 overflow-x-auto p-1 w-full justify-center">
                     <button v-for="(char, index) in writingWord.split('')" :key="index"
                         @click="selectCharToWrite(index)"
-                        class="w-12 h-12 rounded-xl text-2xl font-bold hanzi-font border-2 transition-all flex items-center justify-center shrink-0"
+                        class="w-14 h-14 rounded-xl text-3xl font-bold hanzi-font border-2 transition-all flex items-center justify-center shrink-0"
                         :class="selectedCharIndex === index ? 'bg-indigo-600 text-white border-indigo-600 scale-110 shadow-lg' : 'bg-white text-slate-600 border-slate-200 hover:border-indigo-300'">
                         {{ char }}
                     </button>
                 </div>
 
                 <div id="hanzi-target"
-                    class="bg-indigo-50 rounded-xl mb-6 shadow-inner border-2 border-indigo-100 cursor-crosshair touch-none relative overflow-hidden">
+                    class="bg-indigo-50 rounded-xl mb-6 mt-2 shadow-inner border-2 border-indigo-100 cursor-crosshair touch-none relative overflow-hidden">
                     <div v-if="isWriterLoading"
                         class="absolute inset-0 flex items-center justify-center text-indigo-300">
                         <i class="fas fa-circle-notch fa-spin text-2xl"></i>
@@ -278,48 +272,124 @@
     </div>
 
     <script>
-        const { createApp, ref, reactive, onMounted, nextTick } = Vue;
+        const { createApp, ref, reactive, nextTick } = Vue;
 
-        const DATA_LESSONS = [
-            { "id": 1, "title": "Bài 1: Gia đình (1)", "vocab": [{ "hanzi": "爸爸", "pinyin": "bàba", "mean": "Bố, ba" }, { "hanzi": "妈妈", "pinyin": "māma", "mean": "Mẹ, má" }, { "hanzi": "哥哥", "pinyin": "gēge", "mean": "Anh trai" }, { "hanzi": "弟弟", "pinyin": "dìdi", "mean": "Em trai" }], "examples": [{ "hanzi": "爸爸好！", "pinyin": "Bàba hǎo!", "mean": "Chào bố!" }, { "hanzi": "妈妈好！", "pinyin": "Māma hǎo!", "mean": "Chào mẹ!" }] },
-            { "id": 2, "title": "Bài 2: Gia đình (2)", "vocab": [{ "hanzi": "阿姨", "pinyin": "āyí", "mean": "Dì, cô" }, { "hanzi": "伯伯", "pinyin": "bóbo", "mean": "Bác" }, { "hanzi": "你好", "pinyin": "nǐ hǎo", "mean": "Chào bạn" }, { "hanzi": "您好", "pinyin": "nín hǎo", "mean": "Chào ông/bà" }], "examples": [{ "hanzi": "阿姨好！", "pinyin": "Āyí hǎo!", "mean": "Chào dì!" }, { "hanzi": "伯伯好！", "pinyin": "Bóbo hǎo!", "mean": "Chào bác!" }] },
-            { "id": 3, "title": "Bài 3: Vật nuôi & Xưng hô", "vocab": [{ "hanzi": "妹妹", "pinyin": "mèimei", "mean": "Em gái" }, { "hanzi": "猫", "pinyin": "māo", "mean": "Con mèo" }, { "hanzi": "狗", "pinyin": "gǒu", "mean": "Con chó" }, { "hanzi": "我", "pinyin": "wǒ", "mean": "Tôi" }, { "hanzi": "好", "pinyin": "hǎo", "mean": "Tốt, khỏe" }], "examples": [{ "hanzi": "妹妹好！", "pinyin": "Mèimei hǎo!", "mean": "Chào em gái!" }, { "hanzi": "你好！", "pinyin": "Nǐ hǎo!", "mean": "Chào bạn!" }] },
-            { "id": 4, "title": "Bài 4: Trái cây", "vocab": [{ "hanzi": "苹果", "pinyin": "píngguǒ", "mean": "Quả táo" }, { "hanzi": "葡萄", "pinyin": "pútao", "mean": "Quả nho" }, { "hanzi": "梨", "pinyin": "lí", "mean": "Trái lê" }], "examples": [{ "hanzi": "我要葡萄。", "pinyin": "Wǒ yào pútao.", "mean": "Con muốn ăn nho." }, { "hanzi": "弟弟要苹果。", "pinyin": "Dìdi yào píngguǒ.", "mean": "Em trai muốn ăn táo." }, { "hanzi": "妹妹要梨。", "pinyin": "Mèimei yào lí.", "mean": "Em gái muốn ăn lê." }] },
-            { "id": 5, "title": "Bài 5: Đồ ăn vặt", "vocab": [{ "hanzi": "蛋糕", "pinyin": "dàngāo", "mean": "Bánh bông lan" }, { "hanzi": "饼干", "pinyin": "bǐnggān", "mean": "Bánh quy" }, { "hanzi": "糖", "pinyin": "táng", "mean": "Kẹo" }, { "hanzi": "咖啡", "pinyin": "kāfēi", "mean": "Cà phê" }], "examples": [{ "hanzi": "哥哥要咖啡。", "pinyin": "Gēge yào kāfēi.", "mean": "Anh trai muốn uống cà phê." }, { "hanzi": "我要蛋糕。", "pinyin": "Wǒ yào dàngāo.", "mean": "Tôi muốn ăn bánh bông lan." }] },
-            { "id": 6, "title": "Bài 6: Đồ uống", "vocab": [{ "hanzi": "茶", "pinyin": "chá", "mean": "Trà" }, { "hanzi": "牛奶", "pinyin": "niúnǎi", "mean": "Sữa" }, { "hanzi": "这", "pinyin": "zhè", "mean": "Đây" }, { "hanzi": "是", "pinyin": "shì", "mean": "Là" }], "examples": [{ "hanzi": "这是茶。", "pinyin": "Zhè shì chá.", "mean": "Đây là trà." }, { "hanzi": "这是牛奶。", "pinyin": "Zhè shì niúnǎi.", "mean": "Đây là sữa." }, { "hanzi": "哥哥要牛奶吗？", "pinyin": "Gēge yào niúnǎi ma?", "mean": "Anh trai muốn uống sữa không?" }] },
-            { "id": 7, "title": "Bài 7: Món ăn", "vocab": [{ "hanzi": "面包", "pinyin": "miànbāo", "mean": "Bánh mì" }, { "hanzi": "牛肉", "pinyin": "niúròu", "mean": "Thịt bò" }, { "hanzi": "面条", "pinyin": "miàntiáo", "mean": "Mì sợi" }, { "hanzi": "粥", "pinyin": "zhōu", "mean": "Cháo" }], "examples": [{ "hanzi": "这是牛肉。", "pinyin": "Zhè shì niúròu.", "mean": "Đây là thịt bò." }, { "hanzi": "我要面包，不要牛肉。", "pinyin": "Wǒ yào miànbāo, bú yào niúròu.", "mean": "Tôi muốn bánh mì, không muốn thịt bò." }, { "hanzi": "你要粥吗？", "pinyin": "Nǐ yào zhōu ma?", "mean": "Bạn có muốn ăn cháo không?" }, { "hanzi": "我要面条。", "pinyin": "Wǒ yào miàntiáo.", "mean": "Tôi muốn ăn mì sợi." }] },
-            { "id": 8, "title": "Bài 8: Nghề nghiệp & Ông Bà", "vocab": [{ "hanzi": "老师", "pinyin": "lǎoshī", "mean": "Thầy/Cô giáo" }, { "hanzi": "工人", "pinyin": "gōngrén", "mean": "Công nhân" }, { "hanzi": "爷爷", "pinyin": "yéye", "mean": "Ông nội" }, { "hanzi": "奶奶", "pinyin": "nǎinai", "mean": "Bà nội" }], "examples": [{ "hanzi": "这是老师。", "pinyin": "Zhè shì lǎoshī.", "mean": "Đây là thầy giáo." }, { "hanzi": "老师好！", "pinyin": "Lǎoshī hǎo!", "mean": "Em chào thầy!" }, { "hanzi": "爷爷好！", "pinyin": "Yéye hǎo!", "mean": "Cháu chào ông!" }] },
-            { "id": 9, "title": "Bài 9: Đồ dùng ăn uống", "vocab": [{ "hanzi": "碗", "pinyin": "wǎn", "mean": "Cái chén (bát)" }, { "hanzi": "筷子", "pinyin": "kuàizi", "mean": "Đôi đũa" }, { "hanzi": "菜", "pinyin": "cài", "mean": "Thức ăn" }, { "hanzi": "饭", "pinyin": "fàn", "mean": "Cơm" }, { "hanzi": "那", "pinyin": "nà", "mean": "Đó/Kia" }], "examples": [{ "hanzi": "这是什么？", "pinyin": "Zhè shì shénme?", "mean": "Đây là cái gì?" }, { "hanzi": "这是碗。", "pinyin": "Zhè shì wǎn.", "mean": "Đây là cái chén." }, { "hanzi": "那是什么？", "pinyin": "Nà shì shénme?", "mean": "Đó là cái gì?" }, { "hanzi": "那是筷子。", "pinyin": "Nà shì kuàizi.", "mean": "Đó là đôi đũa." }] },
-            { "id": 10, "title": "Bài 10: Thiên nhiên", "vocab": [{ "hanzi": "花", "pinyin": "huā", "mean": "Bông hoa" }, { "hanzi": "叶子", "pinyin": "yèzi", "mean": "Chiếc lá" }, { "hanzi": "草", "pinyin": "cǎo", "mean": "Cỏ" }, { "hanzi": "树", "pinyin": "shù", "mean": "Cây" }, { "hanzi": "森林", "pinyin": "sēnlín", "mean": "Rừng" }], "examples": [{ "hanzi": "这是花。", "pinyin": "Zhè shì huā.", "mean": "Đây là bông hoa." }, { "hanzi": "那是叶子。", "pinyin": "Nà shì yèzi.", "mean": "Đó là chiếc lá." }, { "hanzi": "那不是花，那是草。", "pinyin": "Nà bú shì huā, nà shì cǎo.", "mean": "Đó không phải hoa, đó là cỏ." }] },
-            { "id": 11, "title": "Bài 11: Đồ dùng trong nhà", "vocab": [{ "hanzi": "桌子", "pinyin": "zhuōzi", "mean": "Cái bàn" }, { "hanzi": "椅子", "pinyin": "yǐzi", "mean": "Cái ghế" }, { "hanzi": "床", "pinyin": "chuáng", "mean": "Cái giường" }, { "hanzi": "书包", "pinyin": "shūbāo", "mean": "Cái cặp sách" }, { "hanzi": "伞", "pinyin": "sǎn", "mean": "Cây dù (ô)" }], "examples": [{ "hanzi": "我有桌子、椅子。", "pinyin": "Wǒ yǒu zhuōzi, yǐzi.", "mean": "Tôi có bàn, ghế." }, { "hanzi": "这是书包。", "pinyin": "Zhè shì shūbāo.", "mean": "Đây là cặp sách." }, { "hanzi": "那是伞。", "pinyin": "Nà shì sǎn.", "mean": "Đó là cây dù." }] },
-            { "id": 12, "title": "Bài 12: Phương tiện", "vocab": [{ "hanzi": "飞机", "pinyin": "fēijī", "mean": "Máy bay" }, { "hanzi": "汽车", "pinyin": "qìchē", "mean": "Xe hơi (ô tô)" }, { "hanzi": "轮船", "pinyin": "lúnchuán", "mean": "Tàu thủy" }, { "hanzi": "自行车", "pinyin": "zìxíngchē", "mean": "Xe đạp" }, { "hanzi": "有", "pinyin": "yǒu", "mean": "Có" }], "examples": [{ "hanzi": "你有飞机吗？", "pinyin": "Nǐ yǒu fēijī ma?", "mean": "Bạn có máy bay không?" }, { "hanzi": "我有飞机。", "pinyin": "Wǒ yǒu fēijī.", "mean": "Tôi có máy bay." }, { "hanzi": "弟弟有汽车。", "pinyin": "Dìdi yǒu qìchē.", "mean": "Em trai có xe hơi." }] },
-            { "id": 13, "title": "Bài 13: Đồ chơi", "vocab": [{ "hanzi": "机器人", "pinyin": "jīqìrén", "mean": "Người máy" }, { "hanzi": "皮球", "pinyin": "píqiú", "mean": "Quả bóng" }, { "hanzi": "娃娃", "pinyin": "wáwa", "mean": "Búp bê" }, { "hanzi": "熊猫", "pinyin": "xióngmāo", "mean": "Gấu trúc" }, { "hanzi": "火箭", "pinyin": "huǒjiàn", "mean": "Tên lửa" }], "examples": [{ "hanzi": "我有机器人。", "pinyin": "Wǒ yǒu jīqìrén.", "mean": "Tôi có người máy." }, { "hanzi": "我没有火箭。", "pinyin": "Wǒ méi yǒu huǒjiàn.", "mean": "Tôi không có tên lửa." }, { "hanzi": "姐姐有熊猫。", "pinyin": "Jiějie yǒu xióngmāo.", "mean": "Chị gái có gấu trúc." }] },
-            { "id": 14, "title": "Bài 14: Địa danh", "vocab": [{ "hanzi": "中国", "pinyin": "Zhōngguó", "mean": "Trung Quốc" }, { "hanzi": "国旗", "pinyin": "guóqí", "mean": "Quốc kỳ" }, { "hanzi": "北京", "pinyin": "Běijīng", "mean": "Bắc Kinh" }, { "hanzi": "天安门", "pinyin": "Tiān'ānmén", "mean": "Thiên An Môn" }, { "hanzi": "长城", "pinyin": "Chángchéng", "mean": "Vạn Lý Trường Thành" }], "examples": [{ "hanzi": "这是国旗吗？", "pinyin": "Zhè shì guóqí ma?", "mean": "Đây là quốc kỳ phải không?" }, { "hanzi": "这是中国国旗。", "pinyin": "Zhè shì Zhōngguó guóqí.", "mean": "Đây là quốc kỳ Trung Quốc." }, { "hanzi": "这是长城。", "pinyin": "Zhè shì Chángchéng.", "mean": "Đây là Trường Thành." }] },
-            { "id": 15, "title": "Bài 15: Thời tiết", "vocab": [{ "hanzi": "雨", "pinyin": "yǔ", "mean": "Mưa" }, { "hanzi": "雪", "pinyin": "xuě", "mean": "Tuyết" }, { "hanzi": "雾", "pinyin": "wù", "mean": "Sương mù" }, { "hanzi": "风", "pinyin": "fēng", "mean": "Gió" }, { "hanzi": "下", "pinyin": "xià", "mean": "Rơi/Xuống" }], "examples": [{ "hanzi": "下雨了！", "pinyin": "Xià yǔ le!", "mean": "Trời mưa rồi!" }, { "hanzi": "下雪了！", "pinyin": "Xià xuě le!", "mean": "Tuyết rơi rồi!" }, { "hanzi": "刮风了！", "pinyin": "Guā fēng le!", "mean": "Gió thổi rồi!" }] },
-            { "id": 16, "title": "Bài 16: Bầu trời", "vocab": [{ "hanzi": "太阳", "pinyin": "tàiyáng", "mean": "Mặt trời" }, { "hanzi": "月亮", "pinyin": "yuèliang", "mean": "Mặt trăng" }, { "hanzi": "云", "pinyin": "yún", "mean": "Mây" }, { "hanzi": "星星", "pinyin": "xīngxing", "mean": "Ngôi sao" }, { "hanzi": "彩虹", "pinyin": "cǎihóng", "mean": "Cầu vồng" }], "examples": [{ "hanzi": "那是太阳吗？", "pinyin": "Nà shì tàiyáng ma?", "mean": "Đó là mặt trời phải không?" }, { "hanzi": "那不是太阳，那是月亮。", "pinyin": "Nà bú shì tàiyáng, nà shì yuèliang.", "mean": "Đó không phải mặt trời, đó là mặt trăng." }, { "hanzi": "那是彩虹。", "pinyin": "Nà shì cǎihóng.", "mean": "Đó là cầu vồng." }] },
-            { "id": 17, "title": "Bài 17: Cơ thể", "vocab": [{ "hanzi": "耳朵", "pinyin": "ěrduo", "mean": "Lỗ tai" }, { "hanzi": "鼻子", "pinyin": "bízi", "mean": "Mũi" }, { "hanzi": "眼睛", "pinyin": "yǎnjing", "mean": "Mắt" }, { "hanzi": "嘴", "pinyin": "zuǐ", "mean": "Miệng" }, { "hanzi": "手", "pinyin": "shǒu", "mean": "Tay" }, { "hanzi": "脚", "pinyin": "jiǎo", "mean": "Chân" }], "examples": [{ "hanzi": "这是耳朵吗？", "pinyin": "Zhè shì ěrduo ma?", "mean": "Đây là lỗ tai phải không?" }, { "hanzi": "这是眼睛。", "pinyin": "Zhè shì yǎnjing.", "mean": "Đây là mắt." }, { "hanzi": "这是手。", "pinyin": "Zhè shì shǒu.", "mean": "Đây là tay." }] },
-            { "id": 18, "title": "Bài 18: Trang phục", "vocab": [{ "hanzi": "手套", "pinyin": "shǒutào", "mean": "Găng tay" }, { "hanzi": "手绢", "pinyin": "shǒujuàn", "mean": "Khăn tay" }, { "hanzi": "鞋", "pinyin": "xié", "mean": "Giày" }, { "hanzi": "裤子", "pinyin": "kùzi", "mean": "Quần" }, { "hanzi": "裙子", "pinyin": "qúnzi", "mean": "Váy" }, { "hanzi": "上衣", "pinyin": "shàngyī", "mean": "Áo" }], "examples": [{ "hanzi": "这是我的衣服。", "pinyin": "Zhè shì wǒ de yīfu.", "mean": "Đây là quần áo của tôi." }, { "hanzi": "那是弟弟的裤子。", "pinyin": "Nà shì dìdi de kùzi.", "mean": "Đó là quần của em trai." }, { "hanzi": "那是妹妹的鞋。", "pinyin": "Nà shì mèimei de xié.", "mean": "Đó là giày của em gái." }] },
-            { "id": 19, "title": "Bài 19: Học tập", "vocab": [{ "hanzi": "书", "pinyin": "shū", "mean": "Sách" }, { "hanzi": "画儿", "pinyin": "huàr", "mean": "Tranh" }, { "hanzi": "笔", "pinyin": "bǐ", "mean": "Bút" }, { "hanzi": "的", "pinyin": "de", "mean": "Của (trợ từ sở hữu)" }, { "hanzi": "衣服", "pinyin": "yīfu", "mean": "Quần áo (nói chung)" }, { "hanzi": "看", "pinyin": "kàn", "mean": "Nhìn/Xem/Đọc" }], "examples": [{ "hanzi": "我看书。", "pinyin": "Wǒ kàn shū.", "mean": "Tôi đọc sách." }, { "hanzi": "弟弟画画儿。", "pinyin": "Dìdi huà huàr.", "mean": "Em trai vẽ tranh." }, { "hanzi": "给你。", "pinyin": "Gěi nǐ.", "mean": "Cho bạn này." }] },
-            { "id": 20, "title": "Bài 20: Hoạt động", "vocab": [{ "hanzi": "起床", "pinyin": "qǐchuáng", "mean": "Thức dậy" }, { "hanzi": "唱歌", "pinyin": "chànggē", "mean": "Hát" }, { "hanzi": "跳舞", "pinyin": "tiàowǔ", "mean": "Nhảy múa" }, { "hanzi": "玩游戏", "pinyin": "wán yóuxì", "mean": "Chơi trò chơi" }, { "hanzi": "睡觉", "pinyin": "shuìjiào", "mean": "Ngủ" }, { "hanzi": "学汉语", "pinyin": "xué Hànyǔ", "mean": "Học tiếng Hán" }], "examples": [{ "hanzi": "我们唱歌。", "pinyin": "Wǒmen chànggē.", "mean": "Chúng tôi hát." }, { "hanzi": "我们跳舞。", "pinyin": "Wǒmen tiàowǔ.", "mean": "Chúng tôi nhảy múa." }, { "hanzi": "我们学汉语。", "pinyin": "Wǒmen xué Hànyǔ.", "mean": "Chúng tôi học tiếng Hán." }] }
+        // Dữ liệu 20 bài học (Đã thêm icon và màu sắc)
+        const DATA = [
+            {
+                "id": 1, "title": "Bài 1: Gia đình (1)", "icon": "fas fa-house-chimney", "color": "bg-blue-100 text-blue-600",
+                "vocab": [{ "hanzi": "爸爸", "pinyin": "bàba", "mean": "Bố, ba" }, { "hanzi": "妈妈", "pinyin": "māma", "mean": "Mẹ, má" }, { "hanzi": "哥哥", "pinyin": "gēge", "mean": "Anh trai" }, { "hanzi": "弟弟", "pinyin": "dìdi", "mean": "Em trai" }],
+                "examples": [{ "hanzi": "爸爸好！", "pinyin": "Bàba hǎo!", "mean": "Chào bố!" }, { "hanzi": "妈妈好！", "pinyin": "Māma hǎo!", "mean": "Chào mẹ!" }]
+            },
+            {
+                "id": 2, "title": "Bài 2: Gia đình (2)", "icon": "fas fa-users", "color": "bg-green-100 text-green-600",
+                "vocab": [{ "hanzi": "阿姨", "pinyin": "āyí", "mean": "Dì, cô" }, { "hanzi": "伯伯", "pinyin": "bóbo", "mean": "Bác" }, { "hanzi": "你好", "pinyin": "nǐ hǎo", "mean": "Chào bạn" }, { "hanzi": "您好", "pinyin": "nín hǎo", "mean": "Chào ông/bà" }],
+                "examples": [{ "hanzi": "阿姨好！", "pinyin": "Āyí hǎo!", "mean": "Chào dì!" }, { "hanzi": "伯伯好！", "pinyin": "Bóbo hǎo!", "mean": "Chào bác!" }]
+            },
+            {
+                "id": 3, "title": "Bài 3: Vật nuôi & Xưng hô", "icon": "fas fa-cat", "color": "bg-yellow-100 text-yellow-600",
+                "vocab": [{ "hanzi": "妹妹", "pinyin": "mèimei", "mean": "Em gái" }, { "hanzi": "猫", "pinyin": "māo", "mean": "Con mèo" }, { "hanzi": "狗", "pinyin": "gǒu", "mean": "Con chó" }, { "hanzi": "我", "pinyin": "wǒ", "mean": "Tôi" }, { "hanzi": "好", "pinyin": "hǎo", "mean": "Tốt, khỏe" }],
+                "examples": [{ "hanzi": "妹妹好！", "pinyin": "Mèimei hǎo!", "mean": "Chào em gái!" }, { "hanzi": "你好！", "pinyin": "Nǐ hǎo!", "mean": "Chào bạn!" }]
+            },
+            {
+                "id": 4, "title": "Bài 4: Trái cây", "icon": "fas fa-apple-whole", "color": "bg-red-100 text-red-600",
+                "vocab": [{ "hanzi": "苹果", "pinyin": "píngguǒ", "mean": "Quả táo" }, { "hanzi": "葡萄", "pinyin": "pútao", "mean": "Quả nho" }, { "hanzi": "梨", "pinyin": "lí", "mean": "Trái lê" }],
+                "examples": [{ "hanzi": "我要葡萄。", "pinyin": "Wǒ yào pútao.", "mean": "Con muốn ăn nho." }, { "hanzi": "弟弟要苹果。", "pinyin": "Dìdi yào píngguǒ.", "mean": "Em trai muốn ăn táo." }]
+            },
+            {
+                "id": 5, "title": "Bài 5: Đồ ăn vặt", "icon": "fas fa-cookie-bite", "color": "bg-orange-100 text-orange-600",
+                "vocab": [{ "hanzi": "蛋糕", "pinyin": "dàngāo", "mean": "Bánh bông lan" }, { "hanzi": "饼干", "pinyin": "bǐnggān", "mean": "Bánh quy" }, { "hanzi": "糖", "pinyin": "táng", "mean": "Kẹo" }, { "hanzi": "咖啡", "pinyin": "kāfēi", "mean": "Cà phê" }],
+                "examples": [{ "hanzi": "哥哥要咖啡。", "pinyin": "Gēge yào kāfēi.", "mean": "Anh trai muốn uống cà phê." }, { "hanzi": "我要蛋糕。", "pinyin": "Wǒ yào dàngāo.", "mean": "Tôi muốn ăn bánh bông lan." }]
+            },
+            {
+                "id": 6, "title": "Bài 6: Đồ uống", "icon": "fas fa-mug-hot", "color": "bg-amber-100 text-amber-700",
+                "vocab": [{ "hanzi": "茶", "pinyin": "chá", "mean": "Trà" }, { "hanzi": "牛奶", "pinyin": "niúnǎi", "mean": "Sữa" }, { "hanzi": "这", "pinyin": "zhè", "mean": "Đây" }, { "hanzi": "是", "pinyin": "shì", "mean": "Là" }],
+                "examples": [{ "hanzi": "这是茶。", "pinyin": "Zhè shì chá.", "mean": "Đây là trà." }, { "hanzi": "这是牛奶。", "pinyin": "Zhè shì niúnǎi.", "mean": "Đây là sữa." }]
+            },
+            {
+                "id": 7, "title": "Bài 7: Món ăn", "icon": "fas fa-bowl-rice", "color": "bg-lime-100 text-lime-700",
+                "vocab": [{ "hanzi": "面包", "pinyin": "miànbāo", "mean": "Bánh mì" }, { "hanzi": "牛肉", "pinyin": "niúròu", "mean": "Thịt bò" }, { "hanzi": "面条", "pinyin": "miàntiáo", "mean": "Mì sợi" }, { "hanzi": "粥", "pinyin": "zhōu", "mean": "Cháo" }],
+                "examples": [{ "hanzi": "这是牛肉。", "pinyin": "Zhè shì niúròu.", "mean": "Đây là thịt bò." }, { "hanzi": "我要面包。", "pinyin": "Wǒ yào miànbāo.", "mean": "Tôi muốn bánh mì." }]
+            },
+            {
+                "id": 8, "title": "Bài 8: Nghề nghiệp", "icon": "fas fa-chalkboard-user", "color": "bg-cyan-100 text-cyan-700",
+                "vocab": [{ "hanzi": "老师", "pinyin": "lǎoshī", "mean": "Thầy/Cô giáo" }, { "hanzi": "工人", "pinyin": "gōngrén", "mean": "Công nhân" }, { "hanzi": "爷爷", "pinyin": "yéye", "mean": "Ông nội" }, { "hanzi": "奶奶", "pinyin": "nǎinai", "mean": "Bà nội" }],
+                "examples": [{ "hanzi": "这是老师。", "pinyin": "Zhè shì lǎoshī.", "mean": "Đây là thầy giáo." }, { "hanzi": "老师好！", "pinyin": "Lǎoshī hǎo!", "mean": "Em chào thầy!" }]
+            },
+            {
+                "id": 9, "title": "Bài 9: Đồ dùng ăn uống", "icon": "fas fa-utensils", "color": "bg-teal-100 text-teal-700",
+                "vocab": [{ "hanzi": "碗", "pinyin": "wǎn", "mean": "Cái chén (bát)" }, { "hanzi": "筷子", "pinyin": "kuàizi", "mean": "Đôi đũa" }, { "hanzi": "菜", "pinyin": "cài", "mean": "Thức ăn/Món ăn" }, { "hanzi": "饭", "pinyin": "fàn", "mean": "Cơm" }, { "hanzi": "那", "pinyin": "nà", "mean": "Đó/Kia" }],
+                "examples": [{ "hanzi": "这是什么？", "pinyin": "Zhè shì shénme?", "mean": "Đây là cái gì?" }, { "hanzi": "这是碗。", "pinyin": "Zhè shì wǎn.", "mean": "Đây là cái chén." }]
+            },
+            {
+                "id": 10, "title": "Bài 10: Thiên nhiên", "icon": "fas fa-tree", "color": "bg-emerald-100 text-emerald-700",
+                "vocab": [{ "hanzi": "花", "pinyin": "huā", "mean": "Bông hoa" }, { "hanzi": "叶子", "pinyin": "yèzi", "mean": "Chiếc lá" }, { "hanzi": "草", "pinyin": "cǎo", "mean": "Cỏ" }, { "hanzi": "树", "pinyin": "shù", "mean": "Cây" }, { "hanzi": "森林", "pinyin": "sēnlín", "mean": "Rừng" }],
+                "examples": [{ "hanzi": "这是花。", "pinyin": "Zhè shì huā.", "mean": "Đây là bông hoa." }, { "hanzi": "那是叶子。", "pinyin": "Nà shì yèzi.", "mean": "Đó là chiếc lá." }]
+            },
+            {
+                "id": 11, "title": "Bài 11: Đồ dùng", "icon": "fas fa-chair", "color": "bg-purple-100 text-purple-700",
+                "vocab": [{ "hanzi": "桌子", "pinyin": "zhuōzi", "mean": "Cái bàn" }, { "hanzi": "椅子", "pinyin": "yǐzi", "mean": "Cái ghế" }, { "hanzi": "床", "pinyin": "chuáng", "mean": "Cái giường" }, { "hanzi": "书包", "pinyin": "shūbāo", "mean": "Cái cặp sách" }, { "hanzi": "伞", "pinyin": "sǎn", "mean": "Cây dù (ô)" }],
+                "examples": [{ "hanzi": "我有桌子、椅子。", "pinyin": "Wǒ yǒu zhuōzi, yǐzi.", "mean": "Tôi có bàn, ghế." }, { "hanzi": "这是书包。", "pinyin": "Zhè shì shūbāo.", "mean": "Đây là cặp sách." }]
+            },
+            {
+                "id": 12, "title": "Bài 12: Phương tiện", "icon": "fas fa-car", "color": "bg-indigo-100 text-indigo-700",
+                "vocab": [{ "hanzi": "飞机", "pinyin": "fēijī", "mean": "Máy bay" }, { "hanzi": "汽车", "pinyin": "qìchē", "mean": "Xe hơi (ô tô)" }, { "hanzi": "轮船", "pinyin": "lúnchuán", "mean": "Tàu thủy" }, { "hanzi": "自行车", "pinyin": "zìxíngchē", "mean": "Xe đạp" }, { "hanzi": "有", "pinyin": "yǒu", "mean": "Có" }],
+                "examples": [{ "hanzi": "你有飞机吗？", "pinyin": "Nǐ yǒu fēijī ma?", "mean": "Bạn có máy bay không?" }, { "hanzi": "我有飞机。", "pinyin": "Wǒ yǒu fēijī.", "mean": "Tôi có máy bay." }]
+            },
+            {
+                "id": 13, "title": "Bài 13: Đồ chơi", "icon": "fas fa-robot", "color": "bg-pink-100 text-pink-700",
+                "vocab": [{ "hanzi": "机器人", "pinyin": "jīqìrén", "mean": "Người máy" }, { "hanzi": "皮球", "pinyin": "píqiú", "mean": "Quả bóng" }, { "hanzi": "娃娃", "pinyin": "wáwa", "mean": "Búp bê" }, { "hanzi": "熊猫", "pinyin": "xióngmāo", "mean": "Gấu trúc" }, { "hanzi": "火箭", "pinyin": "huǒjiàn", "mean": "Tên lửa" }],
+                "examples": [{ "hanzi": "我有机器人。", "pinyin": "Wǒ yǒu jīqìrén.", "mean": "Tôi có người máy." }, { "hanzi": "我没有火箭。", "pinyin": "Wǒ méi yǒu huǒjiàn.", "mean": "Tôi không có tên lửa." }]
+            },
+            {
+                "id": 14, "title": "Bài 14: Địa danh", "icon": "fas fa-flag", "color": "bg-red-50 text-red-800",
+                "vocab": [{ "hanzi": "中国", "pinyin": "Zhōngguó", "mean": "Trung Quốc" }, { "hanzi": "国旗", "pinyin": "guóqí", "mean": "Quốc kỳ" }, { "hanzi": "北京", "pinyin": "Běijīng", "mean": "Bắc Kinh" }, { "hanzi": "天安门", "pinyin": "Tiān'ānmén", "mean": "Thiên An Môn" }, { "hanzi": "长城", "pinyin": "Chángchéng", "mean": "Vạn Lý Trường Thành" }],
+                "examples": [{ "hanzi": "这是国旗吗？", "pinyin": "Zhè shì guóqí ma?", "mean": "Đây là quốc kỳ phải không?" }, { "hanzi": "这是中国国旗。", "pinyin": "Zhè shì Zhōngguó guóqí.", "mean": "Đây là quốc kỳ Trung Quốc." }]
+            },
+            {
+                "id": 15, "title": "Bài 15: Thời tiết", "icon": "fas fa-cloud-rain", "color": "bg-gray-200 text-gray-700",
+                "vocab": [{ "hanzi": "雨", "pinyin": "yǔ", "mean": "Mưa" }, { "hanzi": "雪", "pinyin": "xuě", "mean": "Tuyết" }, { "hanzi": "雾", "pinyin": "wù", "mean": "Sương mù" }, { "hanzi": "风", "pinyin": "fēng", "mean": "Gió" }, { "hanzi": "下", "pinyin": "xià", "mean": "Rơi/Xuống" }],
+                "examples": [{ "hanzi": "下雨了！", "pinyin": "Xià yǔ le!", "mean": "Trời mưa rồi!" }, { "hanzi": "下雪了！", "pinyin": "Xià xuě le!", "mean": "Tuyết rơi rồi!" }]
+            },
+            {
+                "id": 16, "title": "Bài 16: Bầu trời", "icon": "fas fa-sun", "color": "bg-yellow-50 text-orange-500",
+                "vocab": [{ "hanzi": "太阳", "pinyin": "tàiyáng", "mean": "Mặt trời" }, { "hanzi": "月亮", "pinyin": "yuèliang", "mean": "Mặt trăng" }, { "hanzi": "云", "pinyin": "yún", "mean": "Mây" }, { "hanzi": "星星", "pinyin": "xīngxing", "mean": "Ngôi sao" }, { "hanzi": "彩虹", "pinyin": "cǎihóng", "mean": "Cầu vồng" }],
+                "examples": [{ "hanzi": "那是太阳吗？", "pinyin": "Nà shì tàiyáng ma?", "mean": "Đó là mặt trời phải không?" }, { "hanzi": "那不是太阳，那是月亮。", "pinyin": "Nà bú shì tàiyáng, nà shì yuèliang.", "mean": "Đó không phải mặt trời, đó là mặt trăng." }]
+            },
+            {
+                "id": 17, "title": "Bài 17: Cơ thể", "icon": "fas fa-hand", "color": "bg-rose-100 text-rose-700",
+                "vocab": [{ "hanzi": "耳朵", "pinyin": "ěrduo", "mean": "Lỗ tai" }, { "hanzi": "鼻子", "pinyin": "bízi", "mean": "Mũi" }, { "hanzi": "眼睛", "pinyin": "yǎnjing", "mean": "Mắt" }, { "hanzi": "嘴", "pinyin": "zuǐ", "mean": "Miệng" }, { "hanzi": "手", "pinyin": "shǒu", "mean": "Tay" }, { "hanzi": "脚", "pinyin": "jiǎo", "mean": "Chân" }],
+                "examples": [{ "hanzi": "这是耳朵吗？", "pinyin": "Zhè shì ěrduo ma?", "mean": "Đây là lỗ tai phải không?" }, { "hanzi": "这是眼睛。", "pinyin": "Zhè shì yǎnjing.", "mean": "Đây là mắt." }]
+            },
+            {
+                "id": 18, "title": "Bài 18: Trang phục", "icon": "fas fa-shirt", "color": "bg-violet-100 text-violet-700",
+                "vocab": [{ "hanzi": "手套", "pinyin": "shǒutào", "mean": "Găng tay" }, { "hanzi": "手绢", "pinyin": "shǒujuàn", "mean": "Khăn tay" }, { "hanzi": "鞋", "pinyin": "xié", "mean": "Giày" }, { "hanzi": "裤子", "pinyin": "kùzi", "mean": "Quần" }, { "hanzi": "裙子", "pinyin": "qúnzi", "mean": "Váy" }, { "hanzi": "上衣", "pinyin": "shàngyī", "mean": "Áo" }],
+                "examples": [{ "hanzi": "这是我的衣服。", "pinyin": "Zhè shì wǒ de yīfu.", "mean": "Đây là quần áo của tôi." }, { "hanzi": "那是弟弟的裤子。", "pinyin": "Nà shì dìdi de kùzi.", "mean": "Đó là quần của em trai." }]
+            },
+            {
+                "id": 19, "title": "Bài 19: Học tập", "icon": "fas fa-book", "color": "bg-fuchsia-100 text-fuchsia-700",
+                "vocab": [{ "hanzi": "书", "pinyin": "shū", "mean": "Sách" }, { "hanzi": "画儿", "pinyin": "huàr", "mean": "Tranh" }, { "hanzi": "笔", "pinyin": "bǐ", "mean": "Bút" }, { "hanzi": "的", "pinyin": "de", "mean": "Của (trợ từ sở hữu)" }, { "hanzi": "衣服", "pinyin": "yīfu", "mean": "Quần áo (nói chung)" }, { "hanzi": "看", "pinyin": "kàn", "mean": "Nhìn/Xem/Đọc" }],
+                "examples": [{ "hanzi": "我看书。", "pinyin": "Wǒ kàn shū.", "mean": "Tôi đọc sách." }, { "hanzi": "弟弟画画儿。", "pinyin": "Dìdi huà huàr.", "mean": "Em trai vẽ tranh." }]
+            },
+            {
+                "id": 20, "title": "Bài 20: Hoạt động", "icon": "fas fa-music", "color": "bg-sky-100 text-sky-700",
+                "vocab": [{ "hanzi": "起床", "pinyin": "qǐchuáng", "mean": "Thức dậy" }, { "hanzi": "唱歌", "pinyin": "chànggē", "mean": "Hát" }, { "hanzi": "跳舞", "pinyin": "tiàowǔ", "mean": "Nhảy múa" }, { "hanzi": "玩游戏", "pinyin": "wán yóuxì", "mean": "Chơi trò chơi" }, { "hanzi": "睡觉", "pinyin": "shuìjiào", "mean": "Ngủ" }, { "hanzi": "学汉语", "pinyin": "xué Hànyǔ", "mean": "Học tiếng Hán" }],
+                "examples": [{ "hanzi": "我们唱歌。", "pinyin": "Wǒmen chànggē.", "mean": "Chúng tôi hát." }, { "hanzi": "我们跳舞。", "pinyin": "Wǒmen tiàowǔ.", "mean": "Chúng tôi nhảy múa." }]
+            }
         ];
 
         createApp({
             setup() {
-                const lessons = ref(DATA_LESSONS);
+                const lessons = ref(DATA);
                 const currentLesson = ref(null);
                 const flippedCards = reactive({});
-                const loading = ref(true);
 
-                // Writing Logic
+                // --- Writing State ---
                 const showWritingModal = ref(false);
-                const writingWord = ref(''); // Từ đang viết (VD: 牛奶)
-                const selectedCharIndex = ref(0); // Chỉ số chữ đang viết (0 = 牛, 1 = 奶)
+                const writingWord = ref('');
+                const selectedCharIndex = ref(0);
                 const isWriterLoading = ref(false);
                 let writerInstance = null;
-
-                onMounted(() => {
-                    setTimeout(() => { loading.value = false; }, 500);
-                });
 
                 const selectLesson = (lesson) => {
                     currentLesson.value = lesson;
@@ -327,7 +397,6 @@
                 };
 
                 const goHome = () => currentLesson.value = null;
-
                 const toggleFlip = (index) => flippedCards[index] = !flippedCards[index];
 
                 const speak = (text) => {
@@ -335,7 +404,7 @@
                         window.speechSynthesis.cancel();
                         const utterance = new SpeechSynthesisUtterance(text);
                         const voices = window.speechSynthesis.getVoices();
-                        const zhVoice = voices.find(v => v.lang === 'zh-CN' || v.lang === 'zh-TW');
+                        const zhVoice = voices.find(v => (v.lang === 'zh-CN' || v.lang === 'zh-TW') && v.name.includes('Google'));
                         if (zhVoice) utterance.voice = zhVoice;
                         utterance.lang = 'zh-CN';
                         utterance.rate = 0.8;
@@ -343,10 +412,10 @@
                     }
                 };
 
-                // --- LOGIC TẬP VIẾT MỚI (Hỗ trợ từ ghép) ---
+                // --- LOGIC TẬP VIẾT NÂNG CAO (Hỗ trợ từ ghép) ---
                 const openWriting = (word) => {
                     writingWord.value = word;
-                    selectedCharIndex.value = 0; // Luôn bắt đầu từ chữ đầu tiên
+                    selectedCharIndex.value = 0; // Mặc định chọn chữ đầu tiên
                     showWritingModal.value = true;
                     renderWriter();
                 };
@@ -358,7 +427,7 @@
 
                 const renderWriter = () => {
                     isWriterLoading.value = true;
-                    // Lấy chữ cái đơn lẻ dựa trên index đang chọn
+                    // Lấy chữ cái đơn lẻ tại vị trí đang chọn
                     const charToWrite = writingWord.value[selectedCharIndex.value];
 
                     nextTick(() => {
@@ -366,7 +435,7 @@
                         if (!target) return;
                         target.innerHTML = '';
 
-                        // Kích thước ô viết linh hoạt
+                        // Kích thước ô viết
                         const width = Math.min(window.innerWidth - 80, 280);
 
                         writerInstance = HanziWriter.create('hanzi-target', charToWrite, {
@@ -402,24 +471,10 @@
                 };
 
                 return {
-                    lessons,
-                    currentLesson,
-                    selectLesson,
-                    goHome,
-                    flippedCards,
-                    toggleFlip,
-                    speak,
-                    loading,
+                    lessons, currentLesson, selectLesson, goHome, flippedCards, toggleFlip, speak,
                     // Writing
-                    showWritingModal,
-                    writingWord,
-                    selectedCharIndex,
-                    isWriterLoading,
-                    openWriting,
-                    selectCharToWrite,
-                    animateChar,
-                    quizChar,
-                    closeWritingModal
+                    showWritingModal, writingWord, selectedCharIndex, isWriterLoading,
+                    openWriting, selectCharToWrite, animateChar, quizChar, closeWritingModal
                 };
             }
         }).mount('#app');
