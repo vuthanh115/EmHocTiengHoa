@@ -176,8 +176,13 @@
                         <div class="card-inner shadow-xl rounded-3xl">
                             <div
                                 class="card-front bg-white border-2 border-slate-100 flex flex-col items-center justify-center p-4">
-                                <span class="hanzi-font text-8xl text-slate-800 mb-4 select-none">{{ word.hanzi
-                                    }}</span>
+                                <div v-if="word.img"
+                                    class="w-full h-32 mb-2 flex items-center justify-center overflow-hidden">
+                                    <img :src="word.img" class="max-h-full max-w-full object-contain rounded-xl"
+                                        alt="Mnemonic" />
+                                </div>
+                                <span class="hanzi-font text-slate-800 select-none"
+                                    :class="word.img ? 'text-6xl mb-2' : 'text-8xl mb-4'">{{ word.hanzi }}</span>
                                 <div class="flex gap-4 z-20">
                                     <button @click.stop="speak(word.hanzi)"
                                         class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-500 hover:text-white transition flex items-center justify-center shadow-sm active:scale-90">
@@ -192,8 +197,12 @@
                             </div>
                             <div
                                 class="card-back bg-blue-500 border-4 border-blue-400 flex flex-col items-center justify-center p-6 text-white">
-                                <h3 class="text-4xl font-bold mb-2 font-mono select-none">{{ word.pinyin }}</h3>
-                                <div class="w-12 h-1 bg-white/30 rounded-full mb-6"></div>
+                                <h3 class="text-4xl font-bold mb-1 font-mono select-none">{{ word.pinyin }}</h3>
+                                <p class="text-sm font-medium text-blue-100 mb-1 select-none" v-if="word.en_pron"
+                                    title="Phát âm tiếng Anh (Phonetic spelling)">{{ word.en_pron }}</p>
+                                <p class="text-lg font-medium text-emerald-300 mb-2 select-none" v-if="word.vi_pron"
+                                    title="Âm bồi tiếng Việt">[{{ word.vi_pron }}]</p>
+                                <div class="w-12 h-1 bg-white/30 rounded-full mb-3"></div>
                                 <p class="text-3xl font-bold text-center select-none">{{ word.mean }}</p>
                                 <button @click.stop="speak(word.hanzi)"
                                     class="mt-8 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition active:scale-90">
@@ -221,7 +230,15 @@
                             </div>
                             <div>
                                 <p class="hanzi-font text-2xl text-slate-800 leading-tight mb-1">{{ example.hanzi }}</p>
-                                <p class="text-sm font-mono text-indigo-600 mb-0.5">{{ example.pinyin }}</p>
+                                <p class="text-sm font-mono text-indigo-600 mb-0.5" title="Pinyin">
+                                    {{ example.pinyin }}
+                                </p>
+                                <p class="text-xs text-indigo-400 font-medium mb-1">
+                                    <span v-if="example.en_pron" title="Phát âm tiếng Anh (Phonetic spelling)">{{
+                                        example.en_pron }}</span>
+                                    <span v-if="example.vi_pron" class="text-emerald-500 ml-2"
+                                        title="Âm bồi tiếng Việt">[{{ example.vi_pron }}]</span>
+                                </p>
                                 <p class="text-base text-slate-500 italic">{{ example.mean }}</p>
                             </div>
                         </div>
@@ -277,104 +294,1164 @@
         // Dữ liệu 20 bài học (Đã thêm icon và màu sắc)
         const DATA = [
             {
-                "id": 1, "title": "Bài 1: Gia đình (1)", "icon": "fas fa-house-chimney", "color": "bg-blue-100 text-blue-600",
-                "vocab": [{ "hanzi": "爸爸", "pinyin": "bàba", "mean": "Bố, ba" }, { "hanzi": "妈妈", "pinyin": "māma", "mean": "Mẹ, má" }, { "hanzi": "哥哥", "pinyin": "gēge", "mean": "Anh trai" }, { "hanzi": "弟弟", "pinyin": "dìdi", "mean": "Em trai" }],
-                "examples": [{ "hanzi": "爸爸好！", "pinyin": "Bàba hǎo!", "mean": "Chào bố!" }, { "hanzi": "妈妈好！", "pinyin": "Māma hǎo!", "mean": "Chào mẹ!" }]
+                "id": 1,
+                "title": "Bài 1: Gia đình (1)",
+                "icon": "fas fa-house-chimney",
+                "color": "bg-blue-100 text-blue-600",
+                "vocab": [
+                    {
+                        "hanzi": "爸爸",
+                        "pinyin": "bàba",
+                        "mean": "Bố, ba",
+                        "vi_pron": "pa-pa",
+                        "en_pron": "bah-bah"
+                    },
+                    {
+                        "hanzi": "妈妈",
+                        "pinyin": "māma",
+                        "mean": "Mẹ, má",
+                        "vi_pron": "ma-ma",
+                        "en_pron": "mah-mah"
+                    },
+                    {
+                        "hanzi": "哥哥",
+                        "pinyin": "gēge",
+                        "mean": "Anh trai",
+                        "vi_pron": "cưa-cưa",
+                        "en_pron": "guh-guh"
+                    },
+                    {
+                        "hanzi": "弟弟",
+                        "pinyin": "dìdi",
+                        "mean": "Em trai",
+                        "vi_pron": "ti-ti",
+                        "en_pron": "dee-dee"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "爸爸好！",
+                        "pinyin": "Bàba hǎo!",
+                        "mean": "Chào bố!",
+                        "vi_pron": "Pa-pa hảo!",
+                        "en_pron": "bah-bah how!"
+                    },
+                    {
+                        "hanzi": "妈妈好！",
+                        "pinyin": "Māma hǎo!",
+                        "mean": "Chào mẹ!",
+                        "vi_pron": "Ma-ma hảo!",
+                        "en_pron": "mah-mah how!"
+                    }
+                ]
             },
             {
-                "id": 2, "title": "Bài 2: Gia đình (2)", "icon": "fas fa-users", "color": "bg-green-100 text-green-600",
-                "vocab": [{ "hanzi": "阿姨", "pinyin": "āyí", "mean": "Dì, cô" }, { "hanzi": "伯伯", "pinyin": "bóbo", "mean": "Bác" }, { "hanzi": "你好", "pinyin": "nǐ hǎo", "mean": "Chào bạn" }, { "hanzi": "您好", "pinyin": "nín hǎo", "mean": "Chào ông/bà" }],
-                "examples": [{ "hanzi": "阿姨好！", "pinyin": "Āyí hǎo!", "mean": "Chào dì!" }, { "hanzi": "伯伯好！", "pinyin": "Bóbo hǎo!", "mean": "Chào bác!" }]
+                "id": 2,
+                "title": "Bài 2: Gia đình (2)",
+                "icon": "fas fa-users",
+                "color": "bg-green-100 text-green-600",
+                "vocab": [
+                    {
+                        "hanzi": "阿姨",
+                        "pinyin": "āyí",
+                        "mean": "Dì, cô",
+                        "vi_pron": "a-dí",
+                        "en_pron": "ah-yee"
+                    },
+                    {
+                        "hanzi": "伯伯",
+                        "pinyin": "bóbo",
+                        "mean": "Bác",
+                        "vi_pron": "púa-pua",
+                        "en_pron": "bwo-bwo"
+                    },
+                    {
+                        "hanzi": "你好",
+                        "pinyin": "nǐ hǎo",
+                        "mean": "Chào bạn",
+                        "vi_pron": "ní hảo",
+                        "en_pron": "nee how"
+                    },
+                    {
+                        "hanzi": "您好",
+                        "pinyin": "nín hǎo",
+                        "mean": "Chào ông/bà",
+                        "vi_pron": "nín hảo",
+                        "en_pron": "neen how"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "阿姨好！",
+                        "pinyin": "Āyí hǎo!",
+                        "mean": "Chào dì!",
+                        "vi_pron": "A-dí hảo!",
+                        "en_pron": "ah-yee how!"
+                    },
+                    {
+                        "hanzi": "伯伯好！",
+                        "pinyin": "Bóbo hǎo!",
+                        "mean": "Chào bác!",
+                        "vi_pron": "Púa-pua hảo!",
+                        "en_pron": "bwo-bwo how!"
+                    }
+                ]
             },
             {
-                "id": 3, "title": "Bài 3: Vật nuôi & Xưng hô", "icon": "fas fa-cat", "color": "bg-yellow-100 text-yellow-600",
-                "vocab": [{ "hanzi": "妹妹", "pinyin": "mèimei", "mean": "Em gái" }, { "hanzi": "猫", "pinyin": "māo", "mean": "Con mèo" }, { "hanzi": "狗", "pinyin": "gǒu", "mean": "Con chó" }, { "hanzi": "我", "pinyin": "wǒ", "mean": "Tôi" }, { "hanzi": "好", "pinyin": "hǎo", "mean": "Tốt, khỏe" }],
-                "examples": [{ "hanzi": "妹妹好！", "pinyin": "Mèimei hǎo!", "mean": "Chào em gái!" }, { "hanzi": "你好！", "pinyin": "Nǐ hǎo!", "mean": "Chào bạn!" }]
+                "id": 3,
+                "title": "Bài 3: Vật nuôi & Xưng hô",
+                "icon": "fas fa-cat",
+                "color": "bg-yellow-100 text-yellow-600",
+                "vocab": [
+                    {
+                        "hanzi": "妹妹",
+                        "pinyin": "mèimei",
+                        "mean": "Em gái",
+                        "vi_pron": "mây-mẩy",
+                        "en_pron": "may-may"
+                    },
+                    {
+                        "hanzi": "猫",
+                        "pinyin": "māo",
+                        "mean": "Con mèo",
+                        "vi_pron": "mao",
+                        "en_pron": "maow"
+                    },
+                    {
+                        "hanzi": "狗",
+                        "pinyin": "gǒu",
+                        "mean": "Con chó",
+                        "vi_pron": "cẩu",
+                        "en_pron": "go"
+                    },
+                    {
+                        "hanzi": "我",
+                        "pinyin": "wǒ",
+                        "mean": "Tôi",
+                        "vi_pron": "ủa",
+                        "en_pron": "waw"
+                    },
+                    {
+                        "hanzi": "好",
+                        "pinyin": "hǎo",
+                        "mean": "Tốt, khỏe",
+                        "vi_pron": "hảo",
+                        "en_pron": "how"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "妹妹好！",
+                        "pinyin": "Mèimei hǎo!",
+                        "mean": "Chào em gái!",
+                        "vi_pron": "Mây-mẩy hảo!",
+                        "en_pron": "may-may how!"
+                    },
+                    {
+                        "hanzi": "你好！",
+                        "pinyin": "Nǐ hǎo!",
+                        "mean": "Chào bạn!",
+                        "vi_pron": "Ní hảo!",
+                        "en_pron": "nee how!"
+                    }
+                ]
             },
             {
-                "id": 4, "title": "Bài 4: Trái cây", "icon": "fas fa-apple-whole", "color": "bg-red-100 text-red-600",
-                "vocab": [{ "hanzi": "苹果", "pinyin": "píngguǒ", "mean": "Quả táo" }, { "hanzi": "葡萄", "pinyin": "pútao", "mean": "Quả nho" }, { "hanzi": "梨", "pinyin": "lí", "mean": "Trái lê" }],
-                "examples": [{ "hanzi": "我要葡萄。", "pinyin": "Wǒ yào pútao.", "mean": "Con muốn ăn nho." }, { "hanzi": "弟弟要苹果。", "pinyin": "Dìdi yào píngguǒ.", "mean": "Em trai muốn ăn táo." }]
+                "id": 4,
+                "title": "Bài 4: Trái cây",
+                "icon": "fas fa-apple-whole",
+                "color": "bg-red-100 text-red-600",
+                "vocab": [
+                    {
+                        "hanzi": "苹果",
+                        "pinyin": "píngguǒ",
+                        "mean": "Quả táo",
+                        "vi_pron": "píng-của",
+                        "en_pron": "peeng-gwo"
+                    },
+                    {
+                        "hanzi": "葡萄",
+                        "pinyin": "pútao",
+                        "mean": "Quả nho",
+                        "vi_pron": "phú-thao",
+                        "en_pron": "poo-taow"
+                    },
+                    {
+                        "hanzi": "梨",
+                        "pinyin": "lí",
+                        "mean": "Trái lê",
+                        "vi_pron": "lí",
+                        "en_pron": "lee"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "我要葡萄。",
+                        "pinyin": "Wǒ yào pútao.",
+                        "mean": "Con muốn ăn nho.",
+                        "vi_pron": "Ủa dao phú-thao.",
+                        "en_pron": "waw yaow poo-taow."
+                    },
+                    {
+                        "hanzi": "弟弟要苹果。",
+                        "pinyin": "Dìdi yào píngguǒ.",
+                        "mean": "Em trai muốn ăn táo.",
+                        "vi_pron": "Ti-ti dao píng-của.",
+                        "en_pron": "dee-dee yaow peeng-gwo."
+                    }
+                ]
             },
             {
-                "id": 5, "title": "Bài 5: Đồ ăn vặt", "icon": "fas fa-cookie-bite", "color": "bg-orange-100 text-orange-600",
-                "vocab": [{ "hanzi": "蛋糕", "pinyin": "dàngāo", "mean": "Bánh bông lan" }, { "hanzi": "饼干", "pinyin": "bǐnggān", "mean": "Bánh quy" }, { "hanzi": "糖", "pinyin": "táng", "mean": "Kẹo" }, { "hanzi": "咖啡", "pinyin": "kāfēi", "mean": "Cà phê" }],
-                "examples": [{ "hanzi": "哥哥要咖啡。", "pinyin": "Gēge yào kāfēi.", "mean": "Anh trai muốn uống cà phê." }, { "hanzi": "我要蛋糕。", "pinyin": "Wǒ yào dàngāo.", "mean": "Tôi muốn ăn bánh bông lan." }]
+                "id": 5,
+                "title": "Bài 5: Đồ ăn vặt",
+                "icon": "fas fa-cookie-bite",
+                "color": "bg-orange-100 text-orange-600",
+                "vocab": [
+                    {
+                        "hanzi": "蛋糕",
+                        "pinyin": "dàngāo",
+                        "mean": "Bánh bông lan",
+                        "vi_pron": "tan-cao",
+                        "en_pron": "dahn-gow"
+                    },
+                    {
+                        "hanzi": "饼干",
+                        "pinyin": "bǐnggān",
+                        "mean": "Bánh quy",
+                        "vi_pron": "pỉnh-can",
+                        "en_pron": "beeng-gahn"
+                    },
+                    {
+                        "hanzi": "糖",
+                        "pinyin": "táng",
+                        "mean": "Kẹo",
+                        "vi_pron": "tháng",
+                        "en_pron": "tahng"
+                    },
+                    {
+                        "hanzi": "咖啡",
+                        "pinyin": "kāfēi",
+                        "mean": "Cà phê",
+                        "vi_pron": "kha-phây",
+                        "en_pron": "kah-fay"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "哥哥要咖啡。",
+                        "pinyin": "Gēge yào kāfēi.",
+                        "mean": "Anh trai muốn uống cà phê.",
+                        "vi_pron": "Cưa-cưa dao kha-phây.",
+                        "en_pron": "guh-guh yaow kah-fay."
+                    },
+                    {
+                        "hanzi": "我要蛋糕。",
+                        "pinyin": "Wǒ yào dàngāo.",
+                        "mean": "Tôi muốn ăn bánh bông lan.",
+                        "vi_pron": "Ủa dao tan-cao.",
+                        "en_pron": "waw yaow dahn-gow."
+                    }
+                ]
             },
             {
-                "id": 6, "title": "Bài 6: Đồ uống", "icon": "fas fa-mug-hot", "color": "bg-amber-100 text-amber-700",
-                "vocab": [{ "hanzi": "茶", "pinyin": "chá", "mean": "Trà" }, { "hanzi": "牛奶", "pinyin": "niúnǎi", "mean": "Sữa" }, { "hanzi": "这", "pinyin": "zhè", "mean": "Đây" }, { "hanzi": "是", "pinyin": "shì", "mean": "Là" }],
-                "examples": [{ "hanzi": "这是茶。", "pinyin": "Zhè shì chá.", "mean": "Đây là trà." }, { "hanzi": "这是牛奶。", "pinyin": "Zhè shì niúnǎi.", "mean": "Đây là sữa." }]
+                "id": 6,
+                "title": "Bài 6: Đồ uống",
+                "icon": "fas fa-mug-hot",
+                "color": "bg-amber-100 text-amber-700",
+                "vocab": [
+                    {
+                        "hanzi": "茶",
+                        "pinyin": "chá",
+                        "mean": "Trà",
+                        "img": "images/cha.png",
+                        "vi_pron": "chá",
+                        "en_pron": "chah"
+                    },
+                    {
+                        "hanzi": "牛奶",
+                        "pinyin": "niúnǎi",
+                        "mean": "Sữa",
+                        "img": "images/niunai.png",
+                        "vi_pron": "niếu-nải",
+                        "en_pron": "nyo-nye"
+                    },
+                    {
+                        "hanzi": "这",
+                        "pinyin": "zhè",
+                        "mean": "Đây",
+                        "img": "images/zhe.png",
+                        "vi_pron": "trơ",
+                        "en_pron": "juh"
+                    },
+                    {
+                        "hanzi": "是",
+                        "pinyin": "shì",
+                        "mean": "Là",
+                        "img": "images/shi.png",
+                        "vi_pron": "sư",
+                        "en_pron": "shrr"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是茶。",
+                        "pinyin": "Zhè shì chá.",
+                        "mean": "Đây là trà.",
+                        "vi_pron": "Trơ sư chá.",
+                        "en_pron": "juh shrr chah."
+                    },
+                    {
+                        "hanzi": "这是牛奶。",
+                        "pinyin": "Zhè shì niúnǎi.",
+                        "mean": "Đây là sữa.",
+                        "vi_pron": "Trơ sư niếu-nải.",
+                        "en_pron": "juh shrr nyo-nye."
+                    }
+                ]
             },
             {
-                "id": 7, "title": "Bài 7: Món ăn", "icon": "fas fa-bowl-rice", "color": "bg-lime-100 text-lime-700",
-                "vocab": [{ "hanzi": "面包", "pinyin": "miànbāo", "mean": "Bánh mì" }, { "hanzi": "牛肉", "pinyin": "niúròu", "mean": "Thịt bò" }, { "hanzi": "面条", "pinyin": "miàntiáo", "mean": "Mì sợi" }, { "hanzi": "粥", "pinyin": "zhōu", "mean": "Cháo" }],
-                "examples": [{ "hanzi": "这是牛肉。", "pinyin": "Zhè shì niúròu.", "mean": "Đây là thịt bò." }, { "hanzi": "我要面包。", "pinyin": "Wǒ yào miànbāo.", "mean": "Tôi muốn bánh mì." }]
+                "id": 7,
+                "title": "Bài 7: Món ăn",
+                "icon": "fas fa-bowl-rice",
+                "color": "bg-lime-100 text-lime-700",
+                "vocab": [
+                    {
+                        "hanzi": "面包",
+                        "pinyin": "miànbāo",
+                        "mean": "Bánh mì",
+                        "img": "images/mianbao.png",
+                        "vi_pron": "mien-pao",
+                        "en_pron": "myen-bow"
+                    },
+                    {
+                        "hanzi": "牛肉",
+                        "pinyin": "niúròu",
+                        "mean": "Thịt bò",
+                        "img": "images/niurou.png",
+                        "vi_pron": "niếu-râu",
+                        "en_pron": "nyo-ro"
+                    },
+                    {
+                        "hanzi": "面条",
+                        "pinyin": "miàntiáo",
+                        "mean": "Mì sợi",
+                        "img": "images/miantiao.png",
+                        "vi_pron": "mien-théo",
+                        "en_pron": "myen-tyaow"
+                    },
+                    {
+                        "hanzi": "粥",
+                        "pinyin": "zhōu",
+                        "mean": "Cháo",
+                        "img": "images/zhou.png",
+                        "vi_pron": "châu",
+                        "en_pron": "joe"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是牛肉。",
+                        "pinyin": "Zhè shì niúròu.",
+                        "mean": "Đây là thịt bò.",
+                        "vi_pron": "Trơ sư niếu-râu.",
+                        "en_pron": "juh shrr nyo-ro."
+                    },
+                    {
+                        "hanzi": "我要面包。",
+                        "pinyin": "Wǒ yào miànbāo.",
+                        "mean": "Tôi muốn bánh mì.",
+                        "vi_pron": "Ủa dao mien-pao.",
+                        "en_pron": "waw yaow myen-bow."
+                    }
+                ]
             },
             {
-                "id": 8, "title": "Bài 8: Nghề nghiệp", "icon": "fas fa-chalkboard-user", "color": "bg-cyan-100 text-cyan-700",
-                "vocab": [{ "hanzi": "老师", "pinyin": "lǎoshī", "mean": "Thầy/Cô giáo" }, { "hanzi": "工人", "pinyin": "gōngrén", "mean": "Công nhân" }, { "hanzi": "爷爷", "pinyin": "yéye", "mean": "Ông nội" }, { "hanzi": "奶奶", "pinyin": "nǎinai", "mean": "Bà nội" }],
-                "examples": [{ "hanzi": "这是老师。", "pinyin": "Zhè shì lǎoshī.", "mean": "Đây là thầy giáo." }, { "hanzi": "老师好！", "pinyin": "Lǎoshī hǎo!", "mean": "Em chào thầy!" }]
+                "id": 8,
+                "title": "Bài 8: Nghề nghiệp",
+                "icon": "fas fa-chalkboard-user",
+                "color": "bg-cyan-100 text-cyan-700",
+                "vocab": [
+                    {
+                        "hanzi": "老师",
+                        "pinyin": "lǎoshī",
+                        "mean": "Thầy/Cô giáo",
+                        "vi_pron": "lảo-sư",
+                        "en_pron": "laow-shrr"
+                    },
+                    {
+                        "hanzi": "工人",
+                        "pinyin": "gōngrén",
+                        "mean": "Công nhân",
+                        "vi_pron": "cung-rấn",
+                        "en_pron": "gong-run"
+                    },
+                    {
+                        "hanzi": "爷爷",
+                        "pinyin": "yéye",
+                        "mean": "Ông nội",
+                        "vi_pron": "dế-dê",
+                        "en_pron": "yeh-yeh"
+                    },
+                    {
+                        "hanzi": "奶奶",
+                        "pinyin": "nǎinai",
+                        "mean": "Bà nội",
+                        "vi_pron": "nải-nai",
+                        "en_pron": "nye-nye"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是老师。",
+                        "pinyin": "Zhè shì lǎoshī.",
+                        "mean": "Đây là thầy giáo.",
+                        "vi_pron": "Trơ sư lảo-sư.",
+                        "en_pron": "juh shrr laow-shrr."
+                    },
+                    {
+                        "hanzi": "老师好！",
+                        "pinyin": "Lǎoshī hǎo!",
+                        "mean": "Em chào thầy!",
+                        "vi_pron": "Lảo-sư hảo!",
+                        "en_pron": "laow-shrr how!"
+                    }
+                ]
             },
             {
-                "id": 9, "title": "Bài 9: Đồ dùng ăn uống", "icon": "fas fa-utensils", "color": "bg-teal-100 text-teal-700",
-                "vocab": [{ "hanzi": "碗", "pinyin": "wǎn", "mean": "Cái chén (bát)" }, { "hanzi": "筷子", "pinyin": "kuàizi", "mean": "Đôi đũa" }, { "hanzi": "菜", "pinyin": "cài", "mean": "Thức ăn/Món ăn" }, { "hanzi": "饭", "pinyin": "fàn", "mean": "Cơm" }, { "hanzi": "那", "pinyin": "nà", "mean": "Đó/Kia" }],
-                "examples": [{ "hanzi": "这是什么？", "pinyin": "Zhè shì shénme?", "mean": "Đây là cái gì?" }, { "hanzi": "这是碗。", "pinyin": "Zhè shì wǎn.", "mean": "Đây là cái chén." }]
+                "id": 9,
+                "title": "Bài 9: Đồ dùng ăn uống",
+                "icon": "fas fa-utensils",
+                "color": "bg-teal-100 text-teal-700",
+                "vocab": [
+                    {
+                        "hanzi": "碗",
+                        "pinyin": "wǎn",
+                        "mean": "Cái chén (bát)",
+                        "vi_pron": "oản",
+                        "en_pron": "wahn"
+                    },
+                    {
+                        "hanzi": "筷子",
+                        "pinyin": "kuàizi",
+                        "mean": "Đôi đũa",
+                        "vi_pron": "khoai-chư",
+                        "en_pron": "kwye-zih"
+                    },
+                    {
+                        "hanzi": "菜",
+                        "pinyin": "cài",
+                        "mean": "Thức ăn/Món ăn",
+                        "vi_pron": "sài",
+                        "en_pron": "tsye"
+                    },
+                    {
+                        "hanzi": "饭",
+                        "pinyin": "fàn",
+                        "mean": "Cơm",
+                        "vi_pron": "phang",
+                        "en_pron": "fahn"
+                    },
+                    {
+                        "hanzi": "那",
+                        "pinyin": "nà",
+                        "mean": "Đó/Kia",
+                        "vi_pron": "na",
+                        "en_pron": "nah"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是什么？",
+                        "pinyin": "Zhè shì shénme?",
+                        "mean": "Đây là cái gì?",
+                        "vi_pron": "Trơ sư sấn-mơ?",
+                        "en_pron": "juh shrr shun-muh?"
+                    },
+                    {
+                        "hanzi": "这是碗。",
+                        "pinyin": "Zhè shì wǎn.",
+                        "mean": "Đây là cái chén.",
+                        "vi_pron": "Trơ sư oản.",
+                        "en_pron": "juh shrr wahn."
+                    }
+                ]
             },
             {
-                "id": 10, "title": "Bài 10: Thiên nhiên", "icon": "fas fa-tree", "color": "bg-emerald-100 text-emerald-700",
-                "vocab": [{ "hanzi": "花", "pinyin": "huā", "mean": "Bông hoa" }, { "hanzi": "叶子", "pinyin": "yèzi", "mean": "Chiếc lá" }, { "hanzi": "草", "pinyin": "cǎo", "mean": "Cỏ" }, { "hanzi": "树", "pinyin": "shù", "mean": "Cây" }, { "hanzi": "森林", "pinyin": "sēnlín", "mean": "Rừng" }],
-                "examples": [{ "hanzi": "这是花。", "pinyin": "Zhè shì huā.", "mean": "Đây là bông hoa." }, { "hanzi": "那是叶子。", "pinyin": "Nà shì yèzi.", "mean": "Đó là chiếc lá." }]
+                "id": 10,
+                "title": "Bài 10: Thiên nhiên",
+                "icon": "fas fa-tree",
+                "color": "bg-emerald-100 text-emerald-700",
+                "vocab": [
+                    {
+                        "hanzi": "花",
+                        "pinyin": "huā",
+                        "mean": "Bông hoa",
+                        "vi_pron": "hoa",
+                        "en_pron": "hwah"
+                    },
+                    {
+                        "hanzi": "叶子",
+                        "pinyin": "yèzi",
+                        "mean": "Chiếc lá",
+                        "vi_pron": "dê-chư",
+                        "en_pron": "yeh-zih"
+                    },
+                    {
+                        "hanzi": "草",
+                        "pinyin": "cǎo",
+                        "mean": "Cỏ",
+                        "vi_pron": "xảo",
+                        "en_pron": "tsow"
+                    },
+                    {
+                        "hanzi": "树",
+                        "pinyin": "shù",
+                        "mean": "Cây",
+                        "vi_pron": "su",
+                        "en_pron": "shoo"
+                    },
+                    {
+                        "hanzi": "森林",
+                        "pinyin": "sēnlín",
+                        "mean": "Rừng",
+                        "vi_pron": "sân-lín",
+                        "en_pron": "sun-leen"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是花。",
+                        "pinyin": "Zhè shì huā.",
+                        "mean": "Đây là bông hoa.",
+                        "vi_pron": "Trơ sư hoa.",
+                        "en_pron": "juh shrr hwah."
+                    },
+                    {
+                        "hanzi": "那是叶子。",
+                        "pinyin": "Nà shì yèzi.",
+                        "mean": "Đó là chiếc lá.",
+                        "vi_pron": "Na sư dê-chư.",
+                        "en_pron": "nah shrr yeh-zih."
+                    }
+                ]
             },
             {
-                "id": 11, "title": "Bài 11: Đồ dùng", "icon": "fas fa-chair", "color": "bg-purple-100 text-purple-700",
-                "vocab": [{ "hanzi": "桌子", "pinyin": "zhuōzi", "mean": "Cái bàn" }, { "hanzi": "椅子", "pinyin": "yǐzi", "mean": "Cái ghế" }, { "hanzi": "床", "pinyin": "chuáng", "mean": "Cái giường" }, { "hanzi": "书包", "pinyin": "shūbāo", "mean": "Cái cặp sách" }, { "hanzi": "伞", "pinyin": "sǎn", "mean": "Cây dù (ô)" }],
-                "examples": [{ "hanzi": "我有桌子、椅子。", "pinyin": "Wǒ yǒu zhuōzi, yǐzi.", "mean": "Tôi có bàn, ghế." }, { "hanzi": "这是书包。", "pinyin": "Zhè shì shūbāo.", "mean": "Đây là cặp sách." }]
+                "id": 11,
+                "title": "Bài 11: Đồ dùng",
+                "icon": "fas fa-chair",
+                "color": "bg-purple-100 text-purple-700",
+                "vocab": [
+                    {
+                        "hanzi": "桌子",
+                        "pinyin": "zhuōzi",
+                        "mean": "Cái bàn",
+                        "vi_pron": "chuô-chư",
+                        "en_pron": "jwo-zih"
+                    },
+                    {
+                        "hanzi": "椅子",
+                        "pinyin": "yǐzi",
+                        "mean": "Cái ghế",
+                        "vi_pron": "ỷ-chư",
+                        "en_pron": "yee-zih"
+                    },
+                    {
+                        "hanzi": "床",
+                        "pinyin": "chuáng",
+                        "mean": "Cái giường",
+                        "vi_pron": "choáng",
+                        "en_pron": "chwahng"
+                    },
+                    {
+                        "hanzi": "书包",
+                        "pinyin": "shūbāo",
+                        "mean": "Cái cặp sách",
+                        "vi_pron": "su-pao",
+                        "en_pron": "shoo-bow"
+                    },
+                    {
+                        "hanzi": "伞",
+                        "pinyin": "sǎn",
+                        "mean": "Cây dù (ô)",
+                        "vi_pron": "sản",
+                        "en_pron": "sahn"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "我有桌子、椅子。",
+                        "pinyin": "Wǒ yǒu zhuōzi, yǐzi.",
+                        "mean": "Tôi có bàn, ghế.",
+                        "vi_pron": "Ủa dẩu chuô-chư, ỷ-chư.",
+                        "en_pron": "waw yo jwo-zih, yee-zih."
+                    },
+                    {
+                        "hanzi": "这是书包。",
+                        "pinyin": "Zhè shì shūbāo.",
+                        "mean": "Đây là cặp sách.",
+                        "vi_pron": "Trơ sư su-pao.",
+                        "en_pron": "juh shrr shoo-bow."
+                    }
+                ]
             },
             {
-                "id": 12, "title": "Bài 12: Phương tiện", "icon": "fas fa-car", "color": "bg-indigo-100 text-indigo-700",
-                "vocab": [{ "hanzi": "飞机", "pinyin": "fēijī", "mean": "Máy bay" }, { "hanzi": "汽车", "pinyin": "qìchē", "mean": "Xe hơi (ô tô)" }, { "hanzi": "轮船", "pinyin": "lúnchuán", "mean": "Tàu thủy" }, { "hanzi": "自行车", "pinyin": "zìxíngchē", "mean": "Xe đạp" }, { "hanzi": "有", "pinyin": "yǒu", "mean": "Có" }],
-                "examples": [{ "hanzi": "你有飞机吗？", "pinyin": "Nǐ yǒu fēijī ma?", "mean": "Bạn có máy bay không?" }, { "hanzi": "我有飞机。", "pinyin": "Wǒ yǒu fēijī.", "mean": "Tôi có máy bay." }]
+                "id": 12,
+                "title": "Bài 12: Phương tiện",
+                "icon": "fas fa-car",
+                "color": "bg-indigo-100 text-indigo-700",
+                "vocab": [
+                    {
+                        "hanzi": "飞机",
+                        "pinyin": "fēijī",
+                        "mean": "Máy bay",
+                        "vi_pron": "phây-chi",
+                        "en_pron": "fay-jee"
+                    },
+                    {
+                        "hanzi": "汽车",
+                        "pinyin": "qìchē",
+                        "mean": "Xe hơi (ô tô)",
+                        "vi_pron": "si-trơ",
+                        "en_pron": "chee-chuh"
+                    },
+                    {
+                        "hanzi": "轮船",
+                        "pinyin": "lúnchuán",
+                        "mean": "Tàu thủy",
+                        "vi_pron": "luấn-choán",
+                        "en_pron": "lwun-chwahn"
+                    },
+                    {
+                        "hanzi": "自行车",
+                        "pinyin": "zìxíngchē",
+                        "mean": "Xe đạp",
+                        "vi_pron": "chư-xính-trơ",
+                        "en_pron": "zih-sheeng-chuh"
+                    },
+                    {
+                        "hanzi": "有",
+                        "pinyin": "yǒu",
+                        "mean": "Có",
+                        "vi_pron": "dẩu",
+                        "en_pron": "yo"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "你有飞机吗？",
+                        "pinyin": "Nǐ yǒu fēijī ma?",
+                        "mean": "Bạn có máy bay không?",
+                        "vi_pron": "Ní dẩu phây-chi ma?",
+                        "en_pron": "nee yo fay-jee mah?"
+                    },
+                    {
+                        "hanzi": "我有飞机。",
+                        "pinyin": "Wǒ yǒu fēijī.",
+                        "mean": "Tôi có máy bay.",
+                        "vi_pron": "Ủa dẩu phây-chi.",
+                        "en_pron": "waw yo fay-jee."
+                    }
+                ]
             },
             {
-                "id": 13, "title": "Bài 13: Đồ chơi", "icon": "fas fa-robot", "color": "bg-pink-100 text-pink-700",
-                "vocab": [{ "hanzi": "机器人", "pinyin": "jīqìrén", "mean": "Người máy" }, { "hanzi": "皮球", "pinyin": "píqiú", "mean": "Quả bóng" }, { "hanzi": "娃娃", "pinyin": "wáwa", "mean": "Búp bê" }, { "hanzi": "熊猫", "pinyin": "xióngmāo", "mean": "Gấu trúc" }, { "hanzi": "火箭", "pinyin": "huǒjiàn", "mean": "Tên lửa" }],
-                "examples": [{ "hanzi": "我有机器人。", "pinyin": "Wǒ yǒu jīqìrén.", "mean": "Tôi có người máy." }, { "hanzi": "我没有火箭。", "pinyin": "Wǒ méi yǒu huǒjiàn.", "mean": "Tôi không có tên lửa." }]
+                "id": 13,
+                "title": "Bài 13: Đồ chơi",
+                "icon": "fas fa-robot",
+                "color": "bg-pink-100 text-pink-700",
+                "vocab": [
+                    {
+                        "hanzi": "机器人",
+                        "pinyin": "jīqìrén",
+                        "mean": "Người máy",
+                        "vi_pron": "chi-xi-rấn",
+                        "en_pron": "jee-chee-run"
+                    },
+                    {
+                        "hanzi": "皮球",
+                        "pinyin": "píqiú",
+                        "mean": "Quả bóng",
+                        "vi_pron": "phí-chiếu",
+                        "en_pron": "pee-chyo"
+                    },
+                    {
+                        "hanzi": "娃娃",
+                        "pinyin": "wáwa",
+                        "mean": "Búp bê",
+                        "vi_pron": "oá-oa",
+                        "en_pron": "wah-wah"
+                    },
+                    {
+                        "hanzi": "熊猫",
+                        "pinyin": "xióngmāo",
+                        "mean": "Gấu trúc",
+                        "vi_pron": "xiúng-mao",
+                        "en_pron": "shyong-maow"
+                    },
+                    {
+                        "hanzi": "火箭",
+                        "pinyin": "huǒjiàn",
+                        "mean": "Tên lửa",
+                        "vi_pron": "hủa-chien",
+                        "en_pron": "hwo-jyen"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "我有机器人。",
+                        "pinyin": "Wǒ yǒu jīqìrén.",
+                        "mean": "Tôi có người máy.",
+                        "vi_pron": "Ủa dẩu chi-xi-rấn.",
+                        "en_pron": "waw yo jee-chee-run."
+                    },
+                    {
+                        "hanzi": "我没有火箭。",
+                        "pinyin": "Wǒ méi yǒu huǒjiàn.",
+                        "mean": "Tôi không có tên lửa.",
+                        "vi_pron": "Ủa mấy dẩu hủa-chien.",
+                        "en_pron": "waw may yo hwo-jyen."
+                    }
+                ]
             },
             {
-                "id": 14, "title": "Bài 14: Địa danh", "icon": "fas fa-flag", "color": "bg-red-50 text-red-800",
-                "vocab": [{ "hanzi": "中国", "pinyin": "Zhōngguó", "mean": "Trung Quốc" }, { "hanzi": "国旗", "pinyin": "guóqí", "mean": "Quốc kỳ" }, { "hanzi": "北京", "pinyin": "Běijīng", "mean": "Bắc Kinh" }, { "hanzi": "天安门", "pinyin": "Tiān'ānmén", "mean": "Thiên An Môn" }, { "hanzi": "长城", "pinyin": "Chángchéng", "mean": "Vạn Lý Trường Thành" }],
-                "examples": [{ "hanzi": "这是国旗吗？", "pinyin": "Zhè shì guóqí ma?", "mean": "Đây là quốc kỳ phải không?" }, { "hanzi": "这是中国国旗。", "pinyin": "Zhè shì Zhōngguó guóqí.", "mean": "Đây là quốc kỳ Trung Quốc." }]
+                "id": 14,
+                "title": "Bài 14: Địa danh",
+                "icon": "fas fa-flag",
+                "color": "bg-red-50 text-red-800",
+                "vocab": [
+                    {
+                        "hanzi": "中国",
+                        "pinyin": "Zhōngguó",
+                        "mean": "Trung Quốc",
+                        "vi_pron": "Chung-của",
+                        "en_pron": "jong-gwo"
+                    },
+                    {
+                        "hanzi": "国旗",
+                        "pinyin": "guóqí",
+                        "mean": "Quốc kỳ",
+                        "vi_pron": "của-tsí",
+                        "en_pron": "gwo-chee"
+                    },
+                    {
+                        "hanzi": "北京",
+                        "pinyin": "Běijīng",
+                        "mean": "Bắc Kinh",
+                        "vi_pron": "Pẩy-chinh",
+                        "en_pron": "bay-jeeng"
+                    },
+                    {
+                        "hanzi": "天安门",
+                        "pinyin": "Tiān'ānmén",
+                        "mean": "Thiên An Môn",
+                        "vi_pron": "Thiên-an-mấn",
+                        "en_pron": "tyen-ahn-mun"
+                    },
+                    {
+                        "hanzi": "长城",
+                        "pinyin": "Chángchéng",
+                        "mean": "Vạn Lý Trường Thành",
+                        "vi_pron": "Tráng-trấng",
+                        "en_pron": "chahng-chung"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是国旗吗？",
+                        "pinyin": "Zhè shì guóqí ma?",
+                        "mean": "Đây là quốc kỳ phải không?",
+                        "vi_pron": "Trơ sư của-tsí ma?",
+                        "en_pron": "juh shrr gwo-chee mah?"
+                    },
+                    {
+                        "hanzi": "这是中国国旗。",
+                        "pinyin": "Zhè shì Zhōngguó guóqí.",
+                        "mean": "Đây là quốc kỳ Trung Quốc.",
+                        "vi_pron": "Trơ sư Chung-của của-tsí.",
+                        "en_pron": "juh shrr jong-gwo gwo-chee."
+                    }
+                ]
             },
             {
-                "id": 15, "title": "Bài 15: Thời tiết", "icon": "fas fa-cloud-rain", "color": "bg-gray-200 text-gray-700",
-                "vocab": [{ "hanzi": "雨", "pinyin": "yǔ", "mean": "Mưa" }, { "hanzi": "雪", "pinyin": "xuě", "mean": "Tuyết" }, { "hanzi": "雾", "pinyin": "wù", "mean": "Sương mù" }, { "hanzi": "风", "pinyin": "fēng", "mean": "Gió" }, { "hanzi": "下", "pinyin": "xià", "mean": "Rơi/Xuống" }],
-                "examples": [{ "hanzi": "下雨了！", "pinyin": "Xià yǔ le!", "mean": "Trời mưa rồi!" }, { "hanzi": "下雪了！", "pinyin": "Xià xuě le!", "mean": "Tuyết rơi rồi!" }]
+                "id": 15,
+                "title": "Bài 15: Thời tiết",
+                "icon": "fas fa-cloud-rain",
+                "color": "bg-gray-200 text-gray-700",
+                "vocab": [
+                    {
+                        "hanzi": "雨",
+                        "pinyin": "yǔ",
+                        "mean": "Mưa",
+                        "vi_pron": "dủ",
+                        "en_pron": "yoo"
+                    },
+                    {
+                        "hanzi": "雪",
+                        "pinyin": "xuě",
+                        "mean": "Tuyết",
+                        "vi_pron": "xuể",
+                        "en_pron": "shweh"
+                    },
+                    {
+                        "hanzi": "雾",
+                        "pinyin": "wù",
+                        "mean": "Sương mù",
+                        "vi_pron": "u",
+                        "en_pron": "woo"
+                    },
+                    {
+                        "hanzi": "风",
+                        "pinyin": "fēng",
+                        "mean": "Gió",
+                        "vi_pron": "phâng",
+                        "en_pron": "fung"
+                    },
+                    {
+                        "hanzi": "下",
+                        "pinyin": "xià",
+                        "mean": "Rơi/Xuống",
+                        "vi_pron": "xia",
+                        "en_pron": "shyah"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "下雨了！",
+                        "pinyin": "Xià yǔ le!",
+                        "mean": "Trời mưa rồi!",
+                        "vi_pron": "Xia dủ lợ!",
+                        "en_pron": "shyah yoo luh!"
+                    },
+                    {
+                        "hanzi": "下雪了！",
+                        "pinyin": "Xià xuě le!",
+                        "mean": "Tuyết rơi rồi!",
+                        "vi_pron": "Xia xuể lợ!",
+                        "en_pron": "shyah shweh luh!"
+                    }
+                ]
             },
             {
-                "id": 16, "title": "Bài 16: Bầu trời", "icon": "fas fa-sun", "color": "bg-yellow-50 text-orange-500",
-                "vocab": [{ "hanzi": "太阳", "pinyin": "tàiyáng", "mean": "Mặt trời" }, { "hanzi": "月亮", "pinyin": "yuèliang", "mean": "Mặt trăng" }, { "hanzi": "云", "pinyin": "yún", "mean": "Mây" }, { "hanzi": "星星", "pinyin": "xīngxing", "mean": "Ngôi sao" }, { "hanzi": "彩虹", "pinyin": "cǎihóng", "mean": "Cầu vồng" }],
-                "examples": [{ "hanzi": "那是太阳吗？", "pinyin": "Nà shì tàiyáng ma?", "mean": "Đó là mặt trời phải không?" }, { "hanzi": "那不是太阳，那是月亮。", "pinyin": "Nà bú shì tàiyáng, nà shì yuèliang.", "mean": "Đó không phải mặt trời, đó là mặt trăng." }]
+                "id": 16,
+                "title": "Bài 16: Bầu trời",
+                "icon": "fas fa-sun",
+                "color": "bg-yellow-50 text-orange-500",
+                "vocab": [
+                    {
+                        "hanzi": "太阳",
+                        "pinyin": "tàiyáng",
+                        "mean": "Mặt trời",
+                        "vi_pron": "thai-dáng",
+                        "en_pron": "tye-yahng"
+                    },
+                    {
+                        "hanzi": "月亮",
+                        "pinyin": "yuèliang",
+                        "mean": "Mặt trăng",
+                        "vi_pron": "duê-leng",
+                        "en_pron": "yweh-lyahng"
+                    },
+                    {
+                        "hanzi": "云",
+                        "pinyin": "yún",
+                        "mean": "Mây",
+                        "vi_pron": "duýn",
+                        "en_pron": "ywin"
+                    },
+                    {
+                        "hanzi": "星星",
+                        "pinyin": "xīngxing",
+                        "mean": "Ngôi sao",
+                        "vi_pron": "xinh-xinh",
+                        "en_pron": "sheeng-sheeng"
+                    },
+                    {
+                        "hanzi": "彩虹",
+                        "pinyin": "cǎihóng",
+                        "mean": "Cầu vồng",
+                        "vi_pron": "xải-húng",
+                        "en_pron": "tsye-hong"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "那是太阳吗？",
+                        "pinyin": "Nà shì tàiyáng ma?",
+                        "mean": "Đó là mặt trời phải không?",
+                        "vi_pron": "Na sư thai-dáng ma?",
+                        "en_pron": "nah shrr tye-yahng mah?"
+                    },
+                    {
+                        "hanzi": "那不是太阳，那是月亮。",
+                        "pinyin": "Nà bú shì tàiyáng, nà shì yuèliang.",
+                        "mean": "Đó không phải mặt trời, đó là mặt trăng.",
+                        "vi_pron": "Na pú sư thai-dáng, na sư duê-leng.",
+                        "en_pron": "nah boo shrr tye-yahng, nah shrr yweh-lyahng."
+                    }
+                ]
             },
             {
-                "id": 17, "title": "Bài 17: Cơ thể", "icon": "fas fa-hand", "color": "bg-rose-100 text-rose-700",
-                "vocab": [{ "hanzi": "耳朵", "pinyin": "ěrduo", "mean": "Lỗ tai" }, { "hanzi": "鼻子", "pinyin": "bízi", "mean": "Mũi" }, { "hanzi": "眼睛", "pinyin": "yǎnjing", "mean": "Mắt" }, { "hanzi": "嘴", "pinyin": "zuǐ", "mean": "Miệng" }, { "hanzi": "手", "pinyin": "shǒu", "mean": "Tay" }, { "hanzi": "脚", "pinyin": "jiǎo", "mean": "Chân" }],
-                "examples": [{ "hanzi": "这是耳朵吗？", "pinyin": "Zhè shì ěrduo ma?", "mean": "Đây là lỗ tai phải không?" }, { "hanzi": "这是眼睛。", "pinyin": "Zhè shì yǎnjing.", "mean": "Đây là mắt." }]
+                "id": 17,
+                "title": "Bài 17: Cơ thể",
+                "icon": "fas fa-hand",
+                "color": "bg-rose-100 text-rose-700",
+                "vocab": [
+                    {
+                        "hanzi": "耳朵",
+                        "pinyin": "ěrduo",
+                        "mean": "Lỗ tai",
+                        "vi_pron": "ở-tua",
+                        "en_pron": "ur-dwo"
+                    },
+                    {
+                        "hanzi": "鼻子",
+                        "pinyin": "bízi",
+                        "mean": "Mũi",
+                        "vi_pron": "pí-chư",
+                        "en_pron": "bee-zih"
+                    },
+                    {
+                        "hanzi": "眼睛",
+                        "pinyin": "yǎnjing",
+                        "mean": "Mắt",
+                        "vi_pron": "dẻn-chinh",
+                        "en_pron": "yen-jeeng"
+                    },
+                    {
+                        "hanzi": "嘴",
+                        "pinyin": "zuǐ",
+                        "mean": "Miệng",
+                        "vi_pron": "chuẩy",
+                        "en_pron": "zway"
+                    },
+                    {
+                        "hanzi": "手",
+                        "pinyin": "shǒu",
+                        "mean": "Tay",
+                        "vi_pron": "sẩu",
+                        "en_pron": "show"
+                    },
+                    {
+                        "hanzi": "脚",
+                        "pinyin": "jiǎo",
+                        "mean": "Chân",
+                        "vi_pron": "chiểu",
+                        "en_pron": "jyaow"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是耳朵吗？",
+                        "pinyin": "Zhè shì ěrduo ma?",
+                        "mean": "Đây là lỗ tai phải không?",
+                        "vi_pron": "Trơ sư ở-tua ma?",
+                        "en_pron": "juh shrr ur-dwo mah?"
+                    },
+                    {
+                        "hanzi": "这是眼睛。",
+                        "pinyin": "Zhè shì yǎnjing.",
+                        "mean": "Đây là mắt.",
+                        "vi_pron": "Trơ sư dẻn-chinh.",
+                        "en_pron": "juh shrr yen-jeeng."
+                    }
+                ]
             },
             {
-                "id": 18, "title": "Bài 18: Trang phục", "icon": "fas fa-shirt", "color": "bg-violet-100 text-violet-700",
-                "vocab": [{ "hanzi": "手套", "pinyin": "shǒutào", "mean": "Găng tay" }, { "hanzi": "手绢", "pinyin": "shǒujuàn", "mean": "Khăn tay" }, { "hanzi": "鞋", "pinyin": "xié", "mean": "Giày" }, { "hanzi": "裤子", "pinyin": "kùzi", "mean": "Quần" }, { "hanzi": "裙子", "pinyin": "qúnzi", "mean": "Váy" }, { "hanzi": "上衣", "pinyin": "shàngyī", "mean": "Áo" }],
-                "examples": [{ "hanzi": "这是我的衣服。", "pinyin": "Zhè shì wǒ de yīfu.", "mean": "Đây là quần áo của tôi." }, { "hanzi": "那是弟弟的裤子。", "pinyin": "Nà shì dìdi de kùzi.", "mean": "Đó là quần của em trai." }]
+                "id": 18,
+                "title": "Bài 18: Trang phục",
+                "icon": "fas fa-shirt",
+                "color": "bg-violet-100 text-violet-700",
+                "vocab": [
+                    {
+                        "hanzi": "手套",
+                        "pinyin": "shǒutào",
+                        "mean": "Găng tay",
+                        "vi_pron": "sẩu-thao",
+                        "en_pron": "show-taow"
+                    },
+                    {
+                        "hanzi": "手绢",
+                        "pinyin": "shǒujuàn",
+                        "mean": "Khăn tay",
+                        "vi_pron": "sẩu-choen",
+                        "en_pron": "show-jwen"
+                    },
+                    {
+                        "hanzi": "鞋",
+                        "pinyin": "xié",
+                        "mean": "Giày",
+                        "vi_pron": "xiế",
+                        "en_pron": "shyeh"
+                    },
+                    {
+                        "hanzi": "裤子",
+                        "pinyin": "kùzi",
+                        "mean": "Quần",
+                        "vi_pron": "khu-chư",
+                        "en_pron": "koo-zih"
+                    },
+                    {
+                        "hanzi": "裙子",
+                        "pinyin": "qúnzi",
+                        "mean": "Váy",
+                        "vi_pron": "chuýn-chư",
+                        "en_pron": "chwin-zih"
+                    },
+                    {
+                        "hanzi": "上衣",
+                        "pinyin": "shàngyī",
+                        "mean": "Áo",
+                        "vi_pron": "sang-y",
+                        "en_pron": "shahng-yee"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是我的衣服。",
+                        "pinyin": "Zhè shì wǒ de yīfu.",
+                        "mean": "Đây là quần áo của tôi.",
+                        "vi_pron": "Trơ sư ủa tợ y-phu.",
+                        "en_pron": "juh shrr waw duh yee-foo."
+                    },
+                    {
+                        "hanzi": "那是弟弟的裤子。",
+                        "pinyin": "Nà shì dìdi de kùzi.",
+                        "mean": "Đó là quần của em trai.",
+                        "vi_pron": "Na sư ti-ti tợ khu-chư.",
+                        "en_pron": "nah shrr dee-dee duh koo-zih."
+                    }
+                ]
             },
             {
-                "id": 19, "title": "Bài 19: Học tập", "icon": "fas fa-book", "color": "bg-fuchsia-100 text-fuchsia-700",
-                "vocab": [{ "hanzi": "书", "pinyin": "shū", "mean": "Sách" }, { "hanzi": "画儿", "pinyin": "huàr", "mean": "Tranh" }, { "hanzi": "笔", "pinyin": "bǐ", "mean": "Bút" }, { "hanzi": "的", "pinyin": "de", "mean": "Của (trợ từ sở hữu)" }, { "hanzi": "衣服", "pinyin": "yīfu", "mean": "Quần áo (nói chung)" }, { "hanzi": "看", "pinyin": "kàn", "mean": "Nhìn/Xem/Đọc" }],
-                "examples": [{ "hanzi": "我看书。", "pinyin": "Wǒ kàn shū.", "mean": "Tôi đọc sách." }, { "hanzi": "弟弟画画儿。", "pinyin": "Dìdi huà huàr.", "mean": "Em trai vẽ tranh." }]
+                "id": 19,
+                "title": "Bài 19: Học tập",
+                "icon": "fas fa-book",
+                "color": "bg-fuchsia-100 text-fuchsia-700",
+                "vocab": [
+                    {
+                        "hanzi": "书",
+                        "pinyin": "shū",
+                        "mean": "Sách",
+                        "vi_pron": "su",
+                        "en_pron": "shoo"
+                    },
+                    {
+                        "hanzi": "画儿",
+                        "pinyin": "huàr",
+                        "mean": "Tranh",
+                        "vi_pron": "hoa-ờ",
+                        "en_pron": "hwar"
+                    },
+                    {
+                        "hanzi": "笔",
+                        "pinyin": "bǐ",
+                        "mean": "Bút",
+                        "vi_pron": "pỉ",
+                        "en_pron": "bee"
+                    },
+                    {
+                        "hanzi": "的",
+                        "pinyin": "de",
+                        "mean": "Của (trợ từ sở hữu)",
+                        "vi_pron": "tợ",
+                        "en_pron": "duh"
+                    },
+                    {
+                        "hanzi": "衣服",
+                        "pinyin": "yīfu",
+                        "mean": "Quần áo (nói chung)",
+                        "vi_pron": "y-phu",
+                        "en_pron": "yee-foo"
+                    },
+                    {
+                        "hanzi": "看",
+                        "pinyin": "kàn",
+                        "mean": "Nhìn/Xem/Đọc",
+                        "vi_pron": "khan",
+                        "en_pron": "kahn"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "我看书。",
+                        "pinyin": "Wǒ kàn shū.",
+                        "mean": "Tôi đọc sách.",
+                        "vi_pron": "Ủa khan su.",
+                        "en_pron": "waw kahn shoo."
+                    },
+                    {
+                        "hanzi": "弟弟画画儿。",
+                        "pinyin": "Dìdi huà huàr.",
+                        "mean": "Em trai vẽ tranh.",
+                        "vi_pron": "Ti-ti hoa hoa-ờ.",
+                        "en_pron": "dee-dee hwah hwar."
+                    }
+                ]
             },
             {
-                "id": 20, "title": "Bài 20: Hoạt động", "icon": "fas fa-music", "color": "bg-sky-100 text-sky-700",
-                "vocab": [{ "hanzi": "起床", "pinyin": "qǐchuáng", "mean": "Thức dậy" }, { "hanzi": "唱歌", "pinyin": "chànggē", "mean": "Hát" }, { "hanzi": "跳舞", "pinyin": "tiàowǔ", "mean": "Nhảy múa" }, { "hanzi": "玩游戏", "pinyin": "wán yóuxì", "mean": "Chơi trò chơi" }, { "hanzi": "睡觉", "pinyin": "shuìjiào", "mean": "Ngủ" }, { "hanzi": "学汉语", "pinyin": "xué Hànyǔ", "mean": "Học tiếng Hán" }],
-                "examples": [{ "hanzi": "我们唱歌。", "pinyin": "Wǒmen chànggē.", "mean": "Chúng tôi hát." }, { "hanzi": "我们跳舞。", "pinyin": "Wǒmen tiàowǔ.", "mean": "Chúng tôi nhảy múa." }]
+                "id": 20,
+                "title": "Bài 20: Hoạt động",
+                "icon": "fas fa-music",
+                "color": "bg-sky-100 text-sky-700",
+                "vocab": [
+                    {
+                        "hanzi": "起床",
+                        "pinyin": "qǐchuáng",
+                        "mean": "Thức dậy",
+                        "vi_pron": "tsỉ-choáng",
+                        "en_pron": "chee-chwahng"
+                    },
+                    {
+                        "hanzi": "唱歌",
+                        "pinyin": "chànggē",
+                        "mean": "Hát",
+                        "vi_pron": "trang-cưa",
+                        "en_pron": "chahng-guh"
+                    },
+                    {
+                        "hanzi": "跳舞",
+                        "pinyin": "tiàowǔ",
+                        "mean": "Nhảy múa",
+                        "vi_pron": "thieo-ủ",
+                        "en_pron": "tyaow-woo"
+                    },
+                    {
+                        "hanzi": "玩游戏",
+                        "pinyin": "wán yóuxì",
+                        "mean": "Chơi trò chơi",
+                        "vi_pron": "oán diếu-xi",
+                        "en_pron": "wahn yo-shee"
+                    },
+                    {
+                        "hanzi": "睡觉",
+                        "pinyin": "shuìjiào",
+                        "mean": "Ngủ",
+                        "vi_pron": "suê-cheo",
+                        "en_pron": "shway-jyaow"
+                    },
+                    {
+                        "hanzi": "学汉语",
+                        "pinyin": "xué Hànyǔ",
+                        "mean": "Học tiếng Hán",
+                        "vi_pron": "xuế han-dủ",
+                        "en_pron": "shweh hahn-yoo"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "我们唱歌。",
+                        "pinyin": "Wǒmen chànggē.",
+                        "mean": "Chúng tôi hát.",
+                        "vi_pron": "Ủa-mân trang-cưa.",
+                        "en_pron": "waw-mun chahng-guh."
+                    },
+                    {
+                        "hanzi": "我们跳舞。",
+                        "pinyin": "Wǒmen tiàowǔ.",
+                        "mean": "Chúng tôi nhảy múa.",
+                        "vi_pron": "Ủa-mân thieo-ủ.",
+                        "en_pron": "waw-mun tyaow-woo."
+                    }
+                ]
             }
         ];
 
