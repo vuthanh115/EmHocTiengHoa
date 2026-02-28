@@ -145,6 +145,13 @@
                     <p class="text-slate-500 text-sm">Chọn bài học để bắt đầu nhé!</p>
                 </div>
 
+                <div class="px-2 mb-2">
+                    <button @click="showPinyinModal = true"
+                        class="w-full bg-gradient-to-r from-orange-400 to-yellow-500 text-white rounded-2xl p-4 shadow-md flex items-center justify-center gap-3 font-bold text-lg hover:shadow-lg transition-all active:scale-95 border-2 border-orange-300">
+                        <i class="fas fa-book-open text-2xl"></i> Bí kíp đọc Pinyin
+                    </button>
+                </div>
+
                 <div class="grid grid-cols-1 gap-4 pb-10">
                     <div v-for="lesson in lessons" :key="lesson.id" @click="selectLesson(lesson)"
                         class="bg-white rounded-2xl p-5 shadow-sm border-2 border-slate-100 flex items-center gap-4 cursor-pointer hover:border-blue-300 hover:shadow-md transition-all active:scale-95">
@@ -204,8 +211,12 @@
                                     title="Âm bồi tiếng Việt">[{{ word.vi_pron }}]</p>
                                 <div class="w-12 h-1 bg-white/30 rounded-full mb-3"></div>
                                 <p class="text-3xl font-bold text-center select-none">{{ word.mean }}</p>
+                                <div v-if="word.mnemonic"
+                                    class="mt-4 bg-yellow-100 text-yellow-900 p-3 rounded-xl text-sm text-center shadow-inner w-full border border-yellow-300">
+                                    <i class="fas fa-lightbulb text-yellow-500 mr-1"></i> {{ word.mnemonic }}
+                                </div>
                                 <button @click.stop="speak(word.hanzi)"
-                                    class="mt-8 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition active:scale-90">
+                                    class="mt-6 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition active:scale-90">
                                     <i class="fas fa-volume-high"></i>
                                 </button>
                             </div>
@@ -246,6 +257,101 @@
                 </div>
             </div>
         </main>
+
+        <div v-if="showPinyinModal"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-pop">
+            <div
+                class="bg-white rounded-3xl w-full max-w-md p-6 relative flex flex-col shadow-2xl max-h-[90vh] overflow-y-auto">
+                <button @click="showPinyinModal = false"
+                    class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition text-3xl w-8 h-8 flex items-center justify-center z-10 bg-slate-100 rounded-full">
+                    <i class="fas fa-times-circle"></i>
+                </button>
+
+                <h3
+                    class="text-2xl font-bold text-orange-600 mb-4 flex items-center gap-2 border-b-2 border-orange-100 pb-2">
+                    <i class="fas fa-book-open"></i> Bí kíp đọc Pinyin
+                </h3>
+
+                <div class="space-y-4 text-slate-700 font-sans">
+                    <div>
+                        <h4 class="font-bold text-lg text-indigo-600 mb-2">1. Thanh điệu (Dấu):</h4>
+                        <ul
+                            class="list-disc pl-5 space-y-1 bg-indigo-50 p-3 rounded-xl border border-indigo-100 text-sm">
+                            <li><span class="font-bold text-indigo-700">Thanh 1 (¯):</span> Đọc cao, ngang, kéo dài đều
+                                (bā -> pa).</li>
+                            <li><span class="font-bold text-indigo-700">Thanh 2 (´):</span> Đọc đi lên, giống dấu sắc
+                                tiếng Việt (bá -> pá).</li>
+                            <li><span class="font-bold text-indigo-700">Thanh 3 (ˇ):</span> Xuống thấp rồi lên, gần
+                                giống dấu hỏi (bǎ -> pả).</li>
+                            <li><span class="font-bold text-red-600">Thanh 4 (`):</span> Rớt giọng dứt khoát từ cao
+                                xuống thấp. Tuyệt đối KHÔNG đọc là dấu huyền (bà -> PẠ!).</li>
+                            <li><span class="font-bold text-indigo-700">Khinh thanh:</span> (Không có dấu) Đọc ngắn và
+                                nhẹ.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-lg text-emerald-600 mb-2">2. Phụ âm (Chữ cái đầu):</h4>
+                        <ul
+                            class="list-disc pl-5 space-y-2 bg-emerald-50 p-3 rounded-xl border border-emerald-100 text-sm">
+                            <li><span class="font-bold text-emerald-700">b, p, m, f:</span> <span
+                                    class="font-bold">b</span> -> p (ba = pa), <span class="font-bold">p</span> -> ph
+                                (bật hơi), <span class="font-bold">m</span> -> m, <span class="font-bold">f</span> ->
+                                ph.</li>
+                            <li><span class="font-bold text-emerald-700">d, t, n, l:</span> <span
+                                    class="font-bold">d</span> -> t (da = ta), <span class="font-bold">t</span> -> th
+                                (bật hơi), <span class="font-bold">n</span> -> n, <span class="font-bold">l</span> -> l.
+                            </li>
+                            <li><span class="font-bold text-emerald-700">g, k, h:</span> <span
+                                    class="font-bold">g</span> -> c/k (ge = cơ), <span class="font-bold">k</span> -> kh
+                                (bật hơi), <span class="font-bold">h</span> -> h/kh (nhẹ).</li>
+                            <li><span class="font-bold text-emerald-700">j, q, x:</span> <span
+                                    class="font-bold">j</span> -> ch (nhẹ), <span class="font-bold">q</span> -> ch (bật
+                                hơi), <span class="font-bold">x</span> -> x.</li>
+                            <li><span class="font-bold text-emerald-700">zh, ch, sh, r:</span> Môi hơi tròn, uốn cong
+                                lưỡi. <span class="font-bold">zh</span> -> tr, <span class="font-bold">ch</span> -> tr
+                                (bật hơi), <span class="font-bold">sh</span> -> s (nặng), <span
+                                    class="font-bold">r</span> -> r.</li>
+                            <li><span class="font-bold text-emerald-700">z, c, s:</span> Để đầu lưỡi chạm mặt sau răng
+                                cửa dưới. <span class="font-bold">z</span> -> ch, <span class="font-bold">c</span> -> ch
+                                (bật hơi), <span class="font-bold">s</span> -> s (nhẹ).</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-lg text-rose-600 mb-2">3. Vận mẫu (Biến âm thường gặp):</h4>
+                        <ul
+                            class="list-disc pl-5 space-y-1 bg-rose-50 p-3 rounded-xl border border-rose-100 mb-4 text-sm">
+                            <li><span class="font-bold text-rose-700">e:</span> Đứng một mình hoặc sau phụ âm đọc là
+                                <span class="font-bold">"ưa"</span> (de = tư). Các trường hợp khác đọc là e/ơ.</li>
+                            <li><span class="font-bold text-rose-700">o:</span> Thường đọc là <span
+                                    class="font-bold">"ô" / "uô"</span> (po -> phuô).</li>
+                            <li><span class="font-bold text-rose-700">-ian:</span> Đọc là <span
+                                    class="font-bold">"iên"</span> (mian = miên). KHÔNG đọc là "ian".</li>
+                            <li><span class="font-bold text-rose-700">-iao:</span> Đọc là <span
+                                    class="font-bold">"iêu"</span> (jiao = chiêu).</li>
+                            <li><span class="font-bold text-rose-700">-ui:</span> Đọc là <span
+                                    class="font-bold">"uây"</span> (shui = suây).</li>
+                            <li><span class="font-bold text-rose-700">-ou:</span> Đọc là <span
+                                    class="font-bold">"âu"</span> (kou = khâu). <span
+                                    class="font-bold text-rose-700">-ao:</span> Đọc là <span
+                                    class="font-bold">"ao"</span> (cao).</li>
+                            <li><span class="font-bold text-rose-700">-ong:</span> Đọc là <span
+                                    class="font-bold">"ung"</span> (hong = hung). KHÔNG đọc là "ong".</li>
+                            <li class="mt-2"><span class="font-bold text-rose-700 text-[15px]">Quy tắc chữ 'i' (CỰC KỲ
+                                    QUAN TRỌNG):</span> Đứng sau 7 phụ âm <span
+                                    class="font-bold bg-white text-rose-700 px-1 rounded">z, c, s, zh, ch, sh, r</span>
+                                thì chữ 'i' BẮT BUỘC đọc là chữ <span
+                                    class="font-bold underline text-rose-700">'ư'</span> (VD: shi = sư, zi = chư). Các
+                                trường hợp còn lại đọc là 'i' bình thường (VD: ji = chi).</li>
+                            <li><span class="font-bold text-rose-700">Quy tắc chữ 'ü' (U có 2 chấm):</span> Chu môi huýt
+                                sáo đọc là <span class="font-bold">'uy'</span>. Khi đi với <span class="font-bold">j, q,
+                                    x, y</span> thì viết mất 2 chấm (ü -> u) nhưng VẪN đọc là 'uy' (qu = chuy).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div v-if="showWritingModal"
             class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-pop">
@@ -565,7 +671,8 @@
                         "mean": "Trà",
                         "img": "images/cha.png",
                         "vi_pron": "chá",
-                        "en_pron": "chah"
+                        "en_pron": "chah",
+                        "mnemonic": "Con người (人) đứng dưới tán cỏ (艹) trèo lên cây (木) hái lá để pha trà."
                     },
                     {
                         "hanzi": "牛奶",
@@ -573,7 +680,8 @@
                         "mean": "Sữa",
                         "img": "images/niunai.png",
                         "vi_pron": "niếu-nải",
-                        "en_pron": "nyo-nye"
+                        "en_pron": "nyo-nye",
+                        "mnemonic": "Sữa (奶 - có bộ Nữ vì được tạo ra bởi mẹ) được lấy từ con bò (牛)."
                     },
                     {
                         "hanzi": "这",
@@ -581,7 +689,8 @@
                         "mean": "Đây",
                         "img": "images/zhe.png",
                         "vi_pron": "trơ",
-                        "en_pron": "juh"
+                        "en_pron": "juh",
+                        "mnemonic": "Phải cất bước đi (辶) đến ĐÂY thì mới được học chữ (文)."
                     },
                     {
                         "hanzi": "是",
@@ -589,7 +698,8 @@
                         "mean": "Là",
                         "img": "images/shi.png",
                         "vi_pron": "sư",
-                        "en_pron": "shrr"
+                        "en_pron": "shrr",
+                        "mnemonic": "Dưới ánh mặt trời (日), mọi thứ đều ngay thẳng (正) và 'đúng là' như vậy."
                     }
                 ],
                 "examples": [
@@ -621,7 +731,8 @@
                         "mean": "Bánh mì",
                         "img": "images/mianbao.png",
                         "vi_pron": "mien-pao",
-                        "en_pron": "myen-bow"
+                        "en_pron": "myen-bow",
+                        "mnemonic": "Thợ làm bánh lấy bột mì (面) gói bọc (包) lại cẩn thận để nướng thành ổ bánh mì."
                     },
                     {
                         "hanzi": "牛肉",
@@ -629,7 +740,8 @@
                         "mean": "Thịt bò",
                         "img": "images/niurou.png",
                         "vi_pron": "niếu-râu",
-                        "en_pron": "nyo-ro"
+                        "en_pron": "nyo-ro",
+                        "mnemonic": "Thịt (肉 - vẽ lại vân sọc của miếng thịt), cắt ra từ con bò (牛) thì gọi là thịt bò."
                     },
                     {
                         "hanzi": "面条",
@@ -637,7 +749,8 @@
                         "mean": "Mì sợi",
                         "img": "images/miantiao.png",
                         "vi_pron": "mien-théo",
-                        "en_pron": "myen-tyaow"
+                        "en_pron": "myen-tyaow",
+                        "mnemonic": "Bột mì (面) được người ta kéo vươn dài ra như những cành cây (木) tạo thành sợi (条) mì."
                     },
                     {
                         "hanzi": "粥",
@@ -645,7 +758,16 @@
                         "mean": "Cháo",
                         "img": "images/zhou.png",
                         "vi_pron": "châu",
-                        "en_pron": "joe"
+                        "en_pron": "joe",
+                        "mnemonic": "Hạt gạo (米) được nấu sôi bốc hơi nước uốn lượn (弓) nghi ngút 2 bên thành nồi cháo."
+                    },
+                    {
+                        "hanzi": "他",
+                        "pinyin": "tā",
+                        "mean": "Anh ấy",
+                        "en_pron": "tah",
+                        "vi_pron": "tha",
+                        "mnemonic": "Người (亻) con trai đang đứng đằng kia kìa, chính là anh ấy (他) đó."
                     }
                 ],
                 "examples": [
@@ -1462,6 +1584,7 @@
                 const flippedCards = reactive({});
 
                 // --- Writing State ---
+                const showPinyinModal = ref(false);
                 const showWritingModal = ref(false);
                 const writingWord = ref('');
                 const selectedCharIndex = ref(0);
@@ -1550,7 +1673,7 @@
                 return {
                     lessons, currentLesson, selectLesson, goHome, flippedCards, toggleFlip, speak,
                     // Writing
-                    showWritingModal, writingWord, selectedCharIndex, isWriterLoading,
+                    showPinyinModal, showWritingModal, writingWord, selectedCharIndex, isWriterLoading,
                     openWriting, selectCharToWrite, animateChar, quizChar, closeWritingModal
                 };
             }
