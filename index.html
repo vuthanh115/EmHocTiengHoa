@@ -281,6 +281,49 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Phần Luyện Tập Giao Tiếp (Hội Thoại Mẫu UI) -->
+                <div v-if="currentLesson.conversation && currentLesson.conversation.length > 0"
+                    class="pt-6 border-t border-slate-200 animate-slide-up mt-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="h-8 w-1.5 bg-sky-500 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-slate-700">Luyện tập giao tiếp</h3>
+                    </div>
+
+                    <div class="bg-slate-100/50 p-4 rounded-3xl border border-slate-200 space-y-4">
+                        <div v-for="(line, idx) in currentLesson.conversation" :key="idx" class="flex gap-3"
+                            :class="line.char === 'A' ? 'flex-row' : 'flex-row-reverse'">
+
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-sm shrink-0"
+                                :class="line.char === 'A' ? 'bg-indigo-500 text-white' : 'bg-emerald-500 text-white'">
+                                {{ line.char }}
+                            </div>
+
+                            <div class="p-4 shadow-sm max-w-[85%] cursor-pointer active:scale-95 transition-transform"
+                                :class="line.char === 'A' ? 'bg-white rounded-2xl rounded-tl-sm border border-slate-100' : 'bg-emerald-50 rounded-2xl rounded-tr-sm border border-emerald-100'"
+                                @click="speak(line.hanzi)">
+                                <p class="hanzi-font text-2xl text-slate-800 leading-tight mb-1"
+                                    :class="line.char === 'A' ? '' : 'text-right'">
+                                    {{ line.hanzi }}
+                                </p>
+                                <p class="text-sm font-mono text-slate-600 mb-0.5"
+                                    :class="line.char === 'A' ? '' : 'text-right'">
+                                    {{ line.pinyin }}
+                                </p>
+                                <p class="text-xs font-medium mb-1"
+                                    :class="line.char === 'A' ? 'text-indigo-500' : 'text-emerald-600 text-right'">
+                                    <span v-if="line.en_pron" title="English">{{ line.en_pron }}</span>
+                                    <span v-if="line.vi_pron" class="ml-2" title="Tiếng Việt">[{{ line.vi_pron
+                                        }}]</span>
+                                </p>
+                                <p class="text-sm text-slate-500 italic" :class="line.char === 'A' ? '' : 'text-right'">
+                                    {{ line.mean }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </main>
 
@@ -3896,6 +3939,32 @@
                             en_pron: "guh-guh yaow chah.",
                         },
                     ],
+                    conversation: [
+                        {
+                            char: "A",
+                            hanzi: "这是牛奶。哥哥要牛奶吗？",
+                            pinyin: "Zhè shì niúnǎi. Gēge yào niúnǎi ma?",
+                            mean: "Đây là sữa. Anh trai có muốn uống sữa không?",
+                            vi_pron: "Trơ sư niếu-nải. Cưa-cưa dao niếu-nải ma?",
+                            en_pron: "juh shrr nyo-nye. guh-guh yaow nyo-nye mah?"
+                        },
+                        {
+                            char: "B",
+                            hanzi: "哥哥不要牛奶。哥哥要茶。",
+                            pinyin: "Gēge bú yào niúnǎi. Gēge yào chá.",
+                            mean: "Anh trai không muốn uống sữa. Anh trai muốn uống trà.",
+                            vi_pron: "Cưa-cưa pú dao niếu-nải. Cưa-cưa dao chá.",
+                            en_pron: "guh-guh poo yaow nyo-nye. guh-guh yaow chah."
+                        },
+                        {
+                            char: "A",
+                            hanzi: "这是茶。",
+                            pinyin: "Zhè shì chá.",
+                            mean: "Đây là trà.",
+                            vi_pron: "Trơ sư chá.",
+                            en_pron: "juh shrr chah."
+                        }
+                    ],
                 },
                 {
                     id: 7,
@@ -3989,6 +4058,40 @@
                             vi_pron: "Ủa dao mien-théo.",
                             en_pron: "waw yaow myen-tyaow.",
                         },
+                    ],
+                    conversation: [
+                        {
+                            char: "A",
+                            hanzi: "这是牛肉。你要牛肉吗？",
+                            pinyin: "Zhè shì niúròu. Nǐ yào niúròu ma?",
+                            mean: "Đây là thịt bò. Bạn có muốn ăn thịt bò không?",
+                            vi_pron: "Trơ sư niếu-râu. Ní dao niếu-râu ma?",
+                            en_pron: "juh shrr nyo-ro. nee yaow nyo-ro mah?"
+                        },
+                        {
+                            char: "B",
+                            hanzi: "我不要牛肉，我要面包。",
+                            pinyin: "Wǒ bú yào niúròu, wǒ yào miànbāo.",
+                            mean: "Tôi không muốn ăn thịt bò, tôi muốn ăn bánh mì.",
+                            vi_pron: "Ủa pú dao niếu-râu, ủa dao mien-pao.",
+                            en_pron: "waw poo yaow nyo-ro, waw yaow myen-bow."
+                        },
+                        {
+                            char: "A",
+                            hanzi: "你要粥吗？",
+                            pinyin: "Nǐ yào zhōu ma?",
+                            mean: "Bạn có muốn ăn cháo không?",
+                            vi_pron: "Ní dao châu ma?",
+                            en_pron: "nee yaow joe mah?"
+                        },
+                        {
+                            char: "B",
+                            hanzi: "我不要粥，我要面条。",
+                            pinyin: "Wǒ bú yào zhōu, wǒ yào miàntiáo.",
+                            mean: "Tôi không muốn ăn cháo, tôi muốn ăn mì sợi.",
+                            vi_pron: "Ủa pú dao châu, ủa dao mien-théo.",
+                            en_pron: "waw poo yaow joe, waw yaow myen-tyaow."
+                        }
                     ],
                 },
                 {
