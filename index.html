@@ -404,1290 +404,1332 @@
         // Dữ liệu 20 bài học (Đã thêm icon và màu sắc)
         const DATA = [
             {
-                        "id": 1,
-                        "title": "Bài 1: Gia đình (1)",
-                        "icon": "fas fa-house-chimney",
-                        "color": "bg-blue-100 text-blue-600",
-                        "vocab": [
-                                    {
-                                                "hanzi": "爸爸",
-                                                "pinyin": "bàba",
-                                                "mean": "Bố, ba",
-                                                "img": "images/baba.png",
-                                                "vi_pron": "pa-pa",
-                                                "en_pron": "bah-pah",
-                                                "mnemonic": "Ai là người dạy bạn (bộ Phụ 父) giao tiếp (bộ Ba 巴)? Đó là Bố."
-                                    },
-                                    {
-                                                "hanzi": "妈妈",
-                                                "pinyin": "māma",
-                                                "mean": "Mẹ, má",
-                                                "img": "images/mama.png",
-                                                "vi_pron": "ma-ma",
-                                                "en_pron": "mah-mah",
-                                                "mnemonic": "Người phụ nữ (bộ Nữ 女) làm việc quần quật như ngựa (bộ Mã 马) chính là Mẹ."
-                                    },
-                                    {
-                                                "hanzi": "哥哥",
-                                                "pinyin": "gēge",
-                                                "mean": "Anh trai",
-                                                "img": "images/gege.png",
-                                                "vi_pron": "cưa-cưa",
-                                                "en_pron": "guh-guh",
-                                                "mnemonic": "Hai chữ Khả (可) chồng lên nhau giống như người anh lớn đang cõng em trai."
-                                    },
-                                    {
-                                                "hanzi": "弟弟",
-                                                "pinyin": "dìdi",
-                                                "mean": "Em trai",
-                                                "img": "images/didi.png",
-                                                "vi_pron": "ti-ti",
-                                                "en_pron": "dee-dee",
-                                                "mnemonic": "Một đứa trẻ quấn tã có sừng (bộ Bát 八) và đứng bắn cung (bộ Cung 弓) là Em trai."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "爸爸好！",
-                                                "pinyin": "Bàba hǎo!",
-                                                "mean": "Chào bố!",
-                                                "vi_pron": "Pa-pa hảo!",
-                                                "en_pron": "bah-bah how!"
-                                    },
-                                    {
-                                                "hanzi": "妈妈好！",
-                                                "pinyin": "Māma hǎo!",
-                                                "mean": "Chào mẹ!",
-                                                "vi_pron": "Ma-ma hảo!",
-                                                "en_pron": "mah-mah how!"
-                                    }
-                        ]
+                "id": 1,
+                "title": "Bài 1: Gia đình (1)",
+                "icon": "fas fa-house-chimney",
+                "color": "bg-blue-100 text-blue-600",
+                "vocab": [
+                    {
+                        "hanzi": "爸爸",
+                        "pinyin": "bàba",
+                        "mean": "Bố, ba",
+                        "img": "images/baba.png",
+                        "vi_pron": "pa-pa",
+                        "en_pron": "bah-pah",
+                        "mnemonic": "Ai là người dạy bạn (bộ Phụ 父) giao tiếp (bộ Ba 巴)? Đó là Bố."
+                    },
+                    {
+                        "hanzi": "妈妈",
+                        "pinyin": "māma",
+                        "mean": "Mẹ, má",
+                        "img": "images/mama.png",
+                        "vi_pron": "ma-ma",
+                        "en_pron": "mah-mah",
+                        "mnemonic": "Người phụ nữ (bộ Nữ 女) làm việc quần quật như ngựa (bộ Mã 马) chính là Mẹ."
+                    },
+                    {
+                        "hanzi": "哥哥",
+                        "pinyin": "gēge",
+                        "mean": "Anh trai",
+                        "img": "images/gege.png",
+                        "vi_pron": "cưa-cưa",
+                        "en_pron": "guh-guh",
+                        "mnemonic": "Hai chữ Khả (可) chồng lên nhau giống như người anh lớn đang cõng em trai."
+                    },
+                    {
+                        "hanzi": "弟弟",
+                        "pinyin": "dìdi",
+                        "mean": "Em trai",
+                        "img": "images/didi.png",
+                        "vi_pron": "ti-ti",
+                        "en_pron": "dee-dee",
+                        "mnemonic": "Một đứa trẻ quấn tã có sừng (bộ Bát 八) và đứng bắn cung (bộ Cung 弓) là Em trai."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "爸爸好！",
+                        "pinyin": "Bàba hǎo!",
+                        "mean": "Chào bố!",
+                        "vi_pron": "Pa-pa hảo!",
+                        "en_pron": "bah-bah how!"
+                    },
+                    {
+                        "hanzi": "妈妈好！",
+                        "pinyin": "Māma hǎo!",
+                        "mean": "Chào mẹ!",
+                        "vi_pron": "Ma-ma hảo!",
+                        "en_pron": "mah-mah how!"
+                    }
+                ]
             },
             {
-                        "id": 2,
-                        "title": "Bài 2: Gia đình (2)",
-                        "icon": "fas fa-users",
-                        "color": "bg-green-100 text-green-600",
-                        "vocab": [
-                                    {
-                                                "hanzi": "阿姨",
-                                                "pinyin": "āyí",
-                                                "mean": "Dì, cô",
-                                                "vi_pron": "a-dí",
-                                                "en_pron": "ah-yee",
-                                                "mnemonic": "Người phụ nữ (bộ Nữ 女) đi cạnh người xa lạ (bộ Di 夷) thì gọi là Dì.",
-                                                "img": "images/ayi.png"
-                                    },
-                                    {
-                                                "hanzi": "伯伯",
-                                                "pinyin": "bóbo",
-                                                "mean": "Bác",
-                                                "vi_pron": "púa-pua",
-                                                "en_pron": "bwo-bwo",
-                                                "mnemonic": "Người đứng (bộ Nhân đứng 亻) đầu tiên (bộ Bạch 白) trong nhà là Bác.",
-                                                "img": "images/bobo.png"
-                                    },
-                                    {
-                                                "hanzi": "你好",
-                                                "pinyin": "nǐ hǎo",
-                                                "mean": "Chào bạn",
-                                                "vi_pron": "ní hảo",
-                                                "en_pron": "nee how",
-                                                "mnemonic": "Ngươi (亻+尔 = 你) là phụ nữ (女) sinh được con (子) thì là việc rất Tốt (好).",
-                                                "img": "images/nihao.png"
-                                    },
-                                    {
-                                                "hanzi": "您好",
-                                                "pinyin": "nín hǎo",
-                                                "mean": "Chào ông/bà",
-                                                "vi_pron": "nín hảo",
-                                                "en_pron": "neen how",
-                                                "mnemonic": "Chữ Ngươi (你) đặt lên trên chữ Tâm (心 - trái tim) thể hiện sự tôn trọng thành kính (Ông/Bà/Ngài).",
-                                                "img": "images/ninhao.png"
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "阿姨好！",
-                                                "pinyin": "Āyí hǎo!",
-                                                "mean": "Chào dì!",
-                                                "vi_pron": "A-dí hảo!",
-                                                "en_pron": "ah-yee how!"
-                                    },
-                                    {
-                                                "hanzi": "伯伯好！",
-                                                "pinyin": "Bóbo hǎo!",
-                                                "mean": "Chào bác!",
-                                                "vi_pron": "Púa-pua hảo!",
-                                                "en_pron": "bwo-bwo how!"
-                                    }
-                        ]
+                "id": 2,
+                "title": "Bài 2: Gia đình (2)",
+                "icon": "fas fa-users",
+                "color": "bg-green-100 text-green-600",
+                "vocab": [
+                    {
+                        "hanzi": "阿姨",
+                        "pinyin": "āyí",
+                        "mean": "Dì, cô",
+                        "vi_pron": "a-dí",
+                        "en_pron": "ah-yee",
+                        "mnemonic": "Người phụ nữ (bộ Nữ 女) đi cạnh người xa lạ (bộ Di 夷) thì gọi là Dì.",
+                        "img": "images/ayi.png"
+                    },
+                    {
+                        "hanzi": "伯伯",
+                        "pinyin": "bóbo",
+                        "mean": "Bác",
+                        "vi_pron": "púa-pua",
+                        "en_pron": "bwo-bwo",
+                        "mnemonic": "Người đứng (bộ Nhân đứng 亻) đầu tiên (bộ Bạch 白) trong nhà là Bác.",
+                        "img": "images/bobo.png"
+                    },
+                    {
+                        "hanzi": "你好",
+                        "pinyin": "nǐ hǎo",
+                        "mean": "Chào bạn",
+                        "vi_pron": "ní hảo",
+                        "en_pron": "nee how",
+                        "mnemonic": "Ngươi (亻+尔 = 你) là phụ nữ (女) sinh được con (子) thì là việc rất Tốt (好).",
+                        "img": "images/nihao.png"
+                    },
+                    {
+                        "hanzi": "您好",
+                        "pinyin": "nín hǎo",
+                        "mean": "Chào ông/bà",
+                        "vi_pron": "nín hảo",
+                        "en_pron": "neen how",
+                        "mnemonic": "Chữ Ngươi (你) đặt lên trên chữ Tâm (心 - trái tim) thể hiện sự tôn trọng thành kính (Ông/Bà/Ngài).",
+                        "img": "images/ninhao.png"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "阿姨好！",
+                        "pinyin": "Āyí hǎo!",
+                        "mean": "Chào dì!",
+                        "vi_pron": "A-dí hảo!",
+                        "en_pron": "ah-yee how!"
+                    },
+                    {
+                        "hanzi": "伯伯好！",
+                        "pinyin": "Bóbo hǎo!",
+                        "mean": "Chào bác!",
+                        "vi_pron": "Púa-pua hảo!",
+                        "en_pron": "bwo-bwo how!"
+                    }
+                ]
             },
             {
-                        "id": 3,
-                        "title": "Bài 3: Vật nuôi & Xưng hô",
-                        "icon": "fas fa-cat",
-                        "color": "bg-yellow-100 text-yellow-600",
-                        "vocab": [
-                                    {
-                                                "hanzi": "妹妹",
-                                                "pinyin": "mèimei",
-                                                "mean": "Em gái",
-                                                "vi_pron": "mây-mẩy",
-                                                "en_pron": "may-may",
-                                                "mnemonic": "Đứa bé gái (bộ Nữ 女) ngồi dưới cái cây chưa trưởng thành (bộ Vị 未) là em gái.",
-                                                "img": "images/meimei.png"
-                                    },
-                                    {
-                                                "hanzi": "猫",
-                                                "pinyin": "māo",
-                                                "mean": "Con mèo",
-                                                "vi_pron": "mao",
-                                                "en_pron": "maow",
-                                                "mnemonic": "Con vật (bộ Khuyển 犭) kêu meo meo ngoài đồng cỏ (bộ Miêu 苗) là con Mèo.",
-                                                "img": "images/mao.png"
-                                    },
-                                    {
-                                                "hanzi": "狗",
-                                                "pinyin": "gǒu",
-                                                "mean": "Con chó",
-                                                "vi_pron": "cẩu",
-                                                "en_pron": "go",
-                                                "mnemonic": "Con vật (bộ Khuyển 犭) sủa gâu gâu từng câu (bộ Cú 句) ngắn là con Chó.",
-                                                "img": "images/gou.png"
-                                    },
-                                    {
-                                                "hanzi": "我",
-                                                "pinyin": "wǒ",
-                                                "mean": "Tôi",
-                                                "vi_pron": "ủa",
-                                                "en_pron": "waw",
-                                                "mnemonic": "Cầm một cây giáo (bộ Qua 戈) chém đứt sợi xích tay (bộ Thủ 手) để giành lấy tự do cho Tôi.",
-                                                "img": "images/wo.png"
-                                    },
-                                    {
-                                                "hanzi": "好",
-                                                "pinyin": "hǎo",
-                                                "mean": "Tốt, khỏe",
-                                                "vi_pron": "hảo",
-                                                "en_pron": "how",
-                                                "mnemonic": "Người phụ nữ (bộ Nữ 女) sinh được con trai (bộ Tử 子) là điều vô cùng Tốt đẹp.",
-                                                "img": "images/hao.png"
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "妹妹好！",
-                                                "pinyin": "Mèimei hǎo!",
-                                                "mean": "Chào em gái!",
-                                                "vi_pron": "Mây-mẩy hảo!",
-                                                "en_pron": "may-may how!"
-                                    },
-                                    {
-                                                "hanzi": "你好！",
-                                                "pinyin": "Nǐ hǎo!",
-                                                "mean": "Chào bạn!",
-                                                "vi_pron": "Ní hảo!",
-                                                "en_pron": "nee how!"
-                                    }
-                        ]
+                "id": 3,
+                "title": "Bài 3: Vật nuôi & Xưng hô",
+                "icon": "fas fa-cat",
+                "color": "bg-yellow-100 text-yellow-600",
+                "vocab": [
+                    {
+                        "hanzi": "妹妹",
+                        "pinyin": "mèimei",
+                        "mean": "Em gái",
+                        "vi_pron": "mây-mẩy",
+                        "en_pron": "may-may",
+                        "mnemonic": "Đứa bé gái (bộ Nữ 女) ngồi dưới cái cây chưa trưởng thành (bộ Vị 未) là em gái.",
+                        "img": "images/meimei.png"
+                    },
+                    {
+                        "hanzi": "猫",
+                        "pinyin": "māo",
+                        "mean": "Con mèo",
+                        "vi_pron": "mao",
+                        "en_pron": "maow",
+                        "mnemonic": "Con vật (bộ Khuyển 犭) kêu meo meo ngoài đồng cỏ (bộ Miêu 苗) là con Mèo.",
+                        "img": "images/mao.png"
+                    },
+                    {
+                        "hanzi": "狗",
+                        "pinyin": "gǒu",
+                        "mean": "Con chó",
+                        "vi_pron": "cẩu",
+                        "en_pron": "go",
+                        "mnemonic": "Con vật (bộ Khuyển 犭) sủa gâu gâu từng câu (bộ Cú 句) ngắn là con Chó.",
+                        "img": "images/gou.png"
+                    },
+                    {
+                        "hanzi": "我",
+                        "pinyin": "wǒ",
+                        "mean": "Tôi",
+                        "vi_pron": "ủa",
+                        "en_pron": "waw",
+                        "mnemonic": "Cầm một cây giáo (bộ Qua 戈) chém đứt sợi xích tay (bộ Thủ 手) để giành lấy tự do cho Tôi.",
+                        "img": "images/wo.png"
+                    },
+                    {
+                        "hanzi": "好",
+                        "pinyin": "hǎo",
+                        "mean": "Tốt, khỏe",
+                        "vi_pron": "hảo",
+                        "en_pron": "how",
+                        "mnemonic": "Người phụ nữ (bộ Nữ 女) sinh được con trai (bộ Tử 子) là điều vô cùng Tốt đẹp.",
+                        "img": "images/hao.png"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "妹妹好！",
+                        "pinyin": "Mèimei hǎo!",
+                        "mean": "Chào em gái!",
+                        "vi_pron": "Mây-mẩy hảo!",
+                        "en_pron": "may-may how!"
+                    },
+                    {
+                        "hanzi": "你好！",
+                        "pinyin": "Nǐ hǎo!",
+                        "mean": "Chào bạn!",
+                        "vi_pron": "Ní hảo!",
+                        "en_pron": "nee how!"
+                    }
+                ]
             },
             {
-                        "id": 4,
-                        "title": "Bài 4: Trái cây",
-                        "icon": "fas fa-apple-whole",
-                        "color": "bg-red-100 text-red-600",
-                        "vocab": [
-                                    {
-                                                "hanzi": "苹果",
-                                                "pinyin": "píngguǒ",
-                                                "mean": "Quả táo",
-                                                "vi_pron": "píng-của",
-                                                "en_pron": "peeng-gwo",
-                                                "mnemonic": "Trái cây mọc trên Cây (bộ Mộc 木) ở Cánh đồng (bộ Điền 田) mọc dưới Cỏ (bộ Thảo 艹) là quả Táo.",
-                                                "img": "images/pingguo.png"
-                                    },
-                                    {
-                                                "hanzi": "葡萄",
-                                                "pinyin": "pútao",
-                                                "mean": "Quả nho",
-                                                "vi_pron": "phú-thao",
-                                                "en_pron": "poo-taow",
-                                                "mnemonic": "Loại quả mọc dưới giàn cỏ (艹), chùm quả cuộn tròn thành vòng (bộ Bao 勹) là quả Nho.",
-                                                "img": "images/putao.png"
-                                    },
-                                    {
-                                                "hanzi": "梨",
-                                                "pinyin": "lí",
-                                                "mean": "Trái lê",
-                                                "vi_pron": "lí",
-                                                "en_pron": "lee",
-                                                "mnemonic": "Cây (木) kết ra quả sắc nhọn như con Dao (bộ Đao 刀) cắt vào Cây lúa (bộ Hòa 禾) là quả Lê.",
-                                                "img": "images/li.png"
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "我要葡萄。",
-                                                "pinyin": "Wǒ yào pútao.",
-                                                "mean": "Con muốn ăn nho.",
-                                                "vi_pron": "Ủa dao phú-thao.",
-                                                "en_pron": "waw yaow poo-taow."
-                                    },
-                                    {
-                                                "hanzi": "弟弟要苹果。",
-                                                "pinyin": "Dìdi yào píngguǒ.",
-                                                "mean": "Em trai muốn ăn táo.",
-                                                "vi_pron": "Ti-ti dao píng-của.",
-                                                "en_pron": "dee-dee yaow peeng-gwo."
-                                    }
-                        ]
+                "id": 4,
+                "title": "Bài 4: Trái cây",
+                "icon": "fas fa-apple-whole",
+                "color": "bg-red-100 text-red-600",
+                "vocab": [
+                    {
+                        "hanzi": "苹果",
+                        "pinyin": "píngguǒ",
+                        "mean": "Quả táo",
+                        "vi_pron": "píng-của",
+                        "en_pron": "peeng-gwo",
+                        "mnemonic": "Trái cây mọc trên Cây (bộ Mộc 木) ở Cánh đồng (bộ Điền 田) mọc dưới Cỏ (bộ Thảo 艹) là quả Táo.",
+                        "img": "images/pingguo.png"
+                    },
+                    {
+                        "hanzi": "葡萄",
+                        "pinyin": "pútao",
+                        "mean": "Quả nho",
+                        "vi_pron": "phú-thao",
+                        "en_pron": "poo-taow",
+                        "mnemonic": "Loại quả mọc dưới giàn cỏ (艹), chùm quả cuộn tròn thành vòng (bộ Bao 勹) là quả Nho.",
+                        "img": "images/putao.png"
+                    },
+                    {
+                        "hanzi": "梨",
+                        "pinyin": "lí",
+                        "mean": "Trái lê",
+                        "vi_pron": "lí",
+                        "en_pron": "lee",
+                        "mnemonic": "Cây (木) kết ra quả sắc nhọn như con Dao (bộ Đao 刀) cắt vào Cây lúa (bộ Hòa 禾) là quả Lê.",
+                        "img": "images/li.png"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "我要葡萄。",
+                        "pinyin": "Wǒ yào pútao.",
+                        "mean": "Con muốn ăn nho.",
+                        "vi_pron": "Ủa dao phú-thao.",
+                        "en_pron": "waw yaow poo-taow."
+                    },
+                    {
+                        "hanzi": "弟弟要苹果。",
+                        "pinyin": "Dìdi yào píngguǒ.",
+                        "mean": "Em trai muốn ăn táo.",
+                        "vi_pron": "Ti-ti dao píng-của.",
+                        "en_pron": "dee-dee yaow peeng-gwo."
+                    }
+                ]
             },
             {
-                        "id": 5,
-                        "title": "Bài 5: Đồ ăn vặt",
-                        "icon": "fas fa-cookie-bite",
-                        "color": "bg-orange-100 text-orange-600",
-                        "vocab": [
-                                    {
-                                                "hanzi": "蛋糕",
-                                                "pinyin": "dàngāo",
-                                                "mean": "Bánh bông lan",
-                                                "vi_pron": "tan-cao",
-                                                "en_pron": "dahn-gow",
-                                                "mnemonic": "Trứng (bộ Trùng 虫 + bộ Thất 疋) trộn với Bột lúa (bộ Mễ 米) rực lửa (bộ Hỏa 灬) nướng thành Bánh.",
-                                                "img": "images/dangao.png"
-                                    },
-                                    {
-                                                "hanzi": "饼干",
-                                                "pinyin": "bǐnggān",
-                                                "mean": "Bánh quy",
-                                                "vi_pron": "pỉnh-can",
-                                                "en_pron": "beeng-gahn",
-                                                "mnemonic": "Thức ăn (bộ Thực 饣) nướng khô rang khô khốc (bộ Can 干) lại thành Bánh quy.",
-                                                "img": "images/binggan.png"
-                                    },
-                                    {
-                                                "hanzi": "糖",
-                                                "pinyin": "táng",
-                                                "mean": "Kẹo",
-                                                "vi_pron": "tháng",
-                                                "en_pron": "tahng",
-                                                "mnemonic": "Lấy Gạo (bộ Mễ 米) rắc vào miệng nhà Đường (唐) thì ăn thấy ngọt ngào như Kẹo.",
-                                                "img": "images/tang.png"
-                                    },
-                                    {
-                                                "hanzi": "咖啡",
-                                                "pinyin": "kāfēi",
-                                                "mean": "Cà phê",
-                                                "vi_pron": "kha-phây",
-                                                "en_pron": "kah-fay",
-                                                "mnemonic": "Mở rộng hai Miệng (bộ Khẩu 口) để uống thứ nước làm tăng Lực lượng (bộ Lực 力).",
-                                                "img": "images/kafei.png"
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "哥哥要咖啡。",
-                                                "pinyin": "Gēge yào kāfēi.",
-                                                "mean": "Anh trai muốn uống cà phê.",
-                                                "vi_pron": "Cưa-cưa dao kha-phây.",
-                                                "en_pron": "guh-guh yaow kah-fay."
-                                    },
-                                    {
-                                                "hanzi": "我要蛋糕。",
-                                                "pinyin": "Wǒ yào dàngāo.",
-                                                "mean": "Tôi muốn ăn bánh bông lan.",
-                                                "vi_pron": "Ủa dao tan-cao.",
-                                                "en_pron": "waw yaow dahn-gow."
-                                    }
-                        ]
+                "id": 5,
+                "title": "Bài 5: Đồ ăn vặt",
+                "icon": "fas fa-cookie-bite",
+                "color": "bg-orange-100 text-orange-600",
+                "vocab": [
+                    {
+                        "hanzi": "蛋糕",
+                        "pinyin": "dàngāo",
+                        "mean": "Bánh bông lan",
+                        "vi_pron": "tan-cao",
+                        "en_pron": "dahn-gow",
+                        "mnemonic": "Trứng (bộ Trùng 虫 + bộ Thất 疋) trộn với Bột lúa (bộ Mễ 米) rực lửa (bộ Hỏa 灬) nướng thành Bánh.",
+                        "img": "images/dangao.png"
+                    },
+                    {
+                        "hanzi": "饼干",
+                        "pinyin": "bǐnggān",
+                        "mean": "Bánh quy",
+                        "vi_pron": "pỉnh-can",
+                        "en_pron": "beeng-gahn",
+                        "mnemonic": "Thức ăn (bộ Thực 饣) nướng khô rang khô khốc (bộ Can 干) lại thành Bánh quy.",
+                        "img": "images/binggan.png"
+                    },
+                    {
+                        "hanzi": "糖",
+                        "pinyin": "táng",
+                        "mean": "Kẹo",
+                        "vi_pron": "tháng",
+                        "en_pron": "tahng",
+                        "mnemonic": "Lấy Gạo (bộ Mễ 米) rắc vào miệng nhà Đường (唐) thì ăn thấy ngọt ngào như Kẹo.",
+                        "img": "images/tang.png"
+                    },
+                    {
+                        "hanzi": "咖啡",
+                        "pinyin": "kāfēi",
+                        "mean": "Cà phê",
+                        "vi_pron": "kha-phây",
+                        "en_pron": "kah-fay",
+                        "mnemonic": "Mở rộng hai Miệng (bộ Khẩu 口) để uống thứ nước làm tăng Lực lượng (bộ Lực 力).",
+                        "img": "images/kafei.png"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "哥哥要咖啡。",
+                        "pinyin": "Gēge yào kāfēi.",
+                        "mean": "Anh trai muốn uống cà phê.",
+                        "vi_pron": "Cưa-cưa dao kha-phây.",
+                        "en_pron": "guh-guh yaow kah-fay."
+                    },
+                    {
+                        "hanzi": "我要蛋糕。",
+                        "pinyin": "Wǒ yào dàngāo.",
+                        "mean": "Tôi muốn ăn bánh bông lan.",
+                        "vi_pron": "Ủa dao tan-cao.",
+                        "en_pron": "waw yaow dahn-gow."
+                    }
+                ]
             },
             {
-                        "id": 6,
-                        "title": "Bài 6: Đồ uống",
-                        "icon": "fas fa-mug-hot",
-                        "color": "bg-amber-100 text-amber-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "茶",
-                                                "pinyin": "chá",
-                                                "mean": "Trà",
-                                                "img": "images/cha.png",
-                                                "vi_pron": "chá",
-                                                "en_pron": "chah",
-                                                "mnemonic": "Con người (人) đứng dưới tán cỏ (艹) trèo lên cây (木) hái lá để pha trà."
-                                    },
-                                    {
-                                                "hanzi": "牛奶",
-                                                "pinyin": "niúnǎi",
-                                                "mean": "Sữa",
-                                                "img": "images/niunai.png",
-                                                "vi_pron": "niếu-nải",
-                                                "en_pron": "nyo-nye",
-                                                "mnemonic": "Sữa (奶 - có bộ Nữ vì được tạo ra bởi mẹ) được lấy từ con bò (牛)."
-                                    },
-                                    {
-                                                "hanzi": "这",
-                                                "pinyin": "zhè",
-                                                "mean": "Đây",
-                                                "img": "images/zhe.png",
-                                                "vi_pron": "trơ",
-                                                "en_pron": "juh",
-                                                "mnemonic": "Phải cất bước đi (辶) đến ĐÂY thì mới được học chữ (文)."
-                                    },
-                                    {
-                                                "hanzi": "是",
-                                                "pinyin": "shì",
-                                                "mean": "Là",
-                                                "img": "images/shi.png",
-                                                "vi_pron": "sư",
-                                                "en_pron": "shrr",
-                                                "mnemonic": "Dưới ánh mặt trời (日), mọi thứ đều ngay thẳng (正) và 'đúng là' như vậy."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "这是茶。",
-                                                "pinyin": "Zhè shì chá.",
-                                                "mean": "Đây là trà.",
-                                                "vi_pron": "Trơ sư chá.",
-                                                "en_pron": "juh shrr chah."
-                                    },
-                                    {
-                                                "hanzi": "这是牛奶。",
-                                                "pinyin": "Zhè shì niúnǎi.",
-                                                "mean": "Đây là sữa.",
-                                                "vi_pron": "Trơ sư niếu-nải.",
-                                                "en_pron": "juh shrr nyo-nye."
-                                    }
-                        ]
+                "id": 6,
+                "title": "Bài 6: Đồ uống",
+                "icon": "fas fa-mug-hot",
+                "color": "bg-amber-100 text-amber-700",
+                "vocab": [
+                    {
+                        "hanzi": "茶",
+                        "pinyin": "chá",
+                        "mean": "Trà",
+                        "img": "images/cha.png",
+                        "vi_pron": "chá",
+                        "en_pron": "chah",
+                        "mnemonic": "Con người (人) đứng dưới tán cỏ (艹) trèo lên cây (木) hái lá để pha trà."
+                    },
+                    {
+                        "hanzi": "牛奶",
+                        "pinyin": "niúnǎi",
+                        "mean": "Sữa",
+                        "img": "images/niunai.png",
+                        "vi_pron": "niếu-nải",
+                        "en_pron": "nyo-nye",
+                        "mnemonic": "Sữa (奶 - có bộ Nữ vì được tạo ra bởi mẹ) được lấy từ con bò (牛)."
+                    },
+                    {
+                        "hanzi": "这",
+                        "pinyin": "zhè",
+                        "mean": "Đây",
+                        "img": "images/zhe.png",
+                        "vi_pron": "trơ",
+                        "en_pron": "juh",
+                        "mnemonic": "Phải cất bước đi (辶) đến ĐÂY thì mới được học chữ (文)."
+                    },
+                    {
+                        "hanzi": "是",
+                        "pinyin": "shì",
+                        "mean": "Là",
+                        "img": "images/shi.png",
+                        "vi_pron": "sư",
+                        "en_pron": "shrr",
+                        "mnemonic": "Dưới ánh mặt trời (日), mọi thứ đều ngay thẳng (正) và 'đúng là' như vậy."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是茶。",
+                        "pinyin": "Zhè shì chá.",
+                        "mean": "Đây là trà.",
+                        "vi_pron": "Trơ sư chá.",
+                        "en_pron": "juh shrr chah."
+                    },
+                    {
+                        "hanzi": "这是牛奶。",
+                        "pinyin": "Zhè shì niúnǎi.",
+                        "mean": "Đây là sữa.",
+                        "vi_pron": "Trơ sư niếu-nải.",
+                        "en_pron": "juh shrr nyo-nye."
+                    },
+                    {
+                        "hanzi": "哥哥要牛奶吗？",
+                        "pinyin": "Gēge yào niúnǎi ma?",
+                        "mean": "Anh trai có muốn uống sữa không?",
+                        "vi_pron": "Cưa-cưa dao niếu-nải ma?",
+                        "en_pron": "guh-guh yaow nyo-nye mah?"
+                    },
+                    {
+                        "hanzi": "哥哥不要牛奶。",
+                        "pinyin": "Gēge bú yào niúnǎi.",
+                        "mean": "Anh trai không muốn uống sữa.",
+                        "vi_pron": "Cưa-cưa pú dao niếu-nải.",
+                        "en_pron": "guh-guh poo yaow nyo-nye."
+                    },
+                    {
+                        "hanzi": "哥哥要茶。",
+                        "pinyin": "Gēge yào chá.",
+                        "mean": "Anh trai muốn uống trà.",
+                        "vi_pron": "Cưa-cưa dao chá.",
+                        "en_pron": "guh-guh yaow chah."
+                    }
+                ]
             },
             {
-                        "id": 7,
-                        "title": "Bài 7: Món ăn",
-                        "icon": "fas fa-bowl-rice",
-                        "color": "bg-lime-100 text-lime-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "面包",
-                                                "pinyin": "miànbāo",
-                                                "mean": "Bánh mì",
-                                                "img": "images/mianbao.png",
-                                                "vi_pron": "mien-pao",
-                                                "en_pron": "myen-bow",
-                                                "mnemonic": "Thợ làm bánh lấy bột mì (面) gói bọc (包) lại cẩn thận để nướng thành ổ bánh mì."
-                                    },
-                                    {
-                                                "hanzi": "牛肉",
-                                                "pinyin": "niúròu",
-                                                "mean": "Thịt bò",
-                                                "img": "images/niurou.png",
-                                                "vi_pron": "niếu-râu",
-                                                "en_pron": "nyo-ro",
-                                                "mnemonic": "Thịt (肉 - vẽ lại vân sọc của miếng thịt), cắt ra từ con bò (牛) thì gọi là thịt bò."
-                                    },
-                                    {
-                                                "hanzi": "面条",
-                                                "pinyin": "miàntiáo",
-                                                "mean": "Mì sợi",
-                                                "img": "images/miantiao.png",
-                                                "vi_pron": "mien-théo",
-                                                "en_pron": "myen-tyaow",
-                                                "mnemonic": "Bột mì (面) được người ta kéo vươn dài ra như những cành cây (木) tạo thành sợi (条) mì."
-                                    },
-                                    {
-                                                "hanzi": "粥",
-                                                "pinyin": "zhōu",
-                                                "mean": "Cháo",
-                                                "img": "images/zhou.png",
-                                                "vi_pron": "châu",
-                                                "en_pron": "joe",
-                                                "mnemonic": "Hạt gạo (米) được nấu sôi bốc hơi nước uốn lượn (弓) nghi ngút 2 bên thành nồi cháo."
-                                    },
-                                    {
-                                                "hanzi": "他",
-                                                "pinyin": "tā",
-                                                "mean": "Anh ấy",
-                                                "en_pron": "tah",
-                                                "vi_pron": "tha",
-                                                "mnemonic": "Người (亻) con trai đang đứng đằng kia kìa, chính là anh ấy (他) đó."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "这是牛肉。",
-                                                "pinyin": "Zhè shì niúròu.",
-                                                "mean": "Đây là thịt bò.",
-                                                "vi_pron": "Trơ sư niếu-râu.",
-                                                "en_pron": "juh shrr nyo-ro."
-                                    },
-                                    {
-                                                "hanzi": "我要面包。",
-                                                "pinyin": "Wǒ yào miànbāo.",
-                                                "mean": "Tôi muốn bánh mì.",
-                                                "vi_pron": "Ủa dao mien-pao.",
-                                                "en_pron": "waw yaow myen-bow."
-                                    }
-                        ]
+                "id": 7,
+                "title": "Bài 7: Món ăn",
+                "icon": "fas fa-bowl-rice",
+                "color": "bg-lime-100 text-lime-700",
+                "vocab": [
+                    {
+                        "hanzi": "面包",
+                        "pinyin": "miànbāo",
+                        "mean": "Bánh mì",
+                        "img": "images/mianbao.png",
+                        "vi_pron": "mien-pao",
+                        "en_pron": "myen-bow",
+                        "mnemonic": "Thợ làm bánh lấy bột mì (面) gói bọc (包) lại cẩn thận để nướng thành ổ bánh mì."
+                    },
+                    {
+                        "hanzi": "牛肉",
+                        "pinyin": "niúròu",
+                        "mean": "Thịt bò",
+                        "img": "images/niurou.png",
+                        "vi_pron": "niếu-râu",
+                        "en_pron": "nyo-ro",
+                        "mnemonic": "Thịt (肉 - vẽ lại vân sọc của miếng thịt), cắt ra từ con bò (牛) thì gọi là thịt bò."
+                    },
+                    {
+                        "hanzi": "面条",
+                        "pinyin": "miàntiáo",
+                        "mean": "Mì sợi",
+                        "img": "images/miantiao.png",
+                        "vi_pron": "mien-théo",
+                        "en_pron": "myen-tyaow",
+                        "mnemonic": "Bột mì (面) được người ta kéo vươn dài ra như những cành cây (木) tạo thành sợi (条) mì."
+                    },
+                    {
+                        "hanzi": "粥",
+                        "pinyin": "zhōu",
+                        "mean": "Cháo",
+                        "img": "images/zhou.png",
+                        "vi_pron": "châu",
+                        "en_pron": "joe",
+                        "mnemonic": "Hạt gạo (米) được nấu sôi bốc hơi nước uốn lượn (弓) nghi ngút 2 bên thành nồi cháo."
+                    },
+                    {
+                        "hanzi": "他",
+                        "pinyin": "tā",
+                        "mean": "Anh ấy",
+                        "en_pron": "tah",
+                        "vi_pron": "tha",
+                        "mnemonic": "Người (亻) con trai đang đứng đằng kia kìa, chính là anh ấy (他) đó."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是牛肉。",
+                        "pinyin": "Zhè shì niúròu.",
+                        "mean": "Đây là thịt bò.",
+                        "vi_pron": "Trơ sư niếu-râu.",
+                        "en_pron": "juh shrr nyo-ro."
+                    },
+                    {
+                        "hanzi": "我要面包，不要牛肉。",
+                        "pinyin": "Wǒ yào miànbāo, bú yào niúròu.",
+                        "mean": "Tôi muốn ăn bánh mì, không muốn ăn thịt bò.",
+                        "vi_pron": "Ủa dao mien-pao, pú dao niếu-râu.",
+                        "en_pron": "waw yaow myen-bow, poo yaow nyo-ro."
+                    },
+                    {
+                        "hanzi": "你要粥吗？",
+                        "pinyin": "Nǐ yào zhōu ma?",
+                        "mean": "Bạn có muốn ăn cháo không?",
+                        "vi_pron": "Ní dao châu ma?",
+                        "en_pron": "nee yaow joe mah?"
+                    },
+                    {
+                        "hanzi": "我不要粥。",
+                        "pinyin": "Wǒ bú yào zhōu.",
+                        "mean": "Tôi không muốn ăn cháo.",
+                        "vi_pron": "Ủa pú dao châu.",
+                        "en_pron": "waw poo yaow joe."
+                    },
+                    {
+                        "hanzi": "我要面条。",
+                        "pinyin": "Wǒ yào miàntiáo.",
+                        "mean": "Tôi muốn ăn mì sợi.",
+                        "vi_pron": "Ủa dao mien-théo.",
+                        "en_pron": "waw yaow myen-tyaow."
+                    }
+                ]
             },
             {
-                        "id": 8,
-                        "title": "Bài 8: Nghề nghiệp",
-                        "icon": "fas fa-chalkboard-user",
-                        "color": "bg-cyan-100 text-cyan-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "老师",
-                                                "pinyin": "lǎoshī",
-                                                "mean": "Thầy/Cô giáo",
-                                                "vi_pron": "lảo-sư",
-                                                "en_pron": "laow-shrr",
-                                                "mnemonic": "Người già (bộ Lão 老) dạy cả ngàn người (bộ Nhất 一, bộ Cân 巾) là Thầy giáo."
-                                    },
-                                    {
-                                                "hanzi": "工人",
-                                                "pinyin": "gōngrén",
-                                                "mean": "Công nhân",
-                                                "vi_pron": "cung-rấn",
-                                                "en_pron": "gong-run",
-                                                "mnemonic": "Làm việc bằng Công cụ (bộ Công 工) có hai tay hai chân (bộ Nhân 亻) là Công nhân."
-                                    },
-                                    {
-                                                "hanzi": "爷爷",
-                                                "pinyin": "yéye",
-                                                "mean": "Ông nội",
-                                                "vi_pron": "dế-dê",
-                                                "en_pron": "yeh-yeh",
-                                                "mnemonic": "Người cha (bộ Phụ 父) cầm thêm cái gậy ba toong (bộ Tiết 卩) là Ông nội."
-                                    },
-                                    {
-                                                "hanzi": "奶奶",
-                                                "pinyin": "nǎinai",
-                                                "mean": "Bà nội",
-                                                "vi_pron": "nải-nai",
-                                                "en_pron": "nye-nye",
-                                                "mnemonic": "Người phụ nữ (bộ Nữ 女) là sợi dây gắn kết (bộ Nãi 乃) cả gia đình là Bà nội."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "这是老师。",
-                                                "pinyin": "Zhè shì lǎoshī.",
-                                                "mean": "Đây là thầy giáo.",
-                                                "vi_pron": "Trơ sư lảo-sư.",
-                                                "en_pron": "juh shrr laow-shrr."
-                                    },
-                                    {
-                                                "hanzi": "老师好！",
-                                                "pinyin": "Lǎoshī hǎo!",
-                                                "mean": "Em chào thầy!",
-                                                "vi_pron": "Lảo-sư hảo!",
-                                                "en_pron": "laow-shrr how!"
-                                    }
-                        ]
+                "id": 8,
+                "title": "Bài 8: Nghề nghiệp",
+                "icon": "fas fa-chalkboard-user",
+                "color": "bg-cyan-100 text-cyan-700",
+                "vocab": [
+                    {
+                        "hanzi": "老师",
+                        "pinyin": "lǎoshī",
+                        "mean": "Thầy/Cô giáo",
+                        "vi_pron": "lảo-sư",
+                        "en_pron": "laow-shrr",
+                        "mnemonic": "Người già (bộ Lão 老) dạy cả ngàn người (bộ Nhất 一, bộ Cân 巾) là Thầy giáo."
+                    },
+                    {
+                        "hanzi": "工人",
+                        "pinyin": "gōngrén",
+                        "mean": "Công nhân",
+                        "vi_pron": "cung-rấn",
+                        "en_pron": "gong-run",
+                        "mnemonic": "Làm việc bằng Công cụ (bộ Công 工) có hai tay hai chân (bộ Nhân 亻) là Công nhân."
+                    },
+                    {
+                        "hanzi": "爷爷",
+                        "pinyin": "yéye",
+                        "mean": "Ông nội",
+                        "vi_pron": "dế-dê",
+                        "en_pron": "yeh-yeh",
+                        "mnemonic": "Người cha (bộ Phụ 父) cầm thêm cái gậy ba toong (bộ Tiết 卩) là Ông nội."
+                    },
+                    {
+                        "hanzi": "奶奶",
+                        "pinyin": "nǎinai",
+                        "mean": "Bà nội",
+                        "vi_pron": "nải-nai",
+                        "en_pron": "nye-nye",
+                        "mnemonic": "Người phụ nữ (bộ Nữ 女) là sợi dây gắn kết (bộ Nãi 乃) cả gia đình là Bà nội."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是老师。",
+                        "pinyin": "Zhè shì lǎoshī.",
+                        "mean": "Đây là thầy giáo.",
+                        "vi_pron": "Trơ sư lảo-sư.",
+                        "en_pron": "juh shrr laow-shrr."
+                    },
+                    {
+                        "hanzi": "老师好！",
+                        "pinyin": "Lǎoshī hǎo!",
+                        "mean": "Em chào thầy!",
+                        "vi_pron": "Lảo-sư hảo!",
+                        "en_pron": "laow-shrr how!"
+                    }
+                ]
             },
             {
-                        "id": 9,
-                        "title": "Bài 9: Đồ dùng ăn uống",
-                        "icon": "fas fa-utensils",
-                        "color": "bg-teal-100 text-teal-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "碗",
-                                                "pinyin": "wǎn",
-                                                "mean": "Cái chén (bát)",
-                                                "vi_pron": "oản",
-                                                "en_pron": "wahn",
-                                                "mnemonic": "Cái bát được làm từ Đá (bộ Thạch 石) khum khum (bộ Uyển 宛) cong tròn."
-                                    },
-                                    {
-                                                "hanzi": "筷子",
-                                                "pinyin": "kuàizi",
-                                                "mean": "Đôi đũa",
-                                                "vi_pron": "khoai-chư",
-                                                "en_pron": "kwye-zih",
-                                                "mnemonic": "Dụng cụ bằng Tre (bộ Trúc ⺮) gắp ăn rất Nhanh (bộ Khoái 快) là Đôi đũa."
-                                    },
-                                    {
-                                                "hanzi": "菜",
-                                                "pinyin": "cài",
-                                                "mean": "Thức ăn/Món ăn",
-                                                "vi_pron": "sài",
-                                                "en_pron": "tsye",
-                                                "mnemonic": "Thái bằng Móng vuốt/Tay (bộ Trảo 爫) trên Cỏ (bộ Thảo 艹) dưới gốc Cây (bộ Mộc 木) là Rau/Thức ăn."
-                                    },
-                                    {
-                                                "hanzi": "饭",
-                                                "pinyin": "fàn",
-                                                "mean": "Cơm",
-                                                "vi_pron": "phang",
-                                                "en_pron": "fahn",
-                                                "mnemonic": "Thức ăn (bộ Thực 饣) dùng để Làm no/Lật ngược lại (bộ Phản 反) cái bụng đói là Cơm."
-                                    },
-                                    {
-                                                "hanzi": "那",
-                                                "pinyin": "nà",
-                                                "mean": "Đó/Kia",
-                                                "vi_pron": "na",
-                                                "en_pron": "nah",
-                                                "mnemonic": "Dùng con Dao (bộ Đao 刀) chỉ sang khu đất có ranh giới (bộ Ấp 阝) hỏi: Kia là chỗ nào?"
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "这是什么？",
-                                                "pinyin": "Zhè shì shénme?",
-                                                "mean": "Đây là cái gì?",
-                                                "vi_pron": "Trơ sư sấn-mơ?",
-                                                "en_pron": "juh shrr shun-muh?"
-                                    },
-                                    {
-                                                "hanzi": "这是碗。",
-                                                "pinyin": "Zhè shì wǎn.",
-                                                "mean": "Đây là cái chén.",
-                                                "vi_pron": "Trơ sư oản.",
-                                                "en_pron": "juh shrr wahn."
-                                    }
-                        ]
+                "id": 9,
+                "title": "Bài 9: Đồ dùng ăn uống",
+                "icon": "fas fa-utensils",
+                "color": "bg-teal-100 text-teal-700",
+                "vocab": [
+                    {
+                        "hanzi": "碗",
+                        "pinyin": "wǎn",
+                        "mean": "Cái chén (bát)",
+                        "vi_pron": "oản",
+                        "en_pron": "wahn",
+                        "mnemonic": "Cái bát được làm từ Đá (bộ Thạch 石) khum khum (bộ Uyển 宛) cong tròn."
+                    },
+                    {
+                        "hanzi": "筷子",
+                        "pinyin": "kuàizi",
+                        "mean": "Đôi đũa",
+                        "vi_pron": "khoai-chư",
+                        "en_pron": "kwye-zih",
+                        "mnemonic": "Dụng cụ bằng Tre (bộ Trúc ⺮) gắp ăn rất Nhanh (bộ Khoái 快) là Đôi đũa."
+                    },
+                    {
+                        "hanzi": "菜",
+                        "pinyin": "cài",
+                        "mean": "Thức ăn/Món ăn",
+                        "vi_pron": "sài",
+                        "en_pron": "tsye",
+                        "mnemonic": "Thái bằng Móng vuốt/Tay (bộ Trảo 爫) trên Cỏ (bộ Thảo 艹) dưới gốc Cây (bộ Mộc 木) là Rau/Thức ăn."
+                    },
+                    {
+                        "hanzi": "饭",
+                        "pinyin": "fàn",
+                        "mean": "Cơm",
+                        "vi_pron": "phang",
+                        "en_pron": "fahn",
+                        "mnemonic": "Thức ăn (bộ Thực 饣) dùng để Làm no/Lật ngược lại (bộ Phản 反) cái bụng đói là Cơm."
+                    },
+                    {
+                        "hanzi": "那",
+                        "pinyin": "nà",
+                        "mean": "Đó/Kia",
+                        "vi_pron": "na",
+                        "en_pron": "nah",
+                        "mnemonic": "Dùng con Dao (bộ Đao 刀) chỉ sang khu đất có ranh giới (bộ Ấp 阝) hỏi: Kia là chỗ nào?"
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是什么？",
+                        "pinyin": "Zhè shì shénme?",
+                        "mean": "Đây là cái gì?",
+                        "vi_pron": "Trơ sư sấn-mơ?",
+                        "en_pron": "juh shrr shun-muh?"
+                    },
+                    {
+                        "hanzi": "这是碗。",
+                        "pinyin": "Zhè shì wǎn.",
+                        "mean": "Đây là cái chén.",
+                        "vi_pron": "Trơ sư oản.",
+                        "en_pron": "juh shrr wahn."
+                    }
+                ]
             },
             {
-                        "id": 10,
-                        "title": "Bài 10: Thiên nhiên",
-                        "icon": "fas fa-tree",
-                        "color": "bg-emerald-100 text-emerald-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "花",
-                                                "pinyin": "huā",
-                                                "mean": "Bông hoa",
-                                                "vi_pron": "hoa",
-                                                "en_pron": "hwah",
-                                                "mnemonic": "Thực vật có Cỏ (bộ Thảo 艹) và Biến hóa (bộ Hóa 化) đẹp đẽ là Bông hoa."
-                                    },
-                                    {
-                                                "hanzi": "叶子",
-                                                "pinyin": "yèzi",
-                                                "mean": "Chiếc lá",
-                                                "vi_pron": "dê-chư",
-                                                "en_pron": "yeh-zih",
-                                                "mnemonic": "Phần bị cái Miệng (bộ Khẩu 口) ăn mất Mười phần (bộ Thập 十) trên cành chính là Lá."
-                                    },
-                                    {
-                                                "hanzi": "草",
-                                                "pinyin": "cǎo",
-                                                "mean": "Cỏ",
-                                                "vi_pron": "xảo",
-                                                "en_pron": "tsow",
-                                                "mnemonic": "Mặt trời (bộ Nhật 日) chiếu sáng xuống những cây Cỏ (bộ Thảo 艹) mọc mười phương (bộ Thập 十) thành Bãi cỏ."
-                                    },
-                                    {
-                                                "hanzi": "树",
-                                                "pinyin": "shù",
-                                                "mean": "Cây",
-                                                "vi_pron": "su",
-                                                "en_pron": "shoo",
-                                                "mnemonic": "Cây (bộ Mộc 木) cần có Đất (bộ Thổ 土) và Bàn tay đắc lực (bộ Thốn 寸) chăm bón."
-                                    },
-                                    {
-                                                "hanzi": "森林",
-                                                "pinyin": "sēnlín",
-                                                "mean": "Rừng",
-                                                "vi_pron": "sân-lín",
-                                                "en_pron": "sun-leen",
-                                                "mnemonic": "Ba cây (木木木) mọc rậm rạp là Rừng rậm (森), hai cây (木木) là Rừng vừa (林)."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "这是花。",
-                                                "pinyin": "Zhè shì huā.",
-                                                "mean": "Đây là bông hoa.",
-                                                "vi_pron": "Trơ sư hoa.",
-                                                "en_pron": "juh shrr hwah."
-                                    },
-                                    {
-                                                "hanzi": "那是叶子。",
-                                                "pinyin": "Nà shì yèzi.",
-                                                "mean": "Đó là chiếc lá.",
-                                                "vi_pron": "Na sư dê-chư.",
-                                                "en_pron": "nah shrr yeh-zih."
-                                    }
-                        ]
+                "id": 10,
+                "title": "Bài 10: Thiên nhiên",
+                "icon": "fas fa-tree",
+                "color": "bg-emerald-100 text-emerald-700",
+                "vocab": [
+                    {
+                        "hanzi": "花",
+                        "pinyin": "huā",
+                        "mean": "Bông hoa",
+                        "vi_pron": "hoa",
+                        "en_pron": "hwah",
+                        "mnemonic": "Thực vật có Cỏ (bộ Thảo 艹) và Biến hóa (bộ Hóa 化) đẹp đẽ là Bông hoa."
+                    },
+                    {
+                        "hanzi": "叶子",
+                        "pinyin": "yèzi",
+                        "mean": "Chiếc lá",
+                        "vi_pron": "dê-chư",
+                        "en_pron": "yeh-zih",
+                        "mnemonic": "Phần bị cái Miệng (bộ Khẩu 口) ăn mất Mười phần (bộ Thập 十) trên cành chính là Lá."
+                    },
+                    {
+                        "hanzi": "草",
+                        "pinyin": "cǎo",
+                        "mean": "Cỏ",
+                        "vi_pron": "xảo",
+                        "en_pron": "tsow",
+                        "mnemonic": "Mặt trời (bộ Nhật 日) chiếu sáng xuống những cây Cỏ (bộ Thảo 艹) mọc mười phương (bộ Thập 十) thành Bãi cỏ."
+                    },
+                    {
+                        "hanzi": "树",
+                        "pinyin": "shù",
+                        "mean": "Cây",
+                        "vi_pron": "su",
+                        "en_pron": "shoo",
+                        "mnemonic": "Cây (bộ Mộc 木) cần có Đất (bộ Thổ 土) và Bàn tay đắc lực (bộ Thốn 寸) chăm bón."
+                    },
+                    {
+                        "hanzi": "森林",
+                        "pinyin": "sēnlín",
+                        "mean": "Rừng",
+                        "vi_pron": "sân-lín",
+                        "en_pron": "sun-leen",
+                        "mnemonic": "Ba cây (木木木) mọc rậm rạp là Rừng rậm (森), hai cây (木木) là Rừng vừa (林)."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是花。",
+                        "pinyin": "Zhè shì huā.",
+                        "mean": "Đây là bông hoa.",
+                        "vi_pron": "Trơ sư hoa.",
+                        "en_pron": "juh shrr hwah."
+                    },
+                    {
+                        "hanzi": "那是叶子。",
+                        "pinyin": "Nà shì yèzi.",
+                        "mean": "Đó là chiếc lá.",
+                        "vi_pron": "Na sư dê-chư.",
+                        "en_pron": "nah shrr yeh-zih."
+                    }
+                ]
             },
             {
-                        "id": 11,
-                        "title": "Bài 11: Đồ dùng",
-                        "icon": "fas fa-chair",
-                        "color": "bg-purple-100 text-purple-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "桌子",
-                                                "pinyin": "zhuōzi",
-                                                "mean": "Cái bàn",
-                                                "vi_pron": "chuô-chư",
-                                                "en_pron": "jwo-zih",
-                                                "mnemonic": "Mặt gỗ (bộ Mộc 木) rọi bóng dưới ánh mặt trời sớm mai (bộ Nhật 日) là Cái bàn."
-                                    },
-                                    {
-                                                "hanzi": "椅子",
-                                                "pinyin": "yǐzi",
-                                                "mean": "Cái ghế",
-                                                "vi_pron": "ỷ-chư",
-                                                "en_pron": "yee-zih",
-                                                "mnemonic": "Dùng Cây (木) làm miếng ván ngả lưng kì lạ (bộ Kỳ 奇) là Cái ghế."
-                                    },
-                                    {
-                                                "hanzi": "床",
-                                                "pinyin": "chuáng",
-                                                "mean": "Cái giường",
-                                                "vi_pron": "choáng",
-                                                "en_pron": "chwahng",
-                                                "mnemonic": "Lấy Gỗ (bộ Mộc 木) lót Dưới mái hiên ngói (bộ Nghiễm 广) để tạo thành Giường ngủ."
-                                    },
-                                    {
-                                                "hanzi": "书包",
-                                                "pinyin": "shūbāo",
-                                                "mean": "Cái cặp sách",
-                                                "vi_pron": "su-pao",
-                                                "en_pron": "shoo-bow",
-                                                "mnemonic": "Dùng Vải bọc (bộ Bao 勹) lại thành Balo (包) để đựng Sách (书)."
-                                    },
-                                    {
-                                                "hanzi": "伞",
-                                                "pinyin": "sǎn",
-                                                "mean": "Cây dù (ô)",
-                                                "vi_pron": "sản",
-                                                "en_pron": "sahn",
-                                                "mnemonic": "Nhìn chữ nãy hệt như 4 Người (人) cùng núp dưới một mái che mưa bằng cán chữ Thập (十)."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "我有桌子、椅子。",
-                                                "pinyin": "Wǒ yǒu zhuōzi, yǐzi.",
-                                                "mean": "Tôi có bàn, ghế.",
-                                                "vi_pron": "Ủa dẩu chuô-chư, ỷ-chư.",
-                                                "en_pron": "waw yo jwo-zih, yee-zih."
-                                    },
-                                    {
-                                                "hanzi": "这是书包。",
-                                                "pinyin": "Zhè shì shūbāo.",
-                                                "mean": "Đây là cặp sách.",
-                                                "vi_pron": "Trơ sư su-pao.",
-                                                "en_pron": "juh shrr shoo-bow."
-                                    }
-                        ]
+                "id": 11,
+                "title": "Bài 11: Đồ dùng",
+                "icon": "fas fa-chair",
+                "color": "bg-purple-100 text-purple-700",
+                "vocab": [
+                    {
+                        "hanzi": "桌子",
+                        "pinyin": "zhuōzi",
+                        "mean": "Cái bàn",
+                        "vi_pron": "chuô-chư",
+                        "en_pron": "jwo-zih",
+                        "mnemonic": "Mặt gỗ (bộ Mộc 木) rọi bóng dưới ánh mặt trời sớm mai (bộ Nhật 日) là Cái bàn."
+                    },
+                    {
+                        "hanzi": "椅子",
+                        "pinyin": "yǐzi",
+                        "mean": "Cái ghế",
+                        "vi_pron": "ỷ-chư",
+                        "en_pron": "yee-zih",
+                        "mnemonic": "Dùng Cây (木) làm miếng ván ngả lưng kì lạ (bộ Kỳ 奇) là Cái ghế."
+                    },
+                    {
+                        "hanzi": "床",
+                        "pinyin": "chuáng",
+                        "mean": "Cái giường",
+                        "vi_pron": "choáng",
+                        "en_pron": "chwahng",
+                        "mnemonic": "Lấy Gỗ (bộ Mộc 木) lót Dưới mái hiên ngói (bộ Nghiễm 广) để tạo thành Giường ngủ."
+                    },
+                    {
+                        "hanzi": "书包",
+                        "pinyin": "shūbāo",
+                        "mean": "Cái cặp sách",
+                        "vi_pron": "su-pao",
+                        "en_pron": "shoo-bow",
+                        "mnemonic": "Dùng Vải bọc (bộ Bao 勹) lại thành Balo (包) để đựng Sách (书)."
+                    },
+                    {
+                        "hanzi": "伞",
+                        "pinyin": "sǎn",
+                        "mean": "Cây dù (ô)",
+                        "vi_pron": "sản",
+                        "en_pron": "sahn",
+                        "mnemonic": "Nhìn chữ nãy hệt như 4 Người (人) cùng núp dưới một mái che mưa bằng cán chữ Thập (十)."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "我有桌子、椅子。",
+                        "pinyin": "Wǒ yǒu zhuōzi, yǐzi.",
+                        "mean": "Tôi có bàn, ghế.",
+                        "vi_pron": "Ủa dẩu chuô-chư, ỷ-chư.",
+                        "en_pron": "waw yo jwo-zih, yee-zih."
+                    },
+                    {
+                        "hanzi": "这是书包。",
+                        "pinyin": "Zhè shì shūbāo.",
+                        "mean": "Đây là cặp sách.",
+                        "vi_pron": "Trơ sư su-pao.",
+                        "en_pron": "juh shrr shoo-bow."
+                    }
+                ]
             },
             {
-                        "id": 12,
-                        "title": "Bài 12: Phương tiện",
-                        "icon": "fas fa-car",
-                        "color": "bg-indigo-100 text-indigo-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "飞机",
-                                                "pinyin": "fēijī",
-                                                "mean": "Máy bay",
-                                                "vi_pron": "phây-chi",
-                                                "en_pron": "fay-jee",
-                                                "mnemonic": "Cỗ máy (bộ Cơ 机) bay tung (bộ Phi 飞) vút lên trời trông như cánh chim là Máy bay."
-                                    },
-                                    {
-                                                "hanzi": "汽车",
-                                                "pinyin": "qìchē",
-                                                "mean": "Xe hơi (ô tô)",
-                                                "vi_pron": "si-trơ",
-                                                "en_pron": "chee-chuh",
-                                                "mnemonic": "Chiếc Xe (bộ Xa 车) chạy bằng Khí/Hơi nước bốc lên nghi ngút (bộ Khí气) là Ô tô."
-                                    },
-                                    {
-                                                "hanzi": "轮船",
-                                                "pinyin": "lúnchuán",
-                                                "mean": "Tàu thủy",
-                                                "vi_pron": "luấn-choán",
-                                                "en_pron": "lwun-chwahn",
-                                                "mnemonic": "Chiếc Thuyền (bộ Chu 舟) dưới nước chạy bằng Bánh xe quay (bộ Luân 轮) trên biển."
-                                    },
-                                    {
-                                                "hanzi": "自行车",
-                                                "pinyin": "zìxíngchē",
-                                                "mean": "Xe đạp",
-                                                "vi_pron": "chư-xính-trơ",
-                                                "en_pron": "zih-sheeng-chuh",
-                                                "mnemonic": "Chiếc xe (车) do tự mình (bộ Tự 自) dùng chân đi bộ (bộ Hành 行) đạp mới chạy là Xe đạp."
-                                    },
-                                    {
-                                                "hanzi": "有",
-                                                "pinyin": "yǒu",
-                                                "mean": "Có",
-                                                "vi_pron": "dẩu",
-                                                "en_pron": "yo",
-                                                "mnemonic": "Lấy Bàn tay phải (bộ Hựu 又) che giấu ánh Trăng (bộ Nguyệt 月) tức là đang Có đồ giấu giếm."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "你有飞机吗？",
-                                                "pinyin": "Nǐ yǒu fēijī ma?",
-                                                "mean": "Bạn có máy bay không?",
-                                                "vi_pron": "Ní dẩu phây-chi ma?",
-                                                "en_pron": "nee yo fay-jee mah?"
-                                    },
-                                    {
-                                                "hanzi": "我有飞机。",
-                                                "pinyin": "Wǒ yǒu fēijī.",
-                                                "mean": "Tôi có máy bay.",
-                                                "vi_pron": "Ủa dẩu phây-chi.",
-                                                "en_pron": "waw yo fay-jee."
-                                    }
-                        ]
+                "id": 12,
+                "title": "Bài 12: Phương tiện",
+                "icon": "fas fa-car",
+                "color": "bg-indigo-100 text-indigo-700",
+                "vocab": [
+                    {
+                        "hanzi": "飞机",
+                        "pinyin": "fēijī",
+                        "mean": "Máy bay",
+                        "vi_pron": "phây-chi",
+                        "en_pron": "fay-jee",
+                        "mnemonic": "Cỗ máy (bộ Cơ 机) bay tung (bộ Phi 飞) vút lên trời trông như cánh chim là Máy bay."
+                    },
+                    {
+                        "hanzi": "汽车",
+                        "pinyin": "qìchē",
+                        "mean": "Xe hơi (ô tô)",
+                        "vi_pron": "si-trơ",
+                        "en_pron": "chee-chuh",
+                        "mnemonic": "Chiếc Xe (bộ Xa 车) chạy bằng Khí/Hơi nước bốc lên nghi ngút (bộ Khí气) là Ô tô."
+                    },
+                    {
+                        "hanzi": "轮船",
+                        "pinyin": "lúnchuán",
+                        "mean": "Tàu thủy",
+                        "vi_pron": "luấn-choán",
+                        "en_pron": "lwun-chwahn",
+                        "mnemonic": "Chiếc Thuyền (bộ Chu 舟) dưới nước chạy bằng Bánh xe quay (bộ Luân 轮) trên biển."
+                    },
+                    {
+                        "hanzi": "自行车",
+                        "pinyin": "zìxíngchē",
+                        "mean": "Xe đạp",
+                        "vi_pron": "chư-xính-trơ",
+                        "en_pron": "zih-sheeng-chuh",
+                        "mnemonic": "Chiếc xe (车) do tự mình (bộ Tự 自) dùng chân đi bộ (bộ Hành 行) đạp mới chạy là Xe đạp."
+                    },
+                    {
+                        "hanzi": "有",
+                        "pinyin": "yǒu",
+                        "mean": "Có",
+                        "vi_pron": "dẩu",
+                        "en_pron": "yo",
+                        "mnemonic": "Lấy Bàn tay phải (bộ Hựu 又) che giấu ánh Trăng (bộ Nguyệt 月) tức là đang Có đồ giấu giếm."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "你有飞机吗？",
+                        "pinyin": "Nǐ yǒu fēijī ma?",
+                        "mean": "Bạn có máy bay không?",
+                        "vi_pron": "Ní dẩu phây-chi ma?",
+                        "en_pron": "nee yo fay-jee mah?"
+                    },
+                    {
+                        "hanzi": "我有飞机。",
+                        "pinyin": "Wǒ yǒu fēijī.",
+                        "mean": "Tôi có máy bay.",
+                        "vi_pron": "Ủa dẩu phây-chi.",
+                        "en_pron": "waw yo fay-jee."
+                    }
+                ]
             },
             {
-                        "id": 13,
-                        "title": "Bài 13: Đồ chơi",
-                        "icon": "fas fa-robot",
-                        "color": "bg-pink-100 text-pink-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "机器人",
-                                                "pinyin": "jīqìrén",
-                                                "mean": "Người máy",
-                                                "vi_pron": "chi-xi-rấn",
-                                                "en_pron": "jee-chee-run",
-                                                "mnemonic": "Cỗ máy (机) có Khí thở (器) và hình dáng như Con Người (人) là Người máy."
-                                    },
-                                    {
-                                                "hanzi": "皮球",
-                                                "pinyin": "píqiú",
-                                                "mean": "Quả bóng",
-                                                "vi_pron": "phí-chiếu",
-                                                "en_pron": "pee-chyo",
-                                                "mnemonic": "Đánh vật tròn (bộ Cầu 球) bằng Da thú (bộ Bì 皮) căng tròn là Quả bóng da."
-                                    },
-                                    {
-                                                "hanzi": "娃娃",
-                                                "pinyin": "wáwa",
-                                                "mean": "Búp bê",
-                                                "vi_pron": "oá-oa",
-                                                "en_pron": "wah-wah",
-                                                "mnemonic": "Đứa bé gái (bộ Nữ 女) xinh xắn đắp bằng hai Khối đất (bộ Khuê 圭) là Búp bê."
-                                    },
-                                    {
-                                                "hanzi": "熊猫",
-                                                "pinyin": "xióngmāo",
-                                                "mean": "Gấu trúc",
-                                                "vi_pron": "xiúng-mao",
-                                                "en_pron": "shyong-maow",
-                                                "mnemonic": "Con gấu (bộ Hỏa 灬 bên dưới) có hình dạng béo tròn như con Mèo (猫) là Gấu trúc."
-                                    },
-                                    {
-                                                "hanzi": "火箭",
-                                                "pinyin": "huǒjiàn",
-                                                "mean": "Tên lửa",
-                                                "vi_pron": "hủa-chien",
-                                                "en_pron": "hwo-jyen",
-                                                "mnemonic": "Vũ khí cấu tạo vút nhọn bắn từ Lửa (bộ Hỏa 火) lao qua không gian là Tên lửa."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "我有机器人。",
-                                                "pinyin": "Wǒ yǒu jīqìrén.",
-                                                "mean": "Tôi có người máy.",
-                                                "vi_pron": "Ủa dẩu chi-xi-rấn.",
-                                                "en_pron": "waw yo jee-chee-run."
-                                    },
-                                    {
-                                                "hanzi": "我没有火箭。",
-                                                "pinyin": "Wǒ méi yǒu huǒjiàn.",
-                                                "mean": "Tôi không có tên lửa.",
-                                                "vi_pron": "Ủa mấy dẩu hủa-chien.",
-                                                "en_pron": "waw may yo hwo-jyen."
-                                    }
-                        ]
+                "id": 13,
+                "title": "Bài 13: Đồ chơi",
+                "icon": "fas fa-robot",
+                "color": "bg-pink-100 text-pink-700",
+                "vocab": [
+                    {
+                        "hanzi": "机器人",
+                        "pinyin": "jīqìrén",
+                        "mean": "Người máy",
+                        "vi_pron": "chi-xi-rấn",
+                        "en_pron": "jee-chee-run",
+                        "mnemonic": "Cỗ máy (机) có Khí thở (器) và hình dáng như Con Người (人) là Người máy."
+                    },
+                    {
+                        "hanzi": "皮球",
+                        "pinyin": "píqiú",
+                        "mean": "Quả bóng",
+                        "vi_pron": "phí-chiếu",
+                        "en_pron": "pee-chyo",
+                        "mnemonic": "Đánh vật tròn (bộ Cầu 球) bằng Da thú (bộ Bì 皮) căng tròn là Quả bóng da."
+                    },
+                    {
+                        "hanzi": "娃娃",
+                        "pinyin": "wáwa",
+                        "mean": "Búp bê",
+                        "vi_pron": "oá-oa",
+                        "en_pron": "wah-wah",
+                        "mnemonic": "Đứa bé gái (bộ Nữ 女) xinh xắn đắp bằng hai Khối đất (bộ Khuê 圭) là Búp bê."
+                    },
+                    {
+                        "hanzi": "熊猫",
+                        "pinyin": "xióngmāo",
+                        "mean": "Gấu trúc",
+                        "vi_pron": "xiúng-mao",
+                        "en_pron": "shyong-maow",
+                        "mnemonic": "Con gấu (bộ Hỏa 灬 bên dưới) có hình dạng béo tròn như con Mèo (猫) là Gấu trúc."
+                    },
+                    {
+                        "hanzi": "火箭",
+                        "pinyin": "huǒjiàn",
+                        "mean": "Tên lửa",
+                        "vi_pron": "hủa-chien",
+                        "en_pron": "hwo-jyen",
+                        "mnemonic": "Vũ khí cấu tạo vút nhọn bắn từ Lửa (bộ Hỏa 火) lao qua không gian là Tên lửa."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "我有机器人。",
+                        "pinyin": "Wǒ yǒu jīqìrén.",
+                        "mean": "Tôi có người máy.",
+                        "vi_pron": "Ủa dẩu chi-xi-rấn.",
+                        "en_pron": "waw yo jee-chee-run."
+                    },
+                    {
+                        "hanzi": "我没有火箭。",
+                        "pinyin": "Wǒ méi yǒu huǒjiàn.",
+                        "mean": "Tôi không có tên lửa.",
+                        "vi_pron": "Ủa mấy dẩu hủa-chien.",
+                        "en_pron": "waw may yo hwo-jyen."
+                    }
+                ]
             },
             {
-                        "id": 14,
-                        "title": "Bài 14: Địa danh",
-                        "icon": "fas fa-flag",
-                        "color": "bg-red-50 text-red-800",
-                        "vocab": [
-                                    {
-                                                "hanzi": "中国",
-                                                "pinyin": "Zhōngguó",
-                                                "mean": "Trung Quốc",
-                                                "vi_pron": "Chung-của",
-                                                "en_pron": "jong-gwo",
-                                                "mnemonic": "Khối ngọc (bộ Ngọc 玉) nằm chính giữa Tường thành bao bọc (bộ Vi 囗) ở Giữa (bộ Trung 中) là Trung Quốc."
-                                    },
-                                    {
-                                                "hanzi": "国旗",
-                                                "pinyin": "guóqí",
-                                                "mean": "Quốc kỳ",
-                                                "vi_pron": "của-tsí",
-                                                "en_pron": "gwo-chee",
-                                                "mnemonic": "Lá cờ (bộ Kỳ 旗) của một Quốc gia (国) vẫy bay phấp phới Phương xa (方) là Quốc kỳ."
-                                    },
-                                    {
-                                                "hanzi": "北京",
-                                                "pinyin": "Běijīng",
-                                                "mean": "Bắc Kinh",
-                                                "vi_pron": "Pẩy-chinh",
-                                                "en_pron": "bay-jeeng",
-                                                "mnemonic": "Hai người đứng dựa lưng nhau quay về phía Bắc (bộ Tỷ 匕) nhìn Kinh đô rộng lớn (京)."
-                                    },
-                                    {
-                                                "hanzi": "天安门",
-                                                "pinyin": "Tiān'ānmén",
-                                                "mean": "Thiên An Môn",
-                                                "vi_pron": "Thiên-an-mấn",
-                                                "en_pron": "tyen-ahn-mun",
-                                                "mnemonic": "Chiếc Cổng lớn (bộ Môn 门) đem lại cho người dân Bình an (安) dưới Bầu trời (bộ Thiên 天)."
-                                    },
-                                    {
-                                                "hanzi": "长城",
-                                                "pinyin": "Chángchéng",
-                                                "mean": "Vạn Lý Trường Thành",
-                                                "vi_pron": "Tráng-trấng",
-                                                "en_pron": "chahng-chung",
-                                                "mnemonic": "Bức tường lũy (城) làm từ Đất đá (bộ Thổ 土) che chắn Dài dằng dặc (长) là Vạn Lý Trường Thành."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "这是国旗吗？",
-                                                "pinyin": "Zhè shì guóqí ma?",
-                                                "mean": "Đây là quốc kỳ phải không?",
-                                                "vi_pron": "Trơ sư của-tsí ma?",
-                                                "en_pron": "juh shrr gwo-chee mah?"
-                                    },
-                                    {
-                                                "hanzi": "这是中国国旗。",
-                                                "pinyin": "Zhè shì Zhōngguó guóqí.",
-                                                "mean": "Đây là quốc kỳ Trung Quốc.",
-                                                "vi_pron": "Trơ sư Chung-của của-tsí.",
-                                                "en_pron": "juh shrr jong-gwo gwo-chee."
-                                    }
-                        ]
+                "id": 14,
+                "title": "Bài 14: Địa danh",
+                "icon": "fas fa-flag",
+                "color": "bg-red-50 text-red-800",
+                "vocab": [
+                    {
+                        "hanzi": "中国",
+                        "pinyin": "Zhōngguó",
+                        "mean": "Trung Quốc",
+                        "vi_pron": "Chung-của",
+                        "en_pron": "jong-gwo",
+                        "mnemonic": "Khối ngọc (bộ Ngọc 玉) nằm chính giữa Tường thành bao bọc (bộ Vi 囗) ở Giữa (bộ Trung 中) là Trung Quốc."
+                    },
+                    {
+                        "hanzi": "国旗",
+                        "pinyin": "guóqí",
+                        "mean": "Quốc kỳ",
+                        "vi_pron": "của-tsí",
+                        "en_pron": "gwo-chee",
+                        "mnemonic": "Lá cờ (bộ Kỳ 旗) của một Quốc gia (国) vẫy bay phấp phới Phương xa (方) là Quốc kỳ."
+                    },
+                    {
+                        "hanzi": "北京",
+                        "pinyin": "Běijīng",
+                        "mean": "Bắc Kinh",
+                        "vi_pron": "Pẩy-chinh",
+                        "en_pron": "bay-jeeng",
+                        "mnemonic": "Hai người đứng dựa lưng nhau quay về phía Bắc (bộ Tỷ 匕) nhìn Kinh đô rộng lớn (京)."
+                    },
+                    {
+                        "hanzi": "天安门",
+                        "pinyin": "Tiān'ānmén",
+                        "mean": "Thiên An Môn",
+                        "vi_pron": "Thiên-an-mấn",
+                        "en_pron": "tyen-ahn-mun",
+                        "mnemonic": "Chiếc Cổng lớn (bộ Môn 门) đem lại cho người dân Bình an (安) dưới Bầu trời (bộ Thiên 天)."
+                    },
+                    {
+                        "hanzi": "长城",
+                        "pinyin": "Chángchéng",
+                        "mean": "Vạn Lý Trường Thành",
+                        "vi_pron": "Tráng-trấng",
+                        "en_pron": "chahng-chung",
+                        "mnemonic": "Bức tường lũy (城) làm từ Đất đá (bộ Thổ 土) che chắn Dài dằng dặc (长) là Vạn Lý Trường Thành."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是国旗吗？",
+                        "pinyin": "Zhè shì guóqí ma?",
+                        "mean": "Đây là quốc kỳ phải không?",
+                        "vi_pron": "Trơ sư của-tsí ma?",
+                        "en_pron": "juh shrr gwo-chee mah?"
+                    },
+                    {
+                        "hanzi": "这是中国国旗。",
+                        "pinyin": "Zhè shì Zhōngguó guóqí.",
+                        "mean": "Đây là quốc kỳ Trung Quốc.",
+                        "vi_pron": "Trơ sư Chung-của của-tsí.",
+                        "en_pron": "juh shrr jong-gwo gwo-chee."
+                    }
+                ]
             },
             {
-                        "id": 15,
-                        "title": "Bài 15: Thời tiết",
-                        "icon": "fas fa-cloud-rain",
-                        "color": "bg-gray-200 text-gray-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "雨",
-                                                "pinyin": "yǔ",
-                                                "mean": "Mưa",
-                                                "vi_pron": "dủ",
-                                                "en_pron": "yoo",
-                                                "mnemonic": "Hình tượng bầu trời vuông vức có Mưa (bộ Vũ 雨) rơi rả rích bốn hột bên trong."
-                                    },
-                                    {
-                                                "hanzi": "雪",
-                                                "pinyin": "xuě",
-                                                "mean": "Tuyết",
-                                                "vi_pron": "xuể",
-                                                "en_pron": "shweh",
-                                                "mnemonic": "Dưới bầu trời Mưa (bộ Vũ 雨) có cây chổi (bộ Tuệ 彗) vung quét bông Tuyết trắng xóa."
-                                    },
-                                    {
-                                                "hanzi": "雾",
-                                                "pinyin": "wù",
-                                                "mean": "Sương mù",
-                                                "vi_pron": "u",
-                                                "en_pron": "woo",
-                                                "mnemonic": "Cơn Mưa (bộ Vũ 雨) kéo dài gây mờ mịt cản tầm nhìn công Vụ (务) là Sương mù."
-                                    },
-                                    {
-                                                "hanzi": "风",
-                                                "pinyin": "fēng",
-                                                "mean": "Gió",
-                                                "vi_pron": "phâng",
-                                                "en_pron": "fung",
-                                                "mnemonic": "Ngọn Gió (bộ Phong 风) cuốn theo Côn trùng/Sâu bọ (bộ Trùng 虫) lơ lửng trong không trung."
-                                    },
-                                    {
-                                                "hanzi": "下",
-                                                "pinyin": "xià",
-                                                "mean": "Rơi/Xuống",
-                                                "vi_pron": "xia",
-                                                "en_pron": "shyah",
-                                                "mnemonic": "Chỉ đường thẳng Mũi tên hướng Dưới (下) là đi Xuống dưới."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "下雨了！",
-                                                "pinyin": "Xià yǔ le!",
-                                                "mean": "Trời mưa rồi!",
-                                                "vi_pron": "Xia dủ lợ!",
-                                                "en_pron": "shyah yoo luh!"
-                                    },
-                                    {
-                                                "hanzi": "下雪了！",
-                                                "pinyin": "Xià xuě le!",
-                                                "mean": "Tuyết rơi rồi!",
-                                                "vi_pron": "Xia xuể lợ!",
-                                                "en_pron": "shyah shweh luh!"
-                                    }
-                        ]
+                "id": 15,
+                "title": "Bài 15: Thời tiết",
+                "icon": "fas fa-cloud-rain",
+                "color": "bg-gray-200 text-gray-700",
+                "vocab": [
+                    {
+                        "hanzi": "雨",
+                        "pinyin": "yǔ",
+                        "mean": "Mưa",
+                        "vi_pron": "dủ",
+                        "en_pron": "yoo",
+                        "mnemonic": "Hình tượng bầu trời vuông vức có Mưa (bộ Vũ 雨) rơi rả rích bốn hột bên trong."
+                    },
+                    {
+                        "hanzi": "雪",
+                        "pinyin": "xuě",
+                        "mean": "Tuyết",
+                        "vi_pron": "xuể",
+                        "en_pron": "shweh",
+                        "mnemonic": "Dưới bầu trời Mưa (bộ Vũ 雨) có cây chổi (bộ Tuệ 彗) vung quét bông Tuyết trắng xóa."
+                    },
+                    {
+                        "hanzi": "雾",
+                        "pinyin": "wù",
+                        "mean": "Sương mù",
+                        "vi_pron": "u",
+                        "en_pron": "woo",
+                        "mnemonic": "Cơn Mưa (bộ Vũ 雨) kéo dài gây mờ mịt cản tầm nhìn công Vụ (务) là Sương mù."
+                    },
+                    {
+                        "hanzi": "风",
+                        "pinyin": "fēng",
+                        "mean": "Gió",
+                        "vi_pron": "phâng",
+                        "en_pron": "fung",
+                        "mnemonic": "Ngọn Gió (bộ Phong 风) cuốn theo Côn trùng/Sâu bọ (bộ Trùng 虫) lơ lửng trong không trung."
+                    },
+                    {
+                        "hanzi": "下",
+                        "pinyin": "xià",
+                        "mean": "Rơi/Xuống",
+                        "vi_pron": "xia",
+                        "en_pron": "shyah",
+                        "mnemonic": "Chỉ đường thẳng Mũi tên hướng Dưới (下) là đi Xuống dưới."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "下雨了！",
+                        "pinyin": "Xià yǔ le!",
+                        "mean": "Trời mưa rồi!",
+                        "vi_pron": "Xia dủ lợ!",
+                        "en_pron": "shyah yoo luh!"
+                    },
+                    {
+                        "hanzi": "下雪了！",
+                        "pinyin": "Xià xuě le!",
+                        "mean": "Tuyết rơi rồi!",
+                        "vi_pron": "Xia xuể lợ!",
+                        "en_pron": "shyah shweh luh!"
+                    }
+                ]
             },
             {
-                        "id": 16,
-                        "title": "Bài 16: Bầu trời",
-                        "icon": "fas fa-sun",
-                        "color": "bg-yellow-50 text-orange-500",
-                        "vocab": [
-                                    {
-                                                "hanzi": "太阳",
-                                                "pinyin": "tàiyáng",
-                                                "mean": "Mặt trời",
-                                                "vi_pron": "thai-dáng",
-                                                "en_pron": "tye-yahng",
-                                                "mnemonic": "Thứ ánh sáng Siêu lớn (bộ Thái 太) vượt qua vách núi (bộ Phụ 阝) chiếu sáng Khắp nơi (bộ Dương 阳) là Mặt trời."
-                                    },
-                                    {
-                                                "hanzi": "月亮",
-                                                "pinyin": "yuèliang",
-                                                "mean": "Mặt trăng",
-                                                "vi_pron": "duê-leng",
-                                                "en_pron": "yweh-lyahng",
-                                                "mnemonic": "Ánh sáng trăng Khuyết (bộ Nguyệt 月) rọi trên Nóc nhà (bộ Kinh 京) Phát sáng (亮) là Mặt trăng."
-                                    },
-                                    {
-                                                "hanzi": "云",
-                                                "pinyin": "yún",
-                                                "mean": "Mây",
-                                                "vi_pron": "duýn",
-                                                "en_pron": "ywin",
-                                                "mnemonic": "Nhìn nét vẽ ngang dọc lửng lơ trên bầu trời thấy giống hệt từng tầng đám Mây."
-                                    },
-                                    {
-                                                "hanzi": "星星",
-                                                "pinyin": "xīngxing",
-                                                "mean": "Ngôi sao",
-                                                "vi_pron": "xinh-xinh",
-                                                "en_pron": "sheeng-sheeng",
-                                                "mnemonic": "Khi Mặt trời (bộ Nhật 日) tỏa sáng (bộ Sinh 生) tạo ra muôn vàn Ngôi sao."
-                                    },
-                                    {
-                                                "hanzi": "彩虹",
-                                                "pinyin": "cǎihóng",
-                                                "mean": "Cầu vồng",
-                                                "vi_pron": "xải-húng",
-                                                "en_pron": "tsye-hong",
-                                                "mnemonic": "Cầu vồng rực rỡ Sắc màu áo (bộ Thể 彩) hiện ra ở trên con côn trùng (bộ Trùng 虫) hút nước."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "那是太阳吗？",
-                                                "pinyin": "Nà shì tàiyáng ma?",
-                                                "mean": "Đó là mặt trời phải không?",
-                                                "vi_pron": "Na sư thai-dáng ma?",
-                                                "en_pron": "nah shrr tye-yahng mah?"
-                                    },
-                                    {
-                                                "hanzi": "那不是太阳，那是月亮。",
-                                                "pinyin": "Nà bú shì tàiyáng, nà shì yuèliang.",
-                                                "mean": "Đó không phải mặt trời, đó là mặt trăng.",
-                                                "vi_pron": "Na pú sư thai-dáng, na sư duê-leng.",
-                                                "en_pron": "nah boo shrr tye-yahng, nah shrr yweh-lyahng."
-                                    }
-                        ]
+                "id": 16,
+                "title": "Bài 16: Bầu trời",
+                "icon": "fas fa-sun",
+                "color": "bg-yellow-50 text-orange-500",
+                "vocab": [
+                    {
+                        "hanzi": "太阳",
+                        "pinyin": "tàiyáng",
+                        "mean": "Mặt trời",
+                        "vi_pron": "thai-dáng",
+                        "en_pron": "tye-yahng",
+                        "mnemonic": "Thứ ánh sáng Siêu lớn (bộ Thái 太) vượt qua vách núi (bộ Phụ 阝) chiếu sáng Khắp nơi (bộ Dương 阳) là Mặt trời."
+                    },
+                    {
+                        "hanzi": "月亮",
+                        "pinyin": "yuèliang",
+                        "mean": "Mặt trăng",
+                        "vi_pron": "duê-leng",
+                        "en_pron": "yweh-lyahng",
+                        "mnemonic": "Ánh sáng trăng Khuyết (bộ Nguyệt 月) rọi trên Nóc nhà (bộ Kinh 京) Phát sáng (亮) là Mặt trăng."
+                    },
+                    {
+                        "hanzi": "云",
+                        "pinyin": "yún",
+                        "mean": "Mây",
+                        "vi_pron": "duýn",
+                        "en_pron": "ywin",
+                        "mnemonic": "Nhìn nét vẽ ngang dọc lửng lơ trên bầu trời thấy giống hệt từng tầng đám Mây."
+                    },
+                    {
+                        "hanzi": "星星",
+                        "pinyin": "xīngxing",
+                        "mean": "Ngôi sao",
+                        "vi_pron": "xinh-xinh",
+                        "en_pron": "sheeng-sheeng",
+                        "mnemonic": "Khi Mặt trời (bộ Nhật 日) tỏa sáng (bộ Sinh 生) tạo ra muôn vàn Ngôi sao."
+                    },
+                    {
+                        "hanzi": "彩虹",
+                        "pinyin": "cǎihóng",
+                        "mean": "Cầu vồng",
+                        "vi_pron": "xải-húng",
+                        "en_pron": "tsye-hong",
+                        "mnemonic": "Cầu vồng rực rỡ Sắc màu áo (bộ Thể 彩) hiện ra ở trên con côn trùng (bộ Trùng 虫) hút nước."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "那是太阳吗？",
+                        "pinyin": "Nà shì tàiyáng ma?",
+                        "mean": "Đó là mặt trời phải không?",
+                        "vi_pron": "Na sư thai-dáng ma?",
+                        "en_pron": "nah shrr tye-yahng mah?"
+                    },
+                    {
+                        "hanzi": "那不是太阳，那是月亮。",
+                        "pinyin": "Nà bú shì tàiyáng, nà shì yuèliang.",
+                        "mean": "Đó không phải mặt trời, đó là mặt trăng.",
+                        "vi_pron": "Na pú sư thai-dáng, na sư duê-leng.",
+                        "en_pron": "nah boo shrr tye-yahng, nah shrr yweh-lyahng."
+                    }
+                ]
             },
             {
-                        "id": 17,
-                        "title": "Bài 17: Cơ thể",
-                        "icon": "fas fa-hand",
-                        "color": "bg-rose-100 text-rose-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "耳朵",
-                                                "pinyin": "ěrduo",
-                                                "mean": "Lỗ tai",
-                                                "vi_pron": "ở-tua",
-                                                "en_pron": "ur-dwo",
-                                                "mnemonic": "Vẽ hình dạng như cái Lỗ tai đón âm thanh (bộ Nhĩ 耳) úp chồng bên mặt."
-                                    },
-                                    {
-                                                "hanzi": "鼻子",
-                                                "pinyin": "bízi",
-                                                "mean": "Mũi",
-                                                "vi_pron": "pí-chư",
-                                                "en_pron": "bee-zih",
-                                                "mnemonic": "Hình ngón tay Tự chỉ (bộ Tự 自) vào Mũi (bộ Tị 鼻) - nằm ngay dưới hai con Mắt (bộ Mục 目)."
-                                    },
-                                    {
-                                                "hanzi": "眼睛",
-                                                "pinyin": "yǎnjing",
-                                                "mean": "Mắt",
-                                                "vi_pron": "dẻn-chinh",
-                                                "en_pron": "yen-jeeng",
-                                                "mnemonic": "Hai con Mắt (bộ Mục 目) và con ngươi Dừng lại (bộ Cấn 艮) nhìn xanh biếc (bộ Thanh 青)."
-                                    },
-                                    {
-                                                "hanzi": "嘴",
-                                                "pinyin": "zuǐ",
-                                                "mean": "Miệng",
-                                                "vi_pron": "chuẩy",
-                                                "en_pron": "zway",
-                                                "mnemonic": "Cái Miệng (bộ Khẩu 口) nhai nhiều Hạt góc (bộ Giác 角) và Tóp chép (bộ Chủy 匕) là Cái mồm."
-                                    },
-                                    {
-                                                "hanzi": "手",
-                                                "pinyin": "shǒu",
-                                                "mean": "Tay",
-                                                "vi_pron": "sẩu",
-                                                "en_pron": "show",
-                                                "mnemonic": "Các nét Tượng hình bàn tay 5 ngón đang xòe ra (bộ Thủ 手)."
-                                    },
-                                    {
-                                                "hanzi": "脚",
-                                                "pinyin": "jiǎo",
-                                                "mean": "Chân",
-                                                "vi_pron": "chiểu",
-                                                "en_pron": "jyaow",
-                                                "mnemonic": "Dưới Cơ thể (bộ Nhục 肉) là bộ phận Đi lùi - Đi tới (bộ Khước 却) giúp ta di chuyển đôi Chân."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "这是耳朵吗？",
-                                                "pinyin": "Zhè shì ěrduo ma?",
-                                                "mean": "Đây là lỗ tai phải không?",
-                                                "vi_pron": "Trơ sư ở-tua ma?",
-                                                "en_pron": "juh shrr ur-dwo mah?"
-                                    },
-                                    {
-                                                "hanzi": "这是眼睛。",
-                                                "pinyin": "Zhè shì yǎnjing.",
-                                                "mean": "Đây là mắt.",
-                                                "vi_pron": "Trơ sư dẻn-chinh.",
-                                                "en_pron": "juh shrr yen-jeeng."
-                                    }
-                        ]
+                "id": 17,
+                "title": "Bài 17: Cơ thể",
+                "icon": "fas fa-hand",
+                "color": "bg-rose-100 text-rose-700",
+                "vocab": [
+                    {
+                        "hanzi": "耳朵",
+                        "pinyin": "ěrduo",
+                        "mean": "Lỗ tai",
+                        "vi_pron": "ở-tua",
+                        "en_pron": "ur-dwo",
+                        "mnemonic": "Vẽ hình dạng như cái Lỗ tai đón âm thanh (bộ Nhĩ 耳) úp chồng bên mặt."
+                    },
+                    {
+                        "hanzi": "鼻子",
+                        "pinyin": "bízi",
+                        "mean": "Mũi",
+                        "vi_pron": "pí-chư",
+                        "en_pron": "bee-zih",
+                        "mnemonic": "Hình ngón tay Tự chỉ (bộ Tự 自) vào Mũi (bộ Tị 鼻) - nằm ngay dưới hai con Mắt (bộ Mục 目)."
+                    },
+                    {
+                        "hanzi": "眼睛",
+                        "pinyin": "yǎnjing",
+                        "mean": "Mắt",
+                        "vi_pron": "dẻn-chinh",
+                        "en_pron": "yen-jeeng",
+                        "mnemonic": "Hai con Mắt (bộ Mục 目) và con ngươi Dừng lại (bộ Cấn 艮) nhìn xanh biếc (bộ Thanh 青)."
+                    },
+                    {
+                        "hanzi": "嘴",
+                        "pinyin": "zuǐ",
+                        "mean": "Miệng",
+                        "vi_pron": "chuẩy",
+                        "en_pron": "zway",
+                        "mnemonic": "Cái Miệng (bộ Khẩu 口) nhai nhiều Hạt góc (bộ Giác 角) và Tóp chép (bộ Chủy 匕) là Cái mồm."
+                    },
+                    {
+                        "hanzi": "手",
+                        "pinyin": "shǒu",
+                        "mean": "Tay",
+                        "vi_pron": "sẩu",
+                        "en_pron": "show",
+                        "mnemonic": "Các nét Tượng hình bàn tay 5 ngón đang xòe ra (bộ Thủ 手)."
+                    },
+                    {
+                        "hanzi": "脚",
+                        "pinyin": "jiǎo",
+                        "mean": "Chân",
+                        "vi_pron": "chiểu",
+                        "en_pron": "jyaow",
+                        "mnemonic": "Dưới Cơ thể (bộ Nhục 肉) là bộ phận Đi lùi - Đi tới (bộ Khước 却) giúp ta di chuyển đôi Chân."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是耳朵吗？",
+                        "pinyin": "Zhè shì ěrduo ma?",
+                        "mean": "Đây là lỗ tai phải không?",
+                        "vi_pron": "Trơ sư ở-tua ma?",
+                        "en_pron": "juh shrr ur-dwo mah?"
+                    },
+                    {
+                        "hanzi": "这是眼睛。",
+                        "pinyin": "Zhè shì yǎnjing.",
+                        "mean": "Đây là mắt.",
+                        "vi_pron": "Trơ sư dẻn-chinh.",
+                        "en_pron": "juh shrr yen-jeeng."
+                    }
+                ]
             },
             {
-                        "id": 18,
-                        "title": "Bài 18: Trang phục",
-                        "icon": "fas fa-shirt",
-                        "color": "bg-violet-100 text-violet-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "手套",
-                                                "pinyin": "shǒutào",
-                                                "mean": "Găng tay",
-                                                "vi_pron": "sẩu-thao",
-                                                "en_pron": "show-taow",
-                                                "mnemonic": "Dùng Bao bọc Lớn và Dài (bộ Sáo 套 - Lớn 大 đè Dài 长) lồng ngoài Bàn tay (手) là Găng tay."
-                                    },
-                                    {
-                                                "hanzi": "手绢",
-                                                "pinyin": "shǒujuàn",
-                                                "mean": "Khăn tay",
-                                                "vi_pron": "sẩu-choen",
-                                                "en_pron": "show-jwen",
-                                                "mnemonic": "Miếng Lụa bông (bộ Mịch 纟) xỏ Bàn tay (手) vào để lau mồ hôi là Khăn tay cầm."
-                                    },
-                                    {
-                                                "hanzi": "鞋",
-                                                "pinyin": "xié",
-                                                "mean": "Giày",
-                                                "vi_pron": "xiế",
-                                                "en_pron": "shyeh",
-                                                "mnemonic": "Da bảo vệ (bộ Cách 革) thuộc bằng Hai tấm gạch vuông (bộ Khuê 圭) mang vào chân là Đôi giày."
-                                    },
-                                    {
-                                                "hanzi": "裤子",
-                                                "pinyin": "kùzi",
-                                                "mean": "Quần",
-                                                "vi_pron": "khu-chư",
-                                                "en_pron": "koo-zih",
-                                                "mnemonic": "Quần áo (bộ Y 衤) mặc che giấu 2 chân như Nhà kho kín (bộ Khố 库) là Cái quần."
-                                    },
-                                    {
-                                                "hanzi": "裙子",
-                                                "pinyin": "qúnzi",
-                                                "mean": "Váy",
-                                                "vi_pron": "chuýn-chư",
-                                                "en_pron": "chwin-zih",
-                                                "mnemonic": "Quần áo (bộ Y 衤) của đấng Quân vương uy quyền (bộ Quân 君) đều xòe rộng thành Váy dài."
-                                    },
-                                    {
-                                                "hanzi": "上衣",
-                                                "pinyin": "shàngyī",
-                                                "mean": "Áo",
-                                                "vi_pron": "sang-y",
-                                                "en_pron": "shahng-yee",
-                                                "mnemonic": "Mặc đồ Áo vải (bộ Y 衣/衤) mặc khoác ở phía nửa Trên cơ thể (bộ Thượng 上)."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "这是我的衣服。",
-                                                "pinyin": "Zhè shì wǒ de yīfu.",
-                                                "mean": "Đây là quần áo của tôi.",
-                                                "vi_pron": "Trơ sư ủa tợ y-phu.",
-                                                "en_pron": "juh shrr waw duh yee-foo."
-                                    },
-                                    {
-                                                "hanzi": "那是弟弟的裤子。",
-                                                "pinyin": "Nà shì dìdi de kùzi.",
-                                                "mean": "Đó là quần của em trai.",
-                                                "vi_pron": "Na sư ti-ti tợ khu-chư.",
-                                                "en_pron": "nah shrr dee-dee duh koo-zih."
-                                    }
-                        ]
+                "id": 18,
+                "title": "Bài 18: Trang phục",
+                "icon": "fas fa-shirt",
+                "color": "bg-violet-100 text-violet-700",
+                "vocab": [
+                    {
+                        "hanzi": "手套",
+                        "pinyin": "shǒutào",
+                        "mean": "Găng tay",
+                        "vi_pron": "sẩu-thao",
+                        "en_pron": "show-taow",
+                        "mnemonic": "Dùng Bao bọc Lớn và Dài (bộ Sáo 套 - Lớn 大 đè Dài 长) lồng ngoài Bàn tay (手) là Găng tay."
+                    },
+                    {
+                        "hanzi": "手绢",
+                        "pinyin": "shǒujuàn",
+                        "mean": "Khăn tay",
+                        "vi_pron": "sẩu-choen",
+                        "en_pron": "show-jwen",
+                        "mnemonic": "Miếng Lụa bông (bộ Mịch 纟) xỏ Bàn tay (手) vào để lau mồ hôi là Khăn tay cầm."
+                    },
+                    {
+                        "hanzi": "鞋",
+                        "pinyin": "xié",
+                        "mean": "Giày",
+                        "vi_pron": "xiế",
+                        "en_pron": "shyeh",
+                        "mnemonic": "Da bảo vệ (bộ Cách 革) thuộc bằng Hai tấm gạch vuông (bộ Khuê 圭) mang vào chân là Đôi giày."
+                    },
+                    {
+                        "hanzi": "裤子",
+                        "pinyin": "kùzi",
+                        "mean": "Quần",
+                        "vi_pron": "khu-chư",
+                        "en_pron": "koo-zih",
+                        "mnemonic": "Quần áo (bộ Y 衤) mặc che giấu 2 chân như Nhà kho kín (bộ Khố 库) là Cái quần."
+                    },
+                    {
+                        "hanzi": "裙子",
+                        "pinyin": "qúnzi",
+                        "mean": "Váy",
+                        "vi_pron": "chuýn-chư",
+                        "en_pron": "chwin-zih",
+                        "mnemonic": "Quần áo (bộ Y 衤) của đấng Quân vương uy quyền (bộ Quân 君) đều xòe rộng thành Váy dài."
+                    },
+                    {
+                        "hanzi": "上衣",
+                        "pinyin": "shàngyī",
+                        "mean": "Áo",
+                        "vi_pron": "sang-y",
+                        "en_pron": "shahng-yee",
+                        "mnemonic": "Mặc đồ Áo vải (bộ Y 衣/衤) mặc khoác ở phía nửa Trên cơ thể (bộ Thượng 上)."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "这是我的衣服。",
+                        "pinyin": "Zhè shì wǒ de yīfu.",
+                        "mean": "Đây là quần áo của tôi.",
+                        "vi_pron": "Trơ sư ủa tợ y-phu.",
+                        "en_pron": "juh shrr waw duh yee-foo."
+                    },
+                    {
+                        "hanzi": "那是弟弟的裤子。",
+                        "pinyin": "Nà shì dìdi de kùzi.",
+                        "mean": "Đó là quần của em trai.",
+                        "vi_pron": "Na sư ti-ti tợ khu-chư.",
+                        "en_pron": "nah shrr dee-dee duh koo-zih."
+                    }
+                ]
             },
             {
-                        "id": 19,
-                        "title": "Bài 19: Học tập",
-                        "icon": "fas fa-book",
-                        "color": "bg-fuchsia-100 text-fuchsia-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "书",
-                                                "pinyin": "shū",
-                                                "mean": "Sách",
-                                                "vi_pron": "su",
-                                                "en_pron": "shoo",
-                                                "mnemonic": "Cầm cây Bút bằng Tay (bộ Cấn 艮) ghi chép thành Sách."
-                                    },
-                                    {
-                                                "hanzi": "画儿",
-                                                "pinyin": "huàr",
-                                                "mean": "Tranh",
-                                                "vi_pron": "hoa-ờ",
-                                                "en_pron": "hwar",
-                                                "mnemonic": "Tay người vạch vẽ các Nét đứt ngang dọc trên Ruộng (bộ Điền 田) tạo thành Bức tranh cỏ cây."
-                                    },
-                                    {
-                                                "hanzi": "笔",
-                                                "pinyin": "bǐ",
-                                                "mean": "Bút",
-                                                "vi_pron": "pỉ",
-                                                "en_pron": "bee",
-                                                "mnemonic": "Cán Trúc thân ống (bộ Trúc ⺮) thêm Lông vĩ (bộ Mao 毛) nhúng mực thành Cây bút viết."
-                                    },
-                                    {
-                                                "hanzi": "的",
-                                                "pinyin": "de",
-                                                "mean": "Của (trợ từ sở hữu)",
-                                                "vi_pron": "tợ",
-                                                "en_pron": "duh",
-                                                "mnemonic": "Nhìn ánh Trăng Căng tròn/Sáng rực (bộ Bạch 白) bằng Cái gáo múc nước (bộ Thược 勺) thấy Rất rõ Của (的) ta."
-                                    },
-                                    {
-                                                "hanzi": "衣服",
-                                                "pinyin": "yīfu",
-                                                "mean": "Quần áo (nói chung)",
-                                                "vi_pron": "y-phu",
-                                                "en_pron": "yee-foo",
-                                                "mnemonic": "Vải áo (衣) phục tùng dính vào Cơ thể Dưới (bộ Nguyệt 月) và Ôm lấy Tứ chi (bộ Hựu 又) che chở thân thể."
-                                    },
-                                    {
-                                                "hanzi": "看",
-                                                "pinyin": "kàn",
-                                                "mean": "Nhìn/Xem/Đọc",
-                                                "vi_pron": "khan",
-                                                "en_pron": "kahn",
-                                                "mnemonic": "Bắc chéo Bàn tay (bộ Thủ 手) che trên Mắt (bộ Mục 目) để nhíu nhìn ra xa xôi."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "我看书。",
-                                                "pinyin": "Wǒ kàn shū.",
-                                                "mean": "Tôi đọc sách.",
-                                                "vi_pron": "Ủa khan su.",
-                                                "en_pron": "waw kahn shoo."
-                                    },
-                                    {
-                                                "hanzi": "弟弟画画儿。",
-                                                "pinyin": "Dìdi huà huàr.",
-                                                "mean": "Em trai vẽ tranh.",
-                                                "vi_pron": "Ti-ti hoa hoa-ờ.",
-                                                "en_pron": "dee-dee hwah hwar."
-                                    }
-                        ]
+                "id": 19,
+                "title": "Bài 19: Học tập",
+                "icon": "fas fa-book",
+                "color": "bg-fuchsia-100 text-fuchsia-700",
+                "vocab": [
+                    {
+                        "hanzi": "书",
+                        "pinyin": "shū",
+                        "mean": "Sách",
+                        "vi_pron": "su",
+                        "en_pron": "shoo",
+                        "mnemonic": "Cầm cây Bút bằng Tay (bộ Cấn 艮) ghi chép thành Sách."
+                    },
+                    {
+                        "hanzi": "画儿",
+                        "pinyin": "huàr",
+                        "mean": "Tranh",
+                        "vi_pron": "hoa-ờ",
+                        "en_pron": "hwar",
+                        "mnemonic": "Tay người vạch vẽ các Nét đứt ngang dọc trên Ruộng (bộ Điền 田) tạo thành Bức tranh cỏ cây."
+                    },
+                    {
+                        "hanzi": "笔",
+                        "pinyin": "bǐ",
+                        "mean": "Bút",
+                        "vi_pron": "pỉ",
+                        "en_pron": "bee",
+                        "mnemonic": "Cán Trúc thân ống (bộ Trúc ⺮) thêm Lông vĩ (bộ Mao 毛) nhúng mực thành Cây bút viết."
+                    },
+                    {
+                        "hanzi": "的",
+                        "pinyin": "de",
+                        "mean": "Của (trợ từ sở hữu)",
+                        "vi_pron": "tợ",
+                        "en_pron": "duh",
+                        "mnemonic": "Nhìn ánh Trăng Căng tròn/Sáng rực (bộ Bạch 白) bằng Cái gáo múc nước (bộ Thược 勺) thấy Rất rõ Của (的) ta."
+                    },
+                    {
+                        "hanzi": "衣服",
+                        "pinyin": "yīfu",
+                        "mean": "Quần áo (nói chung)",
+                        "vi_pron": "y-phu",
+                        "en_pron": "yee-foo",
+                        "mnemonic": "Vải áo (衣) phục tùng dính vào Cơ thể Dưới (bộ Nguyệt 月) và Ôm lấy Tứ chi (bộ Hựu 又) che chở thân thể."
+                    },
+                    {
+                        "hanzi": "看",
+                        "pinyin": "kàn",
+                        "mean": "Nhìn/Xem/Đọc",
+                        "vi_pron": "khan",
+                        "en_pron": "kahn",
+                        "mnemonic": "Bắc chéo Bàn tay (bộ Thủ 手) che trên Mắt (bộ Mục 目) để nhíu nhìn ra xa xôi."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "我看书。",
+                        "pinyin": "Wǒ kàn shū.",
+                        "mean": "Tôi đọc sách.",
+                        "vi_pron": "Ủa khan su.",
+                        "en_pron": "waw kahn shoo."
+                    },
+                    {
+                        "hanzi": "弟弟画画儿。",
+                        "pinyin": "Dìdi huà huàr.",
+                        "mean": "Em trai vẽ tranh.",
+                        "vi_pron": "Ti-ti hoa hoa-ờ.",
+                        "en_pron": "dee-dee hwah hwar."
+                    }
+                ]
             },
             {
-                        "id": 20,
-                        "title": "Bài 20: Hoạt động",
-                        "icon": "fas fa-music",
-                        "color": "bg-sky-100 text-sky-700",
-                        "vocab": [
-                                    {
-                                                "hanzi": "起床",
-                                                "pinyin": "qǐchuáng",
-                                                "mean": "Thức dậy",
-                                                "vi_pron": "tsỉ-choáng",
-                                                "en_pron": "chee-chwahng",
-                                                "mnemonic": "Bật người Đứng dậy (bộ Tẩu 走) ra khỏi Giường gỗ (床) sau giấc mộng là Thức giấc."
-                                    },
-                                    {
-                                                "hanzi": "唱歌",
-                                                "pinyin": "chànggē",
-                                                "mean": "Hát",
-                                                "vi_pron": "trang-cưa",
-                                                "en_pron": "chahng-guh",
-                                                "mnemonic": "Dùng Miệng (口) để hót líu lo ngâm nga hai Khúc nhạc (哥) cất cao gọi là Hát ca."
-                                    },
-                                    {
-                                                "hanzi": "跳舞",
-                                                "pinyin": "tiàowǔ",
-                                                "mean": "Nhảy múa",
-                                                "vi_pron": "thieo-ủ",
-                                                "en_pron": "tyaow-woo",
-                                                "mnemonic": "Đôi chân (bộ Túc 足) vung nhảy theo tiếng điệu múa Vô vàn (bộ Vô 无) ngón chân nhịp nhàng."
-                                    },
-                                    {
-                                                "hanzi": "玩游戏",
-                                                "pinyin": "wán yóuxì",
-                                                "mean": "Chơi trò chơi",
-                                                "vi_pron": "oán diếu-xi",
-                                                "en_pron": "wahn yo-shee",
-                                                "mnemonic": "Ông vua (bộ Vương/Ngọc 玉) cầm Gốc cây (bộ Nguyên 元) chơi ngoài Sân nước (bộ Du 游) mê mải như Trò chơi (戏)."
-                                    },
-                                    {
-                                                "hanzi": "睡觉",
-                                                "pinyin": "shuìjiào",
-                                                "mean": "Ngủ",
-                                                "vi_pron": "suê-cheo",
-                                                "en_pron": "shway-jyaow",
-                                                "mnemonic": "Đôi Mắt (bộ Mục 目) cụp Xuống buồn ngủ thấy Tầm mắt Giới hạn (bộ Kiến 见) là đang Ngủ gục."
-                                    },
-                                    {
-                                                "hanzi": "学汉语",
-                                                "pinyin": "xué Hànyǔ",
-                                                "mean": "Học tiếng Hán",
-                                                "vi_pron": "xuế han-dủ",
-                                                "en_pron": "shweh hahn-yoo",
-                                                "mnemonic": "Thằng nhóc Học trò (bộ Tử 子) đội mũ (Học 学) luyện chữ Tiếng Tàu (Hán) róc rách như Nước (bộ Thủy 氵) Lời (bộ Ngôn 言) hay."
-                                    }
-                        ],
-                        "examples": [
-                                    {
-                                                "hanzi": "我们唱歌。",
-                                                "pinyin": "Wǒmen chànggē.",
-                                                "mean": "Chúng tôi hát.",
-                                                "vi_pron": "Ủa-mân trang-cưa.",
-                                                "en_pron": "waw-mun chahng-guh."
-                                    },
-                                    {
-                                                "hanzi": "我们跳舞。",
-                                                "pinyin": "Wǒmen tiàowǔ.",
-                                                "mean": "Chúng tôi nhảy múa.",
-                                                "vi_pron": "Ủa-mân thieo-ủ.",
-                                                "en_pron": "waw-mun tyaow-woo."
-                                    }
-                        ]
+                "id": 20,
+                "title": "Bài 20: Hoạt động",
+                "icon": "fas fa-music",
+                "color": "bg-sky-100 text-sky-700",
+                "vocab": [
+                    {
+                        "hanzi": "起床",
+                        "pinyin": "qǐchuáng",
+                        "mean": "Thức dậy",
+                        "vi_pron": "tsỉ-choáng",
+                        "en_pron": "chee-chwahng",
+                        "mnemonic": "Bật người Đứng dậy (bộ Tẩu 走) ra khỏi Giường gỗ (床) sau giấc mộng là Thức giấc."
+                    },
+                    {
+                        "hanzi": "唱歌",
+                        "pinyin": "chànggē",
+                        "mean": "Hát",
+                        "vi_pron": "trang-cưa",
+                        "en_pron": "chahng-guh",
+                        "mnemonic": "Dùng Miệng (口) để hót líu lo ngâm nga hai Khúc nhạc (哥) cất cao gọi là Hát ca."
+                    },
+                    {
+                        "hanzi": "跳舞",
+                        "pinyin": "tiàowǔ",
+                        "mean": "Nhảy múa",
+                        "vi_pron": "thieo-ủ",
+                        "en_pron": "tyaow-woo",
+                        "mnemonic": "Đôi chân (bộ Túc 足) vung nhảy theo tiếng điệu múa Vô vàn (bộ Vô 无) ngón chân nhịp nhàng."
+                    },
+                    {
+                        "hanzi": "玩游戏",
+                        "pinyin": "wán yóuxì",
+                        "mean": "Chơi trò chơi",
+                        "vi_pron": "oán diếu-xi",
+                        "en_pron": "wahn yo-shee",
+                        "mnemonic": "Ông vua (bộ Vương/Ngọc 玉) cầm Gốc cây (bộ Nguyên 元) chơi ngoài Sân nước (bộ Du 游) mê mải như Trò chơi (戏)."
+                    },
+                    {
+                        "hanzi": "睡觉",
+                        "pinyin": "shuìjiào",
+                        "mean": "Ngủ",
+                        "vi_pron": "suê-cheo",
+                        "en_pron": "shway-jyaow",
+                        "mnemonic": "Đôi Mắt (bộ Mục 目) cụp Xuống buồn ngủ thấy Tầm mắt Giới hạn (bộ Kiến 见) là đang Ngủ gục."
+                    },
+                    {
+                        "hanzi": "学汉语",
+                        "pinyin": "xué Hànyǔ",
+                        "mean": "Học tiếng Hán",
+                        "vi_pron": "xuế han-dủ",
+                        "en_pron": "shweh hahn-yoo",
+                        "mnemonic": "Thằng nhóc Học trò (bộ Tử 子) đội mũ (Học 学) luyện chữ Tiếng Tàu (Hán) róc rách như Nước (bộ Thủy 氵) Lời (bộ Ngôn 言) hay."
+                    }
+                ],
+                "examples": [
+                    {
+                        "hanzi": "我们唱歌。",
+                        "pinyin": "Wǒmen chànggē.",
+                        "mean": "Chúng tôi hát.",
+                        "vi_pron": "Ủa-mân trang-cưa.",
+                        "en_pron": "waw-mun chahng-guh."
+                    },
+                    {
+                        "hanzi": "我们跳舞。",
+                        "pinyin": "Wǒmen tiàowǔ.",
+                        "mean": "Chúng tôi nhảy múa.",
+                        "vi_pron": "Ủa-mân thieo-ủ.",
+                        "en_pron": "waw-mun tyaow-woo."
+                    }
+                ]
             }
-];
+        ];
 
         createApp({
             setup() {
