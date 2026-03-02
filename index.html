@@ -292,31 +292,32 @@
 
                     <div class="bg-slate-100/50 p-4 rounded-3xl border border-slate-200 space-y-4">
                         <div v-for="(line, idx) in currentLesson.conversation" :key="idx" class="flex gap-3"
-                            :class="line.char === 'A' ? 'flex-row' : 'flex-row-reverse'">
+                            :class="(line.char || line.speaker) === 'A' ? 'flex-row' : 'flex-row-reverse'">
 
                             <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-sm shrink-0"
-                                :class="line.char === 'A' ? 'bg-indigo-500 text-white' : 'bg-emerald-500 text-white'">
-                                {{ line.char }}
+                                :class="(line.char || line.speaker) === 'A' ? 'bg-indigo-500 text-white' : 'bg-emerald-500 text-white'">
+                                {{ line.char || line.speaker }}
                             </div>
 
                             <div class="p-4 shadow-sm max-w-[85%] cursor-pointer active:scale-95 transition-transform"
-                                :class="line.char === 'A' ? 'bg-white rounded-2xl rounded-tl-sm border border-slate-100' : 'bg-emerald-50 rounded-2xl rounded-tr-sm border border-emerald-100'"
+                                :class="(line.char || line.speaker) === 'A' ? 'bg-white rounded-2xl rounded-tl-sm border border-slate-100' : 'bg-emerald-50 rounded-2xl rounded-tr-sm border border-emerald-100'"
                                 @click="speak(line.hanzi)">
                                 <p class="hanzi-font text-2xl text-slate-800 leading-tight mb-1"
-                                    :class="line.char === 'A' ? '' : 'text-right'">
+                                    :class="(line.char || line.speaker) === 'A' ? '' : 'text-right'">
                                     {{ line.hanzi }}
                                 </p>
                                 <p class="text-sm font-mono text-slate-600 mb-0.5"
-                                    :class="line.char === 'A' ? '' : 'text-right'">
+                                    :class="(line.char || line.speaker) === 'A' ? '' : 'text-right'">
                                     {{ line.pinyin }}
                                 </p>
                                 <p class="text-xs font-medium mb-1"
-                                    :class="line.char === 'A' ? 'text-indigo-500' : 'text-emerald-600 text-right'">
+                                    :class="(line.char || line.speaker) === 'A' ? 'text-indigo-500' : 'text-emerald-600 text-right'">
                                     <span v-if="line.en_pron" title="English">{{ line.en_pron }}</span>
                                     <span v-if="line.vi_pron" class="ml-2" title="Tiếng Việt">[{{ line.vi_pron
                                         }}]</span>
                                 </p>
-                                <p class="text-sm text-slate-500 italic" :class="line.char === 'A' ? '' : 'text-right'">
+                                <p class="text-sm text-slate-500 italic"
+                                    :class="(line.char || line.speaker) === 'A' ? '' : 'text-right'">
                                     {{ line.mean }}
                                 </p>
                             </div>
@@ -3598,6 +3599,11 @@
                             en_pron: "mah-mah how!",
                         },
                     ],
+                    conversation: [
+                        { char: "A", hanzi: "爸爸，妈妈，你们好！", pinyin: "Bàba, māma, nǐmen hǎo!", mean: "Bố, mẹ, chào hai người ạ!", vi_pron: "Pa-pa, ma-ma, nỉ-mân hảo!", en_pron: "bah-bah, mah-mah, nee-mun how!" },
+                        { char: "B", hanzi: "你好！哥哥在哪儿？", pinyin: "Nǐ hǎo! Gēge zài nǎr?", mean: "Chào con! Anh trai ở đâu rồi?", vi_pron: "Ní hảo! Cưa-cưa chai nả-rờ?", en_pron: "nee how! guh-guh zye nar?" },
+                        { char: "A", hanzi: "哥哥和弟弟在看书。", pinyin: "Gēge hé dìdi zài kàn shū.", mean: "Anh trai và em trai đang đọc sách ạ.", vi_pron: "Cưa-cưa hứa ti-ti chai khan su.", en_pron: "guh-guh huh dee-dee zye kahn shoo." }
+                    ],
                 },
                 {
                     id: 2,
@@ -3661,6 +3667,12 @@
                             vi_pron: "Púa-pua hảo!",
                             en_pron: "bwo-bwo how!",
                         },
+                    ],
+                    conversation: [
+                        { char: "A", hanzi: "伯伯，您好！", pinyin: "Bóbo, nín hǎo!", mean: "Cháu chào bác ạ!", vi_pron: "Púa-pua, nín hảo!", en_pron: "bwo-bwo, neen how!" },
+                        { char: "B", hanzi: "你好！", pinyin: "Nǐ hǎo!", mean: "Chào cháu!", vi_pron: "Ní hảo!", en_pron: "nee how!" },
+                        { char: "A", hanzi: "阿姨好吗？", pinyin: "Āyí hǎo ma?", mean: "Dì có khỏe không ạ?", vi_pron: "A-dí hảo ma?", en_pron: "ah-yee how mah?" },
+                        { char: "B", hanzi: "阿姨很好。谢谢！", pinyin: "Āyí hěn hǎo. Xièxie!", mean: "Dì rất khỏe. Cảm ơn cháu!", vi_pron: "A-dí hẩn hảo. Xiê-xiệ!", en_pron: "ah-yee hun how. shyeh-shyeh!" }
                     ],
                 },
                 {
@@ -3736,6 +3748,12 @@
                             en_pron: "nee how!",
                         },
                     ],
+                    conversation: [
+                        { char: "A", hanzi: "你好，妹妹！", pinyin: "Nǐ hǎo, mèimei!", mean: "Chào em gái!", vi_pron: "Ní hảo, mây-mẩy!", en_pron: "nee how, may-may!" },
+                        { char: "B", hanzi: "你好！", pinyin: "Nǐ hǎo!", mean: "Chào anh/chị!", vi_pron: "Ní hảo!", en_pron: "nee how!" },
+                        { char: "A", hanzi: "那是猫吗？", pinyin: "Nà shì māo ma?", mean: "Đó là con mèo phải không?", vi_pron: "Na sư mao ma?", en_pron: "nah shrr maow mah?" },
+                        { char: "B", hanzi: "不是，那是狗。我很喜欢狗。", pinyin: "Bú shì, nà shì gǒu. Wǒ hěn xǐhuan gǒu.", mean: "Không phải, đó là con chó. Em rất thích chó.", vi_pron: "Pú sư, na sư cẩu. Ủa hẩn xỉ-hoan cẩu.", en_pron: "poo shrr, nah shrr go. waw hun shee-hwahn go." }
+                    ],
                 },
                 {
                     id: 4,
@@ -3789,6 +3807,12 @@
                             vi_pron: "Ti-ti dao píng-của.",
                             en_pron: "dee-dee yaow peeng-gwo.",
                         },
+                    ],
+                    conversation: [
+                        { char: "A", hanzi: "你要苹果吗？", pinyin: "Nǐ yào píngguǒ ma?", mean: "Em có muốn táo không?", vi_pron: "Nỉ dao píng-của ma?", en_pron: "nee yaow peeng-gwo mah?" },
+                        { char: "B", hanzi: "我不要苹果。", pinyin: "Wǒ bú yào píngguǒ.", mean: "Em không muốn táo.", vi_pron: "Ủa pú dao píng-của.", en_pron: "waw poo yaow peeng-gwo." },
+                        { char: "A", hanzi: "你要葡萄还是梨？", pinyin: "Nǐ yào pútao háishì lí?", mean: "Em muốn nho hay là lê?", vi_pron: "Nỉ dao phú-thao hái-sư lí?", en_pron: "nee yaow poo-taow hye-shrr lee?" },
+                        { char: "B", hanzi: "我要葡萄，谢谢！", pinyin: "Wǒ yào pútao, xièxie!", mean: "Em muốn nho, cảm ơn!", vi_pron: "Ủa dao phú-thao, xiê-xiệ!", en_pron: "waw yaow poo-taow, shyeh-shyeh!" }
                     ],
                 },
                 {
@@ -3853,6 +3877,12 @@
                             vi_pron: "Ủa dao tan-cao.",
                             en_pron: "waw yaow dahn-gow.",
                         },
+                    ],
+                    conversation: [
+                        { char: "A", hanzi: "我要吃蛋糕。", pinyin: "Wǒ yào chī dàngāo.", mean: "Mình muốn ăn bánh bông lan.", vi_pron: "Ủa dao chư tan-cao.", en_pron: "waw yaow chir dahn-gow." },
+                        { char: "B", hanzi: "这里有饼干和糖。", pinyin: "Zhèlǐ yǒu bǐnggān hé táng.", mean: "Ở đây có bánh quy và kẹo.", vi_pron: "Trơ-lỉ dẩu pỉnh-can hứa tháng.", en_pron: "juh-lee yo beeng-gahn huh tahng." },
+                        { char: "A", hanzi: "哥哥要喝咖啡吗？", pinyin: "Gēge yào hē kāfēi ma?", mean: "Anh trai có muốn uống cà phê không?", vi_pron: "Cưa-cưa dao hưa kha-phây ma?", en_pron: "guh-guh yaow huh kah-fay mah?" },
+                        { char: "B", hanzi: "哥哥要喝咖啡。", pinyin: "Gēge yào hē kāfēi.", mean: "Anh trai muốn uống cà phê.", vi_pron: "Cưa-cưa dao hưa kha-phây.", en_pron: "guh-guh yaow huh kah-fay." }
                     ],
                 },
                 {
@@ -4104,6 +4134,7 @@
                             hanzi: "老师",
                             pinyin: "lǎoshī",
                             mean: "Thầy/Cô giáo",
+                            img: "images/laoshi.png",
                             vi_pron: "lảo-sư",
                             en_pron: "laow-shrr",
                             mnemonic:
@@ -4113,6 +4144,7 @@
                             hanzi: "工人",
                             pinyin: "gōngrén",
                             mean: "Công nhân",
+                            img: "images/gongren.png",
                             vi_pron: "cung-rấn",
                             en_pron: "gong-run",
                             mnemonic:
@@ -4122,6 +4154,7 @@
                             hanzi: "爷爷",
                             pinyin: "yéye",
                             mean: "Ông nội",
+                            img: "images/yeye.png",
                             vi_pron: "dế-dê",
                             en_pron: "yeh-yeh",
                             mnemonic:
@@ -4131,6 +4164,7 @@
                             hanzi: "奶奶",
                             pinyin: "nǎinai",
                             mean: "Bà nội",
+                            img: "images/nainai.png",
                             vi_pron: "nải-nai",
                             en_pron: "nye-nye",
                             mnemonic:
@@ -4153,6 +4187,15 @@
                             en_pron: "laow-shrr how!",
                         },
                     ],
+                    conversation: [
+                        { speaker: "A", hanzi: "这是老师。", pinyin: "Zhè shì lǎoshī.", mean: "Đây là thầy (cô) giáo.", vi_pron: "Trơ sư lảo-sư.", en_pron: "juh shrr laow-shrr." },
+                        { speaker: "B", hanzi: "老师好！", pinyin: "Lǎoshī hǎo!", mean: "Em (xin) chào thầy!", vi_pron: "Lảo-sư hảo!", en_pron: "laow-shrr how!" },
+                        { speaker: "A", hanzi: "那是工人叔叔。", pinyin: "Nà shì gōngrén shūshu.", mean: "Đó là chú công nhân.", vi_pron: "Na sư cung-rấn su-su.", en_pron: "nah shrr gong-run shoo-shoo." },
+                        { speaker: "B", hanzi: "叔叔好！", pinyin: "Shūshu hǎo!", mean: "Cháu chào chú!", vi_pron: "Su-su hảo!", en_pron: "shoo-shoo how!" },
+                        { speaker: "C", hanzi: "你好！", pinyin: "Nǐ hǎo!", mean: "Chào cháu.", vi_pron: "Nỉ hảo!", en_pron: "nee how!" },
+                        { speaker: "A", hanzi: "爷爷好！", pinyin: "Yéye hǎo!", mean: "Cháu chào ông!", vi_pron: "Dế-dê hảo!", en_pron: "yeh-yeh how!" },
+                        { speaker: "A", hanzi: "奶奶好！", pinyin: "Nǎinai hǎo!", mean: "Cháu chào bà!", vi_pron: "Nải-nai hảo!", en_pron: "nye-nye how!" },
+                    ]
                 },
                 {
                     id: 9,
@@ -4164,6 +4207,7 @@
                             hanzi: "碗",
                             pinyin: "wǎn",
                             mean: "Cái chén (bát)",
+                            img: "images/wan.png",
                             vi_pron: "oản",
                             en_pron: "wahn",
                             mnemonic:
@@ -4173,6 +4217,7 @@
                             hanzi: "筷子",
                             pinyin: "kuàizi",
                             mean: "Đôi đũa",
+                            img: "images/kuaizi.png",
                             vi_pron: "khoai-chư",
                             en_pron: "kwye-zih",
                             mnemonic:
@@ -4182,6 +4227,7 @@
                             hanzi: "菜",
                             pinyin: "cài",
                             mean: "Thức ăn/Món ăn",
+                            img: "images/cai.png",
                             vi_pron: "sài",
                             en_pron: "tsye",
                             mnemonic:
@@ -4191,6 +4237,7 @@
                             hanzi: "饭",
                             pinyin: "fàn",
                             mean: "Cơm",
+                            img: "images/fan.png",
                             vi_pron: "phang",
                             en_pron: "fahn",
                             mnemonic:
@@ -4200,6 +4247,7 @@
                             hanzi: "那",
                             pinyin: "nà",
                             mean: "Đó/Kia",
+                            img: "images/na.png",
                             vi_pron: "na",
                             en_pron: "nah",
                             mnemonic:
@@ -4222,6 +4270,12 @@
                             en_pron: "juh shrr wahn.",
                         },
                     ],
+                    conversation: [
+                        { speaker: "A", hanzi: "这是什么？", pinyin: "Zhè shì shénme?", mean: "Đây là cái gì?", vi_pron: "Trơ sư sấn-mơ?", en_pron: "juh shrr shun-muh?" },
+                        { speaker: "B", hanzi: "这是碗。那是筷子。", pinyin: "Zhè shì wǎn. Nà shì kuàizi.", mean: "Đây là cái bát. Kia là đôi đũa.", vi_pron: "Trơ sư oản. Na sư khoai-chư.", en_pron: "juh shrr wahn. nah shrr kwye-zih." },
+                        { speaker: "A", hanzi: "吃饭了吗？", pinyin: "Chī fàn le ma?", mean: "Ăn cơm chưa?", vi_pron: "Trư phang lợ ma?", en_pron: "chrr fahn luh mah?" },
+                        { speaker: "B", hanzi: "吃饭了。菜很好吃！", pinyin: "Chī fàn le. Cài hěn hǎochī!", mean: "Ăn rồi. Thức ăn rất ngon!", vi_pron: "Trư phang lợ. Sài hẩn hảo-trư!", en_pron: "chrr fahn luh. tsye hun how-chrr!" },
+                    ]
                 },
                 {
                     id: 10,
@@ -4233,6 +4287,7 @@
                             hanzi: "花",
                             pinyin: "huā",
                             mean: "Bông hoa",
+                            img: "images/hua.png",
                             vi_pron: "hoa",
                             en_pron: "hwah",
                             mnemonic:
@@ -4242,6 +4297,7 @@
                             hanzi: "叶子",
                             pinyin: "yèzi",
                             mean: "Chiếc lá",
+                            img: "images/yezi.png",
                             vi_pron: "dê-chư",
                             en_pron: "yeh-zih",
                             mnemonic:
@@ -4251,6 +4307,7 @@
                             hanzi: "草",
                             pinyin: "cǎo",
                             mean: "Cỏ",
+                            img: "images/cao.png",
                             vi_pron: "xảo",
                             en_pron: "tsow",
                             mnemonic:
@@ -4260,6 +4317,7 @@
                             hanzi: "树",
                             pinyin: "shù",
                             mean: "Cây",
+                            img: "images/shu.png",
                             vi_pron: "su",
                             en_pron: "shoo",
                             mnemonic:
@@ -4269,6 +4327,7 @@
                             hanzi: "森林",
                             pinyin: "sēnlín",
                             mean: "Rừng",
+                            img: "images/senlin.png",
                             vi_pron: "sân-lín",
                             en_pron: "sun-leen",
                             mnemonic:
@@ -4291,6 +4350,13 @@
                             en_pron: "nah shrr yeh-zih.",
                         },
                     ],
+                    conversation: [
+                        { speaker: "A", hanzi: "你看，这是花。", pinyin: "Nǐ kàn, zhè shì huā.", mean: "Bạn nhìn xem, đây là bông hoa.", vi_pron: "Nỉ khan, trơ sư hoa.", en_pron: "nee kahn, juh shrr hwah." },
+                        { speaker: "B", margin: "mt-1", hanzi: "花很漂亮！", pinyin: "Huā hěn piàoliang!", mean: "Bông hoa rất đẹp!", vi_pron: "Hoa hẩn pheo-leng!", en_pron: "hwah hun pyow-lyahng!" },
+                        { speaker: "A", hanzi: "那是树，树上有很多叶子。", pinyin: "Nà shì shù, shù shàng yǒu hěn duō yèzi.", mean: "Kia là cái cây, trên cây có rất nhiều lá.", vi_pron: "Na sư su, su sang dẩu hẩn tuô dê-chư.", en_pron: "nah shrr shoo, shoo shahng yo hun dwuh yeh-zih." },
+                        { speaker: "B", margin: "mt-1", hanzi: "树下有很多草。", pinyin: "Shù xià yǒu hěn duō cǎo.", mean: "Dưới gốc cây có rất nhiều cỏ.", vi_pron: "Su xia dẩu hẩn tuô xảo.", en_pron: "shoo shyah yo hun dwuh tsow." },
+                        { speaker: "A", hanzi: "我们去森林吧！", pinyin: "Wǒmen qù sēnlín ba!", mean: "Chúng ta đi rừng đi!", vi_pron: "Ủa-mân suy sân-lín pa!", en_pron: "waw-mun chyoo sun-leen bah!" },
+                    ]
                 },
                 {
                     id: 11,
@@ -4302,6 +4368,7 @@
                             hanzi: "桌子",
                             pinyin: "zhuōzi",
                             mean: "Cái bàn",
+                            img: "images/zhuozi.png",
                             vi_pron: "chuô-chư",
                             en_pron: "jwo-zih",
                             mnemonic:
@@ -4311,6 +4378,7 @@
                             hanzi: "椅子",
                             pinyin: "yǐzi",
                             mean: "Cái ghế",
+                            img: "images/yizi.png",
                             vi_pron: "ỷ-chư",
                             en_pron: "yee-zih",
                             mnemonic:
@@ -4320,6 +4388,7 @@
                             hanzi: "床",
                             pinyin: "chuáng",
                             mean: "Cái giường",
+                            img: "images/chuang.png",
                             vi_pron: "choáng",
                             en_pron: "chwahng",
                             mnemonic:
@@ -4329,6 +4398,7 @@
                             hanzi: "书包",
                             pinyin: "shūbāo",
                             mean: "Cái cặp sách",
+                            img: "images/shubao.png",
                             vi_pron: "su-pao",
                             en_pron: "shoo-bow",
                             mnemonic:
@@ -4338,6 +4408,7 @@
                             hanzi: "伞",
                             pinyin: "sǎn",
                             mean: "Cây dù (ô)",
+                            img: "images/san.png",
                             vi_pron: "sản",
                             en_pron: "sahn",
                             mnemonic:
@@ -4360,6 +4431,14 @@
                             en_pron: "juh shrr shoo-bow.",
                         },
                     ],
+                    conversation: [
+                        { speaker: "A", hanzi: "这是你的书包吗？", pinyin: "Zhè shì nǐ de shūbāo ma?", mean: "Đây là cặp sách của bạn phải không?", vi_pron: "Trơ sư nỉ tợ su-pao ma?", en_pron: "juh shrr nee duh shoo-bow mah?" },
+                        { speaker: "B", hanzi: "是的，这是我的书包。", pinyin: "Shì de, zhè shì wǒ de shūbāo.", mean: "Đúng vậy, đây là cặp của mình.", vi_pron: "Sư tợ, trơ sư ủa tợ su-pao.", en_pron: "shrr duh, juh shrr waw duh shoo-bow." },
+                        { speaker: "A", hanzi: "你有伞吗？", pinyin: "Nǐ yǒu sǎn ma?", mean: "Bạn có cây dù không?", vi_pron: "Ní dẩu sản ma?", en_pron: "nee yo sahn mah?" },
+                        { speaker: "B", hanzi: "有，伞在桌子上。", pinyin: "Yǒu, sǎn zài zhuōzi shàng.", mean: "Có, cây dù ở trên cái bàn.", vi_pron: "Dẩu, sản chai chuô-chư sang.", en_pron: "yo, sahn zye jwo-zih shahng." },
+                        { speaker: "A", hanzi: "椅子在哪儿？", pinyin: "Yǐzi zài nǎr?", mean: "Cái ghế ở đâu?", vi_pron: "Ỷ-chư chai nả?", en_pron: "yee-zih zye nar?" },
+                        { speaker: "B", hanzi: "椅子在床旁边。", pinyin: "Yǐzi zài chuáng pángbiān.", mean: "Cái ghế ở cạnh cái giường.", vi_pron: "Ỷ-chư chai choáng pháng-piên.", en_pron: "yee-zih zye chwahng pahng-byen." },
+                    ]
                 },
                 {
                     id: 12,
@@ -4371,6 +4450,7 @@
                             hanzi: "飞机",
                             pinyin: "fēijī",
                             mean: "Máy bay",
+                            img: "images/feiji.png",
                             vi_pron: "phây-chi",
                             en_pron: "fay-jee",
                             mnemonic:
@@ -4380,6 +4460,7 @@
                             hanzi: "汽车",
                             pinyin: "qìchē",
                             mean: "Xe hơi (ô tô)",
+                            img: "images/qiche.png",
                             vi_pron: "si-trơ",
                             en_pron: "chee-chuh",
                             mnemonic:
@@ -4389,6 +4470,7 @@
                             hanzi: "轮船",
                             pinyin: "lúnchuán",
                             mean: "Tàu thủy",
+                            img: "images/lunchuan.png",
                             vi_pron: "luấn-choán",
                             en_pron: "lwun-chwahn",
                             mnemonic:
@@ -4398,6 +4480,7 @@
                             hanzi: "自行车",
                             pinyin: "zìxíngchē",
                             mean: "Xe đạp",
+                            img: "images/zixingche.png",
                             vi_pron: "chư-xính-trơ",
                             en_pron: "zih-sheeng-chuh",
                             mnemonic:
@@ -4407,6 +4490,7 @@
                             hanzi: "有",
                             pinyin: "yǒu",
                             mean: "Có",
+                            img: "images/you.png",
                             vi_pron: "dẩu",
                             en_pron: "yo",
                             mnemonic:
@@ -4429,6 +4513,13 @@
                             en_pron: "waw yo fay-jee.",
                         },
                     ],
+                    conversation: [
+                        { speaker: "A", hanzi: "爸爸有汽车吗？", pinyin: "Bàba yǒu qìchē ma?", mean: "Bố có ô tô không?", vi_pron: "Pa-pa dẩu si-trơ ma?", en_pron: "bah-bah yo chee-chuh mah?" },
+                        { speaker: "B", hanzi: "爸爸有汽车。", pinyin: "Bàba yǒu qìchē.", mean: "Bố có ô tô.", vi_pron: "Pa-pa dẩu si-trơ.", en_pron: "bah-bah yo chee-chuh." },
+                        { speaker: "A", hanzi: "哥哥有自行车吗？", pinyin: "Gēge yǒu zìxíngchē ma?", mean: "Anh trai có xe đạp không?", vi_pron: "Cưa-cưa dẩu chư-xính-trơ ma?", en_pron: "guh-guh yo zih-sheeng-chuh mah?" },
+                        { speaker: "B", hanzi: "哥哥有自行车。", pinyin: "Gēge yǒu zìxíngchē.", mean: "Anh trai có xe đạp.", vi_pron: "Cưa-cưa dẩu chư-xính-trơ.", en_pron: "guh-guh yo zih-sheeng-chuh." },
+                        { speaker: "A", hanzi: "你看！那是轮船！那是飞机！", pinyin: "Nǐ kàn! Nà shì lúnchuán! Nà shì fēijī!", mean: "Nhìn kìa! Kia là tàu thủy! Kia là máy bay!", vi_pron: "Nỉ khan! Na sư luấn-choán! Na sư phây-chi!", en_pron: "nee kahn! nah shrr lwun-chwahn! nah shrr fay-jee!" },
+                    ]
                 },
                 {
                     id: 13,
@@ -4440,6 +4531,7 @@
                             hanzi: "机器人",
                             pinyin: "jīqìrén",
                             mean: "Người máy",
+                            img: "images/jiqiren.png",
                             vi_pron: "chi-xi-rấn",
                             en_pron: "jee-chee-run",
                             mnemonic:
@@ -4449,6 +4541,7 @@
                             hanzi: "皮球",
                             pinyin: "píqiú",
                             mean: "Quả bóng",
+                            img: "images/piqiu.png",
                             vi_pron: "phí-chiếu",
                             en_pron: "pee-chyo",
                             mnemonic:
@@ -4458,6 +4551,7 @@
                             hanzi: "娃娃",
                             pinyin: "wáwa",
                             mean: "Búp bê",
+                            img: "images/wawa.png",
                             vi_pron: "oá-oa",
                             en_pron: "wah-wah",
                             mnemonic:
@@ -4467,6 +4561,7 @@
                             hanzi: "熊猫",
                             pinyin: "xióngmāo",
                             mean: "Gấu trúc",
+                            img: "images/xiongmao.png",
                             vi_pron: "xiúng-mao",
                             en_pron: "shyong-maow",
                             mnemonic:
@@ -4476,6 +4571,7 @@
                             hanzi: "火箭",
                             pinyin: "huǒjiàn",
                             mean: "Tên lửa",
+                            img: "images/huojian.png",
                             vi_pron: "hủa-chien",
                             en_pron: "hwo-jyen",
                             mnemonic:
@@ -4498,6 +4594,13 @@
                             en_pron: "waw may yo hwo-jyen.",
                         },
                     ],
+                    conversation: [
+                        { speaker: "A", hanzi: "你有什么？", pinyin: "Nǐ yǒu shénme?", mean: "Bạn có cái gì?", vi_pron: "Ní dẩu sấn-mơ?", en_pron: "nee yo shun-muh?" },
+                        { speaker: "B", hanzi: "我有皮球和机器人。", pinyin: "Wǒ yǒu píqiú hé jīqìrén.", mean: "Tôi có quả bóng và người máy.", vi_pron: "Ủa dẩu phí-chiếu hớ chi-xi-rấn.", en_pron: "waw yo pee-chyo huh jee-chee-run." },
+                        { speaker: "A", hanzi: "她有什么？", pinyin: "Tā yǒu shénme?", mean: "Cô ấy có cái gì?", vi_pron: "Tha dẩu sấn-mơ?", en_pron: "tah yo shun-muh?" },
+                        { speaker: "B", hanzi: "她有娃娃和熊猫。", pinyin: "Tā yǒu wáwa hé xióngmāo.", mean: "Cô ấy có búp bê và gấu trúc.", vi_pron: "Tha dẩu oá-oa hớ xiúng-mao.", en_pron: "tah yo wah-wah huh shyong-maow." },
+                        { speaker: "A", hanzi: "弟弟没有火箭。", pinyin: "Dìdi méi yǒu huǒjiàn.", mean: "Em trai không có tên lửa.", vi_pron: "Ti-ti mấy dẩu hủa-chien.", en_pron: "dee-dee may yo hwo-jyen." },
+                    ]
                 },
                 {
                     id: 14,
@@ -4509,6 +4612,7 @@
                             hanzi: "中国",
                             pinyin: "Zhōngguó",
                             mean: "Trung Quốc",
+                            img: "images/zhongguo.png",
                             vi_pron: "Chung-của",
                             en_pron: "jong-gwo",
                             mnemonic:
@@ -4518,6 +4622,7 @@
                             hanzi: "国旗",
                             pinyin: "guóqí",
                             mean: "Quốc kỳ",
+                            img: "images/guoqi.png",
                             vi_pron: "của-tsí",
                             en_pron: "gwo-chee",
                             mnemonic:
@@ -4527,6 +4632,7 @@
                             hanzi: "北京",
                             pinyin: "Běijīng",
                             mean: "Bắc Kinh",
+                            img: "images/beijing.png",
                             vi_pron: "Pẩy-chinh",
                             en_pron: "bay-jeeng",
                             mnemonic:
@@ -4536,6 +4642,7 @@
                             hanzi: "天安门",
                             pinyin: "Tiān'ānmén",
                             mean: "Thiên An Môn",
+                            img: "images/tiananmen.png",
                             vi_pron: "Thiên-an-mấn",
                             en_pron: "tyen-ahn-mun",
                             mnemonic:
@@ -4545,6 +4652,7 @@
                             hanzi: "长城",
                             pinyin: "Chángchéng",
                             mean: "Vạn Lý Trường Thành",
+                            img: "images/changcheng.png",
                             vi_pron: "Tráng-trấng",
                             en_pron: "chahng-chung",
                             mnemonic:
@@ -4578,6 +4686,7 @@
                             hanzi: "雨",
                             pinyin: "yǔ",
                             mean: "Mưa",
+                            img: "images/yu.png",
                             vi_pron: "dủ",
                             en_pron: "yoo",
                             mnemonic:
@@ -4587,6 +4696,7 @@
                             hanzi: "雪",
                             pinyin: "xuě",
                             mean: "Tuyết",
+                            img: "images/xue.png",
                             vi_pron: "xuể",
                             en_pron: "shweh",
                             mnemonic:
@@ -4596,6 +4706,7 @@
                             hanzi: "雾",
                             pinyin: "wù",
                             mean: "Sương mù",
+                            img: "images/wu.png",
                             vi_pron: "u",
                             en_pron: "woo",
                             mnemonic:
@@ -4605,6 +4716,7 @@
                             hanzi: "风",
                             pinyin: "fēng",
                             mean: "Gió",
+                            img: "images/feng.png",
                             vi_pron: "phâng",
                             en_pron: "fung",
                             mnemonic:
@@ -4614,6 +4726,7 @@
                             hanzi: "下",
                             pinyin: "xià",
                             mean: "Rơi/Xuống",
+                            img: "images/xia.png",
                             vi_pron: "xia",
                             en_pron: "shyah",
                             mnemonic:
@@ -4636,6 +4749,12 @@
                             en_pron: "shyah shweh luh!",
                         },
                     ],
+                    conversation: [
+                        { speaker: "A", hanzi: "今天下雨吗？", pinyin: "Jīntiān xià yǔ ma?", mean: "Hôm nay có mưa không?", vi_pron: "Chin-thiên xia dủ ma?", en_pron: "jeen-tyen shyah yoo mah?" },
+                        { speaker: "B", hanzi: "今天不下雨，今天下雪。", pinyin: "Jīntiān bú xià yǔ, jīntiān xià xuě.", mean: "Hôm nay không mưa, hôm nay tuyết rơi.", vi_pron: "Chin-thiên pú xia dủ, chin-thiên xia xuể.", en_pron: "jeen-tyen boo shyah yoo, jeen-tyen shyah shweh." },
+                        { speaker: "A", hanzi: "你看，有雾！", pinyin: "Nǐ kàn, yǒu wù!", mean: "Bạn xem kìa, có sương mù!", vi_pron: "Nỉ khan, dẩu u!", en_pron: "nee kahn, yo woo!" },
+                        { speaker: "B", margin: "mt-1", hanzi: "是啊，还有大风呢。", pinyin: "Shì a, hái yǒu dà fēng ne.", mean: "Đúng vậy, còn có gió lớn nữa.", vi_pron: "Sư a, hái dẩu ta phâng nơ.", en_pron: "shrr ah, hye yo dah fung nuh." },
+                    ]
                 },
                 {
                     id: 16,
@@ -4647,6 +4766,7 @@
                             hanzi: "太阳",
                             pinyin: "tàiyáng",
                             mean: "Mặt trời",
+                            img: "images/taiyang.png",
                             vi_pron: "thai-dáng",
                             en_pron: "tye-yahng",
                             mnemonic:
@@ -4656,6 +4776,7 @@
                             hanzi: "月亮",
                             pinyin: "yuèliang",
                             mean: "Mặt trăng",
+                            img: "images/yueliang.png",
                             vi_pron: "duê-leng",
                             en_pron: "yweh-lyahng",
                             mnemonic:
@@ -4665,6 +4786,7 @@
                             hanzi: "云",
                             pinyin: "yún",
                             mean: "Mây",
+                            img: "images/yun.png",
                             vi_pron: "duýn",
                             en_pron: "ywin",
                             mnemonic:
@@ -4674,6 +4796,7 @@
                             hanzi: "星星",
                             pinyin: "xīngxing",
                             mean: "Ngôi sao",
+                            img: "images/xingxing.png",
                             vi_pron: "xinh-xinh",
                             en_pron: "sheeng-sheeng",
                             mnemonic:
@@ -4683,6 +4806,7 @@
                             hanzi: "彩虹",
                             pinyin: "cǎihóng",
                             mean: "Cầu vồng",
+                            img: "images/caihong.png",
                             vi_pron: "xải-húng",
                             en_pron: "tsye-hong",
                             mnemonic:
@@ -4705,6 +4829,13 @@
                             en_pron: "nah boo shrr tye-yahng, nah shrr yweh-lyahng.",
                         },
                     ],
+                    conversation: [
+                        { speaker: "A", hanzi: "天上有什么？", pinyin: "Tiānshàng yǒu shénme?", mean: "Trên bầu trời có cái gì?", vi_pron: "Thiên-sang dẩu sấn-mơ?", en_pron: "tyen-shahng yo shun-muh?" },
+                        { speaker: "B", hanzi: "天上有太阳和白云。", pinyin: "Tiānshàng yǒu tàiyáng hé báiyún.", mean: "Trên trời có mặt trời và mây trắng.", vi_pron: "Thiên-sang dẩu thai-dáng hớ pái-duýn.", en_pron: "tyen-shahng yo tye-yahng huh bye-ywin." },
+                        { speaker: "A", hanzi: "晚上有太阳吗？", pinyin: "Wǎnshàng yǒu tàiyáng ma?", mean: "Buổi tối có mặt trời không?", vi_pron: "Oản-sang dẩu thai-dáng ma?", en_pron: "wahn-shahng yo tye-yahng mah?" },
+                        { speaker: "B", hanzi: "晚上没有太阳，晚上有月亮和星星。", pinyin: "Wǎnshàng méi yǒu tàiyáng, wǎnshàng yǒu yuèliang hé xīngxing.", mean: "Buổi tối không có mặt trời, buổi tối có mặt trăng và những ngôi sao.", vi_pron: "Oản-sang mấy dẩu thai-dáng, oản-sang dẩu duê-leng hớ xinh-xinh.", en_pron: "wahn-shahng may yo tye-yahng, wahn-shahng yo yweh-lyahng huh sheeng-sheeng." },
+                        { speaker: "A", hanzi: "哇！那边有彩虹！", pinyin: "Wa! Nàbiān yǒu cǎihóng!", mean: "Chà! Bên kia có cầu vồng!", vi_pron: "Oa! Na-piên dẩu xải-húng!", en_pron: "wah! nah-byen yo tsye-hong!" },
+                    ]
                 },
                 {
                     id: 17,
@@ -4716,6 +4847,7 @@
                             hanzi: "耳朵",
                             pinyin: "ěrduo",
                             mean: "Lỗ tai",
+                            img: "images/erduo.png",
                             vi_pron: "ở-tua",
                             en_pron: "ur-dwo",
                             mnemonic:
@@ -4725,6 +4857,7 @@
                             hanzi: "鼻子",
                             pinyin: "bízi",
                             mean: "Mũi",
+                            img: "images/bizi.png",
                             vi_pron: "pí-chư",
                             en_pron: "bee-zih",
                             mnemonic:
@@ -4734,6 +4867,7 @@
                             hanzi: "眼睛",
                             pinyin: "yǎnjing",
                             mean: "Mắt",
+                            img: "images/yanjing.png",
                             vi_pron: "dẻn-chinh",
                             en_pron: "yen-jeeng",
                             mnemonic:
@@ -4743,6 +4877,7 @@
                             hanzi: "嘴",
                             pinyin: "zuǐ",
                             mean: "Miệng",
+                            img: "images/zui.png",
                             vi_pron: "chuẩy",
                             en_pron: "zway",
                             mnemonic:
@@ -4752,6 +4887,7 @@
                             hanzi: "手",
                             pinyin: "shǒu",
                             mean: "Tay",
+                            img: "images/shou.png",
                             vi_pron: "sẩu",
                             en_pron: "show",
                             mnemonic:
@@ -4761,6 +4897,7 @@
                             hanzi: "脚",
                             pinyin: "jiǎo",
                             mean: "Chân",
+                            img: "images/jiao.png",
                             vi_pron: "chiểu",
                             en_pron: "jyaow",
                             mnemonic:
@@ -4783,6 +4920,13 @@
                             en_pron: "juh shrr yen-jeeng.",
                         },
                     ],
+                    conversation: [
+                        { speaker: "A", hanzi: "这是谁的眼睛？", pinyin: "Zhè shì shéi de yǎnjing?", mean: "Đây là mắt của ai?", vi_pron: "Trơ sư sấy tợ dẻn-chinh?", en_pron: "juh shrr shay duh yen-jeeng?" },
+                        { speaker: "B", hanzi: "这是我的眼睛。", pinyin: "Zhè shì wǒ de yǎnjing.", mean: "Đây là mắt của mình.", vi_pron: "Trơ sư ủa tợ dẻn-chinh.", en_pron: "juh shrr waw duh yen-jeeng." },
+                        { speaker: "A", hanzi: "我有两只耳朵，一个鼻子。", pinyin: "Wǒ yǒu liǎng zhī ěrduo, yí ge bízi.", mean: "Mình có hai cái lỗ tai, một cái mũi.", vi_pron: "Ủa dẩu liểng chư ở-tua, ý cưa pí-chư.", en_pron: "waw yo lyahng jrr ur-dwo, yee guh bee-zih." },
+                        { speaker: "B", hanzi: "嘴巴在哪儿？", pinyin: "Zuǐbā zài nǎr?", mean: "Cái miệng ở đâu?", vi_pron: "Chuẩy-pa chai nả?", en_pron: "zway-bah zye nar?" },
+                        { speaker: "A", hanzi: "嘴巴在这里。我用脚走路。", pinyin: "Zuǐbā zài zhèlǐ. Wǒ yòng jiǎo zǒulù.", mean: "Cái miệng ở đây. Mình dùng chân để đi bộ.", vi_pron: "Chuẩy-pa chai trơ-lỉ. Ủa dúng chiểu chẩu-lu.", en_pron: "zway-bah zye juh-lee. waw yong jyaow zo-loo." },
+                    ]
                 },
                 {
                     id: 18,
@@ -4794,6 +4938,7 @@
                             hanzi: "手套",
                             pinyin: "shǒutào",
                             mean: "Găng tay",
+                            img: "images/shoutao.png",
                             vi_pron: "sẩu-thao",
                             en_pron: "show-taow",
                             mnemonic:
@@ -4803,6 +4948,7 @@
                             hanzi: "手绢",
                             pinyin: "shǒujuàn",
                             mean: "Khăn tay",
+                            img: "images/shoujuan.png",
                             vi_pron: "sẩu-choen",
                             en_pron: "show-jwen",
                             mnemonic:
@@ -4812,6 +4958,7 @@
                             hanzi: "鞋",
                             pinyin: "xié",
                             mean: "Giày",
+                            img: "images/xie.png",
                             vi_pron: "xiế",
                             en_pron: "shyeh",
                             mnemonic:
@@ -4821,6 +4968,7 @@
                             hanzi: "裤子",
                             pinyin: "kùzi",
                             mean: "Quần",
+                            img: "images/kuzi.png",
                             vi_pron: "khu-chư",
                             en_pron: "koo-zih",
                             mnemonic:
@@ -4830,6 +4978,7 @@
                             hanzi: "裙子",
                             pinyin: "qúnzi",
                             mean: "Váy",
+                            img: "images/qunzi.png",
                             vi_pron: "chuýn-chư",
                             en_pron: "chwin-zih",
                             mnemonic:
@@ -4839,6 +4988,7 @@
                             hanzi: "上衣",
                             pinyin: "shàngyī",
                             mean: "Áo",
+                            img: "images/shangyi.png",
                             vi_pron: "sang-y",
                             en_pron: "shahng-yee",
                             mnemonic:
@@ -4861,6 +5011,13 @@
                             en_pron: "nah shrr dee-dee duh koo-zih.",
                         },
                     ],
+                    conversation: [
+                        { speaker: "A", hanzi: "姐姐，你的裙子真漂亮！", pinyin: "Jiějie, nǐ de qúnzi zhēn piàoliang!", mean: "Chị gái, váy của chị thật đẹp!", vi_pron: "Chiể-chia, nỉ tợ chuýn-chư chân pheo-leng!", en_pron: "jyeh-jyeh, nee duh chwin-zih jun pyow-lyahng!" },
+                        { speaker: "B", hanzi: "谢谢。你也换上衣吧！", pinyin: "Xièxie. Nǐ yě huàn shàngyī ba!", mean: "Cảm ơn em. Em cũng thay áo đi!", vi_pron: "Xiê-xiệ. Ní dể hoan sang-y pa!", en_pron: "shyeh-shyeh. nee ye hwahn shahng-yee bah!" },
+                        { speaker: "A", hanzi: "我的裤子和鞋在哪里？", pinyin: "Wǒ de kùzi hé xié zài nǎli?", mean: "Quần và giày của em ở đâu?", vi_pron: "Ủa tợ khu-chư hớ xiế chai nả-lỉ?", en_pron: "waw duh koo-zih huh shyeh zye nah-lee?" },
+                        { speaker: "B", hanzi: "在床底下。别忘了带手绢。", pinyin: "Zài chuáng dǐxia. Bié wàngle dài shǒujuàn.", mean: "Ở dưới gầm giường. Quên mang theo khăn tay nhé.", vi_pron: "Chai choáng tỉ-xia. Piế oang-lơ tai sẩu-choen.", en_pron: "zye chwahng dee-shyah. byeh wahng-luh dye show-jwen." },
+                        { speaker: "A", margin: "mt-1", hanzi: "太冷了，我戴手套。", pinyin: "Tài lěng le, wǒ dài shǒutào.", mean: "Lạnh quá rồi, mình đeo bao tay đây.", vi_pron: "Thai lẩng lợ, ủa tai sẩu-thao.", en_pron: "tye lung luh, waw dye show-taow." },
+                    ]
                 },
                 {
                     id: 19,
@@ -4872,6 +5029,7 @@
                             hanzi: "书",
                             pinyin: "shū",
                             mean: "Sách",
+                            img: "images/shu.png",
                             vi_pron: "su",
                             en_pron: "shoo",
                             mnemonic: "Cầm cây Bút bằng Tay (bộ Cấn 艮) ghi chép thành Sách.",
@@ -4880,6 +5038,7 @@
                             hanzi: "画儿",
                             pinyin: "huàr",
                             mean: "Tranh",
+                            img: "images/huar.png",
                             vi_pron: "hoa-ờ",
                             en_pron: "hwar",
                             mnemonic:
@@ -4889,6 +5048,7 @@
                             hanzi: "笔",
                             pinyin: "bǐ",
                             mean: "Bút",
+                            img: "images/bi.png",
                             vi_pron: "pỉ",
                             en_pron: "bee",
                             mnemonic:
@@ -4898,6 +5058,7 @@
                             hanzi: "的",
                             pinyin: "de",
                             mean: "Của (trợ từ sở hữu)",
+                            img: "images/de.png",
                             vi_pron: "tợ",
                             en_pron: "duh",
                             mnemonic:
@@ -4907,6 +5068,7 @@
                             hanzi: "衣服",
                             pinyin: "yīfu",
                             mean: "Quần áo (nói chung)",
+                            img: "images/yifu.png",
                             vi_pron: "y-phu",
                             en_pron: "yee-foo",
                             mnemonic:
@@ -4916,6 +5078,7 @@
                             hanzi: "看",
                             pinyin: "kàn",
                             mean: "Nhìn/Xem/Đọc",
+                            img: "images/kan.png",
                             vi_pron: "khan",
                             en_pron: "kahn",
                             mnemonic:
@@ -4949,6 +5112,7 @@
                             hanzi: "起床",
                             pinyin: "qǐchuáng",
                             mean: "Thức dậy",
+                            img: "images/qichuang.png",
                             vi_pron: "tsỉ-choáng",
                             en_pron: "chee-chwahng",
                             mnemonic:
@@ -4958,6 +5122,7 @@
                             hanzi: "唱歌",
                             pinyin: "chànggē",
                             mean: "Hát",
+                            img: "images/changge.png",
                             vi_pron: "trang-cưa",
                             en_pron: "chahng-guh",
                             mnemonic:
@@ -4967,6 +5132,7 @@
                             hanzi: "跳舞",
                             pinyin: "tiàowǔ",
                             mean: "Nhảy múa",
+                            img: "images/tiaowu.png",
                             vi_pron: "thieo-ủ",
                             en_pron: "tyaow-woo",
                             mnemonic:
@@ -4976,6 +5142,7 @@
                             hanzi: "玩游戏",
                             pinyin: "wán yóuxì",
                             mean: "Chơi trò chơi",
+                            img: "images/wanyouxi.png",
                             vi_pron: "oán diếu-xi",
                             en_pron: "wahn yo-shee",
                             mnemonic:
@@ -4985,6 +5152,7 @@
                             hanzi: "睡觉",
                             pinyin: "shuìjiào",
                             mean: "Ngủ",
+                            img: "images/shuijiao.png",
                             vi_pron: "suê-cheo",
                             en_pron: "shway-jyaow",
                             mnemonic:
@@ -4994,6 +5162,7 @@
                             hanzi: "学汉语",
                             pinyin: "xué Hànyǔ",
                             mean: "Học tiếng Hán",
+                            img: "images/xuehanyu.png",
                             vi_pron: "xuế han-dủ",
                             en_pron: "shweh hahn-yoo",
                             mnemonic:
