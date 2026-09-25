@@ -230,29 +230,42 @@
 
                 <div class="space-y-6">
                     <div v-for="(word, index) in currentLesson.vocab" :key="index"
-                        class="bg-transparent h-72 w-full cursor-pointer card-flip group"
+                        class="bg-transparent h-80 w-full cursor-pointer card-flip group"
                         :class="{ 'flipped': flippedCards[index] }" @click="toggleFlip(index)">
                         <div class="card-inner shadow-xl rounded-3xl">
                             <div
-                                class="card-front bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700/80 flex flex-col items-center justify-between py-6 px-4">
+                                class="card-front bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700/80 flex flex-col items-center justify-between py-5 px-4">
                                 <div v-if="word.img"
-                                    class="w-full h-36 flex items-center justify-center overflow-hidden shrink-0">
+                                    class="w-full h-32 flex items-center justify-center overflow-hidden shrink-0">
                                     <img :src="word.img"
                                         class="max-h-full max-w-full object-contain rounded-xl shadow-sm bg-white/80 dark:bg-slate-700/60 p-1"
                                         alt="Mnemonic" />
                                 </div>
-                                <span
-                                    class="hanzi-font text-slate-800 dark:text-slate-100 select-none flex-1 flex items-center justify-center min-h-[4rem]"
-                                    :class="word.img ? 'text-6xl mt-2 mb-2' : 'text-8xl mt-4 mb-8'">{{ word.hanzi
-                                    }}</span>
+
+                                <!-- Mẫu hiển thị chuẩn 3 tầng: Chữ Hoa, Pinyin, english -->
+                                <div class="flex-1 flex flex-col items-center justify-center text-center my-1 select-none">
+                                    <div class="hanzi-font text-slate-800 dark:text-slate-100 font-extrabold tracking-wide"
+                                        :class="word.img ? 'text-4xl' : 'text-6xl'">
+                                        {{ word.hanzi }}
+                                    </div>
+                                    <div class="font-mono text-indigo-600 dark:text-indigo-400 font-bold text-lg mt-0.5 tracking-wide">
+                                        {{ word.pinyin }}
+                                    </div>
+                                    <div class="text-slate-500 dark:text-slate-400 font-medium text-sm lowercase mt-0.5" v-if="word.en">
+                                        {{ word.en }}
+                                    </div>
+                                </div>
+
                                 <div class="flex gap-4 z-20 shrink-0">
                                     <button @click.stop="speak(word.hanzi)"
-                                        class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-300 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition flex items-center justify-center shadow-sm active:scale-90">
-                                        <i class="fas fa-volume-high text-xl"></i>
+                                        class="w-11 h-11 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-300 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition flex items-center justify-center shadow-sm active:scale-90"
+                                        title="Phát âm">
+                                        <i class="fas fa-volume-high text-lg"></i>
                                     </button>
                                     <button @click.stop="openWriting(word.hanzi)"
-                                        class="w-12 h-12 rounded-full bg-green-100 dark:bg-emerald-950/60 text-green-600 dark:text-emerald-300 hover:bg-green-500 hover:text-white dark:hover:bg-emerald-600 transition flex items-center justify-center shadow-sm active:scale-90">
-                                        <i class="fas fa-pen-nib text-xl"></i>
+                                        class="w-11 h-11 rounded-full bg-green-100 dark:bg-emerald-950/60 text-green-600 dark:text-emerald-300 hover:bg-green-500 hover:text-white dark:hover:bg-emerald-600 transition flex items-center justify-center shadow-sm active:scale-90"
+                                        title="Tập viết chữ">
+                                        <i class="fas fa-pen-nib text-lg"></i>
                                     </button>
                                 </div>
                                 <div class="absolute top-4 right-4 text-slate-200 dark:text-slate-600">
@@ -261,28 +274,31 @@
                             </div>
                             <div
                                 class="card-back bg-blue-500 dark:bg-indigo-950 border-4 border-blue-400 dark:border-indigo-700 flex flex-col items-center justify-center p-6 text-white">
-                                <h3 class="text-4xl font-bold mb-1 font-mono select-none">
+                                <h3 class="text-3xl font-bold mb-0.5 font-mono select-none">
                                     {{ word.pinyin }}
                                 </h3>
-                                <p class="text-sm font-medium text-blue-100 dark:text-indigo-200 mb-1 select-none" v-if="word.en_pron"
-                                    title="Phát âm tiếng Anh (Phonetic spelling)">
-                                    {{ word.en_pron }}
+                                <p class="text-lg font-bold text-sky-200 mb-1 select-none" v-if="word.en">
+                                    {{ word.en }}
                                 </p>
-                                <p class="text-lg font-medium text-emerald-300 mb-2 select-none" v-if="word.vi_pron"
+                                <p class="text-xs font-medium text-blue-100 dark:text-indigo-200 mb-1 select-none" v-if="word.en_pron"
+                                    title="Phát âm tiếng Anh (Phonetic spelling)">
+                                    Phát âm: {{ word.en_pron }}
+                                </p>
+                                <p class="text-base font-medium text-emerald-300 mb-2 select-none" v-if="word.vi_pron"
                                     title="Âm bồi tiếng Việt">
                                     [{{ word.vi_pron }}]
                                 </p>
-                                <div class="w-12 h-1 bg-white/30 rounded-full mb-3"></div>
-                                <p class="text-3xl font-bold text-center select-none">
+                                <div class="w-12 h-1 bg-white/30 rounded-full mb-2"></div>
+                                <p class="text-2xl font-bold text-center select-none">
                                     {{ word.mean }}
                                 </p>
                                 <div v-if="word.mnemonic"
-                                    class="mt-4 bg-yellow-100 dark:bg-amber-950/70 text-yellow-900 dark:text-amber-200 p-3 rounded-xl text-sm text-center shadow-inner w-full border border-yellow-300 dark:border-amber-700">
+                                    class="mt-3 bg-yellow-100 dark:bg-amber-950/70 text-yellow-900 dark:text-amber-200 p-2.5 rounded-xl text-xs text-center shadow-inner w-full border border-yellow-300 dark:border-amber-700">
                                     <i class="fas fa-lightbulb text-yellow-500 dark:text-yellow-400 mr-1"></i> {{
                                     word.mnemonic }}
                                 </div>
                                 <button @click.stop="speak(word.hanzi)"
-                                    class="mt-6 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition active:scale-90">
+                                    class="mt-4 w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center transition active:scale-90">
                                     <i class="fas fa-volume-high"></i>
                                 </button>
                             </div>
@@ -3589,6 +3605,7 @@
                         {
                             hanzi: "爸爸",
                             pinyin: "bàba",
+                            en: "father / dad",
                             mean: "Bố, ba",
                             img: "images/baba.png",
                             vi_pron: "pa-pa",
@@ -3599,6 +3616,7 @@
                         {
                             hanzi: "妈妈",
                             pinyin: "māma",
+                            en: "mother / mom",
                             mean: "Mẹ, má",
                             img: "images/mama.png",
                             vi_pron: "ma-ma",
@@ -3609,6 +3627,7 @@
                         {
                             hanzi: "哥哥",
                             pinyin: "gēge",
+                            en: "elder brother",
                             mean: "Anh trai",
                             img: "images/gege.png",
                             vi_pron: "cưa-cưa",
@@ -3619,6 +3638,7 @@
                         {
                             hanzi: "弟弟",
                             pinyin: "dìdi",
+                            en: "younger brother",
                             mean: "Em trai",
                             img: "images/didi.png",
                             vi_pron: "ti-ti",
@@ -3658,6 +3678,7 @@
                         {
                             hanzi: "阿姨",
                             pinyin: "āyí",
+                            en: "aunt",
                             mean: "Dì, cô",
                             vi_pron: "a-dí",
                             en_pron: "ah-yee",
@@ -3668,6 +3689,7 @@
                         {
                             hanzi: "伯伯",
                             pinyin: "bóbo",
+                            en: "uncle",
                             mean: "Bác",
                             vi_pron: "púa-pua",
                             en_pron: "bwo-bwo",
@@ -3678,6 +3700,7 @@
                         {
                             hanzi: "你好",
                             pinyin: "nǐ hǎo",
+                            en: "hello",
                             mean: "Chào bạn",
                             vi_pron: "ní hảo",
                             en_pron: "nee how",
@@ -3688,6 +3711,7 @@
                         {
                             hanzi: "您好",
                             pinyin: "nín hǎo",
+                            en: "hello (polite)",
                             mean: "Chào ông/bà",
                             vi_pron: "nín hảo",
                             en_pron: "neen how",
@@ -3728,6 +3752,7 @@
                         {
                             hanzi: "妹妹",
                             pinyin: "mèimei",
+                            en: "younger sister",
                             mean: "Em gái",
                             vi_pron: "mây-mẩy",
                             en_pron: "may-may",
@@ -3738,6 +3763,7 @@
                         {
                             hanzi: "猫",
                             pinyin: "māo",
+                            en: "cat",
                             mean: "Con mèo",
                             vi_pron: "mao",
                             en_pron: "maow",
@@ -3748,6 +3774,7 @@
                         {
                             hanzi: "狗",
                             pinyin: "gǒu",
+                            en: "dog",
                             mean: "Con chó",
                             vi_pron: "cẩu",
                             en_pron: "go",
@@ -3758,6 +3785,7 @@
                         {
                             hanzi: "我",
                             pinyin: "wǒ",
+                            en: "I / me",
                             mean: "Tôi",
                             vi_pron: "ủa",
                             en_pron: "waw",
@@ -3768,6 +3796,7 @@
                         {
                             hanzi: "好",
                             pinyin: "hǎo",
+                            en: "good / fine",
                             mean: "Tốt, khỏe",
                             vi_pron: "hảo",
                             en_pron: "how",
@@ -3808,6 +3837,7 @@
                         {
                             hanzi: "苹果",
                             pinyin: "píngguǒ",
+                            en: "apple",
                             mean: "Quả táo",
                             vi_pron: "píng-của",
                             en_pron: "peeng-gwo",
@@ -3818,6 +3848,7 @@
                         {
                             hanzi: "葡萄",
                             pinyin: "pútao",
+                            en: "grapes",
                             mean: "Quả nho",
                             vi_pron: "phú-thao",
                             en_pron: "poo-taow",
@@ -3828,6 +3859,7 @@
                         {
                             hanzi: "梨",
                             pinyin: "lí",
+                            en: "pear",
                             mean: "Trái lê",
                             vi_pron: "lí",
                             en_pron: "lee",
@@ -3868,6 +3900,7 @@
                         {
                             hanzi: "蛋糕",
                             pinyin: "dàngāo",
+                            en: "cake",
                             mean: "Bánh bông lan",
                             vi_pron: "tan-cao",
                             en_pron: "dahn-gow",
@@ -3878,6 +3911,7 @@
                         {
                             hanzi: "饼干",
                             pinyin: "bǐnggān",
+                            en: "biscuit / cookie",
                             mean: "Bánh quy",
                             vi_pron: "pỉnh-can",
                             en_pron: "beeng-gahn",
@@ -3888,6 +3922,7 @@
                         {
                             hanzi: "糖",
                             pinyin: "táng",
+                            en: "candy / sweets",
                             mean: "Kẹo",
                             vi_pron: "tháng",
                             en_pron: "tahng",
@@ -3898,6 +3933,7 @@
                         {
                             hanzi: "咖啡",
                             pinyin: "kāfēi",
+                            en: "coffee",
                             mean: "Cà phê",
                             vi_pron: "kha-phây",
                             en_pron: "kah-fay",
@@ -3938,6 +3974,7 @@
                         {
                             hanzi: "茶",
                             pinyin: "chá",
+                            en: "tea",
                             mean: "Trà",
                             img: "images/cha.png",
                             vi_pron: "chá",
@@ -3948,6 +3985,7 @@
                         {
                             hanzi: "牛奶",
                             pinyin: "niúnǎi",
+                            en: "milk",
                             mean: "Sữa",
                             img: "images/niunai.png",
                             vi_pron: "niếu-nải",
@@ -3958,6 +3996,7 @@
                         {
                             hanzi: "这",
                             pinyin: "zhè",
+                            en: "this",
                             mean: "Đây",
                             img: "images/zhe.png",
                             vi_pron: "trơ",
@@ -3968,6 +4007,7 @@
                         {
                             hanzi: "是",
                             pinyin: "shì",
+                            en: "is / to be",
                             mean: "Là",
                             img: "images/shi.png",
                             vi_pron: "sư",
@@ -4049,6 +4089,7 @@
                         {
                             hanzi: "面包",
                             pinyin: "miànbāo",
+                            en: "bread",
                             mean: "Bánh mì",
                             img: "images/mianbao.png",
                             vi_pron: "mien-pao",
@@ -4059,6 +4100,7 @@
                         {
                             hanzi: "牛肉",
                             pinyin: "niúròu",
+                            en: "beef",
                             mean: "Thịt bò",
                             img: "images/niurou.png",
                             vi_pron: "niếu-râu",
@@ -4069,6 +4111,7 @@
                         {
                             hanzi: "面条",
                             pinyin: "miàntiáo",
+                            en: "noodles",
                             mean: "Mì sợi",
                             img: "images/miantiao.png",
                             vi_pron: "mien-théo",
@@ -4079,6 +4122,7 @@
                         {
                             hanzi: "粥",
                             pinyin: "zhōu",
+                            en: "porridge / congee",
                             mean: "Cháo",
                             img: "images/zhou.png",
                             vi_pron: "châu",
@@ -4089,6 +4133,7 @@
                         {
                             hanzi: "他",
                             pinyin: "tā",
+                            en: "he / him",
                             mean: "Anh ấy",
                             img: "images/ta.png",
                             en_pron: "tah",
@@ -4178,6 +4223,7 @@
                         {
                             hanzi: "老师",
                             pinyin: "lǎoshī",
+                            en: "teacher",
                             mean: "Thầy/Cô giáo",
                             img: "images/laoshi.png",
                             vi_pron: "lảo-sư",
@@ -4188,6 +4234,7 @@
                         {
                             hanzi: "工人",
                             pinyin: "gōngrén",
+                            en: "worker",
                             mean: "Công nhân",
                             img: "images/gongren.png",
                             vi_pron: "cung-rấn",
@@ -4198,6 +4245,7 @@
                         {
                             hanzi: "爷爷",
                             pinyin: "yéye",
+                            en: "grandfather",
                             mean: "Ông nội",
                             img: "images/yeye.png",
                             vi_pron: "dế-dê",
@@ -4208,6 +4256,7 @@
                         {
                             hanzi: "奶奶",
                             pinyin: "nǎinai",
+                            en: "grandmother",
                             mean: "Bà nội",
                             img: "images/nainai.png",
                             vi_pron: "nải-nai",
@@ -4251,6 +4300,7 @@
                         {
                             hanzi: "碗",
                             pinyin: "wǎn",
+                            en: "bowl",
                             mean: "Cái chén (bát)",
                             img: "images/wan.png",
                             vi_pron: "oản",
@@ -4261,6 +4311,7 @@
                         {
                             hanzi: "筷子",
                             pinyin: "kuàizi",
+                            en: "chopsticks",
                             mean: "Đôi đũa",
                             img: "images/kuaizi.png",
                             vi_pron: "khoai-chư",
@@ -4271,6 +4322,7 @@
                         {
                             hanzi: "菜",
                             pinyin: "cài",
+                            en: "dish / vegetables",
                             mean: "Thức ăn/Món ăn",
                             img: "images/cai.png",
                             vi_pron: "sài",
@@ -4281,6 +4333,7 @@
                         {
                             hanzi: "饭",
                             pinyin: "fàn",
+                            en: "rice / meal",
                             mean: "Cơm",
                             img: "images/fan.png",
                             vi_pron: "phang",
@@ -4291,6 +4344,7 @@
                         {
                             hanzi: "那",
                             pinyin: "nà",
+                            en: "that",
                             mean: "Đó/Kia",
                             img: "images/na.png",
                             vi_pron: "na",
@@ -4331,6 +4385,7 @@
                         {
                             hanzi: "花",
                             pinyin: "huā",
+                            en: "flower",
                             mean: "Bông hoa",
                             img: "images/hua.png",
                             vi_pron: "hoa",
@@ -4341,6 +4396,7 @@
                         {
                             hanzi: "叶子",
                             pinyin: "yèzi",
+                            en: "leaf",
                             mean: "Chiếc lá",
                             img: "images/yezi.png",
                             vi_pron: "dê-chư",
@@ -4351,6 +4407,7 @@
                         {
                             hanzi: "草",
                             pinyin: "cǎo",
+                            en: "grass",
                             mean: "Cỏ",
                             img: "images/cao.png",
                             vi_pron: "xảo",
@@ -4361,6 +4418,7 @@
                         {
                             hanzi: "树",
                             pinyin: "shù",
+                            en: "tree",
                             mean: "Cây",
                             img: "images/shu_tree.png",
                             vi_pron: "su",
@@ -4371,6 +4429,7 @@
                         {
                             hanzi: "森林",
                             pinyin: "sēnlín",
+                            en: "forest",
                             mean: "Rừng",
                             img: "images/senlin.png",
                             vi_pron: "sân-lín",
@@ -4412,6 +4471,7 @@
                         {
                             hanzi: "桌子",
                             pinyin: "zhuōzi",
+                            en: "table / desk",
                             mean: "Cái bàn",
                             img: "images/zhuozi.png",
                             vi_pron: "chuô-chư",
@@ -4422,6 +4482,7 @@
                         {
                             hanzi: "椅子",
                             pinyin: "yǐzi",
+                            en: "chair",
                             mean: "Cái ghế",
                             img: "images/yizi.png",
                             vi_pron: "ỷ-chư",
@@ -4432,6 +4493,7 @@
                         {
                             hanzi: "床",
                             pinyin: "chuáng",
+                            en: "bed",
                             mean: "Cái giường",
                             img: "images/chuang.png",
                             vi_pron: "choáng",
@@ -4442,6 +4504,7 @@
                         {
                             hanzi: "书包",
                             pinyin: "shūbāo",
+                            en: "backpack / schoolbag",
                             mean: "Cái cặp sách",
                             img: "images/shubao.png",
                             vi_pron: "su-pao",
@@ -4452,6 +4515,7 @@
                         {
                             hanzi: "伞",
                             pinyin: "sǎn",
+                            en: "umbrella",
                             mean: "Cây dù (ô)",
                             img: "images/san.png",
                             vi_pron: "sản",
@@ -4494,6 +4558,7 @@
                         {
                             hanzi: "飞机",
                             pinyin: "fēijī",
+                            en: "airplane",
                             mean: "Máy bay",
                             img: "images/feiji.png",
                             vi_pron: "phây-chi",
@@ -4504,6 +4569,7 @@
                         {
                             hanzi: "汽车",
                             pinyin: "qìchē",
+                            en: "car",
                             mean: "Xe hơi (ô tô)",
                             img: "images/qiche.png",
                             vi_pron: "si-trơ",
@@ -4514,6 +4580,7 @@
                         {
                             hanzi: "轮船",
                             pinyin: "lúnchuán",
+                            en: "ship / boat",
                             mean: "Tàu thủy",
                             img: "images/lunchuan.png",
                             vi_pron: "luấn-choán",
@@ -4524,6 +4591,7 @@
                         {
                             hanzi: "自行车",
                             pinyin: "zìxíngchē",
+                            en: "bicycle",
                             mean: "Xe đạp",
                             img: "images/zixingche.png",
                             vi_pron: "chư-xính-trơ",
@@ -4534,6 +4602,7 @@
                         {
                             hanzi: "有",
                             pinyin: "yǒu",
+                            en: "have / has",
                             mean: "Có",
                             img: "images/you.png",
                             vi_pron: "dẩu",
@@ -4575,6 +4644,7 @@
                         {
                             hanzi: "机器人",
                             pinyin: "jīqìrén",
+                            en: "robot",
                             mean: "Người máy",
                             img: "images/jiqiren.png",
                             vi_pron: "chi-xi-rấn",
@@ -4585,6 +4655,7 @@
                         {
                             hanzi: "皮球",
                             pinyin: "píqiú",
+                            en: "rubber ball",
                             mean: "Quả bóng",
                             img: "images/piqiu.png",
                             vi_pron: "phí-chiếu",
@@ -4595,6 +4666,7 @@
                         {
                             hanzi: "娃娃",
                             pinyin: "wáwa",
+                            en: "doll",
                             mean: "Búp bê",
                             img: "images/wawa.png",
                             vi_pron: "oá-oa",
@@ -4605,6 +4677,7 @@
                         {
                             hanzi: "熊猫",
                             pinyin: "xióngmāo",
+                            en: "panda",
                             mean: "Gấu trúc",
                             img: "images/xiongmao.png",
                             vi_pron: "xiúng-mao",
@@ -4615,6 +4688,7 @@
                         {
                             hanzi: "火箭",
                             pinyin: "huǒjiàn",
+                            en: "rocket",
                             mean: "Tên lửa",
                             img: "images/huojian.png",
                             vi_pron: "hủa-chien",
@@ -4656,6 +4730,7 @@
                         {
                             hanzi: "中国",
                             pinyin: "Zhōngguó",
+                            en: "China",
                             mean: "Trung Quốc",
                             img: "images/zhongguo.png",
                             vi_pron: "Chung-của",
@@ -4666,6 +4741,7 @@
                         {
                             hanzi: "国旗",
                             pinyin: "guóqí",
+                            en: "national flag",
                             mean: "Quốc kỳ",
                             img: "images/guoqi.png",
                             vi_pron: "của-tsí",
@@ -4676,6 +4752,7 @@
                         {
                             hanzi: "北京",
                             pinyin: "Běijīng",
+                            en: "Beijing",
                             mean: "Bắc Kinh",
                             img: "images/beijing.png",
                             vi_pron: "Pẩy-chinh",
@@ -4686,6 +4763,7 @@
                         {
                             hanzi: "天安门",
                             pinyin: "Tiān'ānmén",
+                            en: "Tiananmen",
                             mean: "Thiên An Môn",
                             img: "images/tiananmen.png",
                             vi_pron: "Thiên-an-mấn",
@@ -4696,6 +4774,7 @@
                         {
                             hanzi: "长城",
                             pinyin: "Chángchéng",
+                            en: "Great Wall",
                             mean: "Vạn Lý Trường Thành",
                             img: "images/changcheng.png",
                             vi_pron: "Tráng-trấng",
@@ -4730,6 +4809,7 @@
                         {
                             hanzi: "雨",
                             pinyin: "yǔ",
+                            en: "rain",
                             mean: "Mưa",
                             img: "images/yu.png",
                             vi_pron: "dủ",
@@ -4740,6 +4820,7 @@
                         {
                             hanzi: "雪",
                             pinyin: "xuě",
+                            en: "snow",
                             mean: "Tuyết",
                             img: "images/xue.png",
                             vi_pron: "xuể",
@@ -4750,6 +4831,7 @@
                         {
                             hanzi: "雾",
                             pinyin: "wù",
+                            en: "fog",
                             mean: "Sương mù",
                             img: "images/wu.png",
                             vi_pron: "u",
@@ -4760,6 +4842,7 @@
                         {
                             hanzi: "风",
                             pinyin: "fēng",
+                            en: "wind",
                             mean: "Gió",
                             img: "images/feng.png",
                             vi_pron: "phâng",
@@ -4770,6 +4853,7 @@
                         {
                             hanzi: "下",
                             pinyin: "xià",
+                            en: "fall / down",
                             mean: "Rơi/Xuống",
                             img: "images/xia.png",
                             vi_pron: "xia",
@@ -4810,6 +4894,7 @@
                         {
                             hanzi: "太阳",
                             pinyin: "tàiyáng",
+                            en: "sun",
                             mean: "Mặt trời",
                             img: "images/taiyang.png",
                             vi_pron: "thai-dáng",
@@ -4820,6 +4905,7 @@
                         {
                             hanzi: "月亮",
                             pinyin: "yuèliang",
+                            en: "moon",
                             mean: "Mặt trăng",
                             img: "images/yueliang.png",
                             vi_pron: "duê-leng",
@@ -4830,6 +4916,7 @@
                         {
                             hanzi: "云",
                             pinyin: "yún",
+                            en: "cloud",
                             mean: "Mây",
                             img: "images/yun.png",
                             vi_pron: "duýn",
@@ -4840,6 +4927,7 @@
                         {
                             hanzi: "星星",
                             pinyin: "xīngxing",
+                            en: "star",
                             mean: "Ngôi sao",
                             img: "images/xingxing.png",
                             vi_pron: "xinh-xinh",
@@ -4850,6 +4938,7 @@
                         {
                             hanzi: "彩虹",
                             pinyin: "cǎihóng",
+                            en: "rainbow",
                             mean: "Cầu vồng",
                             img: "images/caihong.png",
                             vi_pron: "xải-húng",
@@ -4891,6 +4980,7 @@
                         {
                             hanzi: "耳朵",
                             pinyin: "ěrduo",
+                            en: "ear",
                             mean: "Lỗ tai",
                             img: "images/erduo.png",
                             vi_pron: "ở-tua",
@@ -4901,6 +4991,7 @@
                         {
                             hanzi: "鼻子",
                             pinyin: "bízi",
+                            en: "nose",
                             mean: "Mũi",
                             img: "images/bizi.png",
                             vi_pron: "pí-chư",
@@ -4911,6 +5002,7 @@
                         {
                             hanzi: "眼睛",
                             pinyin: "yǎnjing",
+                            en: "eye",
                             mean: "Mắt",
                             img: "images/yanjing.png",
                             vi_pron: "dẻn-chinh",
@@ -4921,6 +5013,7 @@
                         {
                             hanzi: "嘴",
                             pinyin: "zuǐ",
+                            en: "mouth",
                             mean: "Miệng",
                             img: "images/zui.png",
                             vi_pron: "chuẩy",
@@ -4931,6 +5024,7 @@
                         {
                             hanzi: "手",
                             pinyin: "shǒu",
+                            en: "hand",
                             mean: "Tay",
                             img: "images/shou.png",
                             vi_pron: "sẩu",
@@ -4941,6 +5035,7 @@
                         {
                             hanzi: "脚",
                             pinyin: "jiǎo",
+                            en: "foot",
                             mean: "Chân",
                             img: "images/jiao.png",
                             vi_pron: "chiểu",
@@ -4982,6 +5077,7 @@
                         {
                             hanzi: "手套",
                             pinyin: "shǒutào",
+                            en: "gloves",
                             mean: "Găng tay",
                             img: "images/shoutao.png",
                             vi_pron: "sẩu-thao",
@@ -4992,6 +5088,7 @@
                         {
                             hanzi: "手绢",
                             pinyin: "shǒujuàn",
+                            en: "handkerchief",
                             mean: "Khăn tay",
                             img: "images/shoujuan.png",
                             vi_pron: "sẩu-choen",
@@ -5002,6 +5099,7 @@
                         {
                             hanzi: "鞋",
                             pinyin: "xié",
+                            en: "shoes",
                             mean: "Giày",
                             img: "images/xie.png",
                             vi_pron: "xiế",
@@ -5012,6 +5110,7 @@
                         {
                             hanzi: "裤子",
                             pinyin: "kùzi",
+                            en: "pants / trousers",
                             mean: "Quần",
                             img: "images/kuzi.png",
                             vi_pron: "khu-chư",
@@ -5022,6 +5121,7 @@
                         {
                             hanzi: "裙子",
                             pinyin: "qúnzi",
+                            en: "skirt / dress",
                             mean: "Váy",
                             img: "images/qunzi.png",
                             vi_pron: "chuýn-chư",
@@ -5032,6 +5132,7 @@
                         {
                             hanzi: "上衣",
                             pinyin: "shàngyī",
+                            en: "jacket / shirt",
                             mean: "Áo",
                             img: "images/shangyi.png",
                             vi_pron: "sang-y",
@@ -5073,6 +5174,7 @@
                         {
                             hanzi: "书",
                             pinyin: "shū",
+                            en: "book",
                             mean: "Sách",
                             img: "images/shu.png",
                             vi_pron: "su",
@@ -5082,6 +5184,7 @@
                         {
                             hanzi: "画儿",
                             pinyin: "huàr",
+                            en: "picture / painting",
                             mean: "Tranh",
                             img: "images/huar.png",
                             vi_pron: "hoa-ờ",
@@ -5092,6 +5195,7 @@
                         {
                             hanzi: "笔",
                             pinyin: "bǐ",
+                            en: "pen / pencil",
                             mean: "Bút",
                             img: "images/bi.png",
                             vi_pron: "pỉ",
@@ -5102,6 +5206,7 @@
                         {
                             hanzi: "的",
                             pinyin: "de",
+                            en: "of / 's",
                             mean: "Của (trợ từ sở hữu)",
                             img: "images/de.png",
                             vi_pron: "tợ",
@@ -5112,6 +5217,7 @@
                         {
                             hanzi: "衣服",
                             pinyin: "yīfu",
+                            en: "clothes",
                             mean: "Quần áo (nói chung)",
                             img: "images/yifu.png",
                             vi_pron: "y-phu",
@@ -5122,6 +5228,7 @@
                         {
                             hanzi: "看",
                             pinyin: "kàn",
+                            en: "look / read",
                             mean: "Nhìn/Xem/Đọc",
                             img: "images/kan.png",
                             vi_pron: "khan",
@@ -5156,6 +5263,7 @@
                         {
                             hanzi: "起床",
                             pinyin: "qǐchuáng",
+                            en: "wake up",
                             mean: "Thức dậy",
                             img: "images/qichuang.png",
                             vi_pron: "tsỉ-choáng",
@@ -5166,6 +5274,7 @@
                         {
                             hanzi: "唱歌",
                             pinyin: "chànggē",
+                            en: "sing",
                             mean: "Hát",
                             img: "images/changge.png",
                             vi_pron: "trang-cưa",
@@ -5176,6 +5285,7 @@
                         {
                             hanzi: "跳舞",
                             pinyin: "tiàowǔ",
+                            en: "dance",
                             mean: "Nhảy múa",
                             img: "images/tiaowu.png",
                             vi_pron: "thieo-ủ",
@@ -5186,6 +5296,7 @@
                         {
                             hanzi: "玩游戏",
                             pinyin: "wán yóuxì",
+                            en: "play games",
                             mean: "Chơi trò chơi",
                             img: "images/wanyouxi.png",
                             vi_pron: "oán diếu-xi",
@@ -5196,6 +5307,7 @@
                         {
                             hanzi: "睡觉",
                             pinyin: "shuìjiào",
+                            en: "sleep",
                             mean: "Ngủ",
                             img: "images/shuijiao.png",
                             vi_pron: "suê-cheo",
@@ -5206,6 +5318,7 @@
                         {
                             hanzi: "学汉语",
                             pinyin: "xué Hànyǔ",
+                            en: "learn Chinese",
                             mean: "Học tiếng Hán",
                             img: "images/xuehanyu.png",
                             vi_pron: "xuế han-dủ",
@@ -5240,6 +5353,7 @@
                         {
                             hanzi: "八",
                             pinyin: "bā",
+                            en: "eight (8)",
                             mean: "Số 8",
                             img: "images/ba.png",
                             vi_pron: "pa",
@@ -5249,6 +5363,7 @@
                         {
                             hanzi: "这",
                             pinyin: "zhè",
+                            en: "this",
                             mean: "Đây, này",
                             img: "images/zhe.png",
                             vi_pron: "trơ",
@@ -5258,6 +5373,7 @@
                         {
                             hanzi: "是",
                             pinyin: "shì",
+                            en: "is / to be",
                             mean: "Là",
                             img: "images/shi.png",
                             vi_pron: "sư",
@@ -5267,6 +5383,7 @@
                         {
                             hanzi: "他",
                             pinyin: "tā",
+                            en: "he / him",
                             mean: "Anh ấy",
                             img: "images/ta.png",
                             vi_pron: "tha",
@@ -5276,6 +5393,7 @@
                         {
                             hanzi: "九",
                             pinyin: "jiǔ",
+                            en: "nine (9)",
                             mean: "Số 9",
                             img: "images/jiu.png",
                             vi_pron: "chiểu",
@@ -5285,6 +5403,7 @@
                         {
                             hanzi: "你",
                             pinyin: "nǐ",
+                            en: "you",
                             mean: "Bạn (Ngôi thứ 2)",
                             img: "images/ni.png",
                             vi_pron: "nỉ",
@@ -5294,6 +5413,7 @@
                         {
                             hanzi: "十",
                             pinyin: "shí",
+                            en: "ten (10)",
                             mean: "Số 10",
                             img: "images/shi10.png",
                             vi_pron: "sứ",
@@ -5303,6 +5423,7 @@
                         {
                             hanzi: "那",
                             pinyin: "nà",
+                            en: "that",
                             mean: "Đó, kia",
                             img: "images/na.png",
                             vi_pron: "na",
@@ -5312,6 +5433,7 @@
                         {
                             hanzi: "叔叔",
                             pinyin: "shūshu",
+                            en: "uncle",
                             mean: "Chú",
                             img: "images/shushu.png",
                             vi_pron: "su-su",
@@ -5321,6 +5443,7 @@
                         {
                             hanzi: "什么",
                             pinyin: "shénme",
+                            en: "what",
                             mean: "Cái gì",
                             img: "images/shenme.png",
                             vi_pron: "sấn-mơ",
@@ -5330,6 +5453,7 @@
                         {
                             hanzi: "饭",
                             pinyin: "fàn",
+                            en: "rice / meal",
                             mean: "Cơm",
                             img: "images/fan.png",
                             vi_pron: "phang",
