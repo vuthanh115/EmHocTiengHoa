@@ -147,40 +147,142 @@
             padding: 0 4px;
         }
 
+        /* Dark Mode Styling */
+        body.dark {
+            background-color: #020617;
+            color: #f1f5f9;
+        }
+        body.dark .no-print-toolbar {
+            background: #0f172a;
+            border-color: #1e293b;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        body.dark .no-print-toolbar h2 {
+            color: #a5b4fc !important;
+        }
+        body.dark .no-print-toolbar p {
+            color: #94a3b8 !important;
+        }
+        body.dark .btn-secondary {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-color: #334155;
+        }
+        body.dark .btn-secondary:hover {
+            background: #334155;
+            color: #ffffff;
+        }
+        body.dark .print-page {
+            background: #0f172a;
+            border-color: #312e81;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+        body.dark .title {
+            color: #c7d2fe;
+        }
+        body.dark .subtitle {
+            color: #94a3b8;
+        }
+        body.dark .subtitle .text-indigo-700 {
+            color: #a5b4fc !important;
+        }
+        body.dark .subtitle .text-red-600 {
+            color: #f87171 !important;
+        }
+        body.dark .table-container {
+            border-color: #4338ca;
+        }
+        body.dark .pinyin-table th {
+            background: #1e1b4b !important;
+            border-color: #3730a3 !important;
+            color: #e0e7ff !important;
+        }
+        body.dark .pinyin-table th:first-child {
+            background: #2e1065 !important;
+            border-color: #4c1d95 !important;
+            color: #f3e8ff !important;
+        }
+        body.dark .pinyin-table th .text-red-500 {
+            color: #f87171 !important;
+        }
+        body.dark .pinyin-table td {
+            background-color: #0f172a !important;
+            border-color: #1e1b4b !important;
+            color: #cbd5e1 !important;
+        }
+        body.dark .pinyin-table td:first-child {
+            background-color: #2e1065 !important;
+            border-color: #4c1d95 !important;
+            color: #f3e8ff !important;
+        }
+        body.dark .pinyin-table tr:hover td:not(:first-child) {
+            background-color: #1e293b !important;
+        }
+        body.dark .pinyin-table td.bg-slate-50 {
+            background-color: #020617 !important;
+            color: #475569 !important;
+        }
+        body.dark .font-bold.text-indigo-700 {
+            color: #a5b4fc !important;
+        }
+        body.dark .text-\[11px\].text-red-500, body.dark .text-xs.text-red-500 {
+            color: #f87171 !important;
+        }
+        body.dark .footer-note {
+            color: #94a3b8;
+        }
+
         @media print {
             @page {
                 size: A3 landscape;
                 margin: 6mm 8mm;
             }
-            body {
+            body, body.dark {
                 padding: 0;
-                background: transparent;
+                background: white !important;
+                color: #1e293b !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
             .no-print {
                 display: none !important;
             }
-            .print-page {
+            .print-page, body.dark .print-page {
                 margin: 0;
                 padding: 0;
-                border: none;
-                box-shadow: none;
+                border: none !important;
+                box-shadow: none !important;
                 border-radius: 0;
+                background: white !important;
                 page-break-after: always;
                 break-after: page;
                 height: 100%;
             }
-            .table-container {
+            .table-container, body.dark .table-container {
                 border-radius: 0;
+                border: 1.5px solid #c7d2fe !important;
             }
-            .pinyin-table th:first-child, .pinyin-table td:first-child {
+            .pinyin-table th:first-child, .pinyin-table td:first-child,
+            body.dark .pinyin-table th:first-child, body.dark .pinyin-table td:first-child {
                 position: static;
             }
+            body.dark .title { color: #4338ca !important; }
+            body.dark .subtitle { color: #475569 !important; }
+            body.dark .subtitle .text-indigo-700 { color: #4338ca !important; }
+            body.dark .subtitle .text-red-600 { color: #dc2626 !important; }
+            body.dark .pinyin-table th { background: #eef2ff !important; color: #1e1b4b !important; border-color: #c7d2fe !important; }
+            body.dark .pinyin-table th:first-child { background: #e0e7ff !important; color: #3730a3 !important; }
+            body.dark .pinyin-table th .text-red-500 { color: #dc2626 !important; }
+            body.dark .pinyin-table td { background: white !important; border-color: #e0e7ff !important; }
+            body.dark .pinyin-table td:first-child { background: #f5f3ff !important; color: #312e81 !important; }
+            body.dark .pinyin-table td.bg-slate-50 { background: #f8fafc !important; color: #cbd5e1 !important; }
+            body.dark .font-bold.text-indigo-700 { color: #4338ca !important; }
+            body.dark .text-\[11px\].text-red-500, body.dark .text-xs.text-red-500 { color: #dc2626 !important; }
+            body.dark .footer-note { color: #64748b !important; }
         }
     </style>
 </head>
-<body>
+<body class="dark">
     <div class="no-print no-print-toolbar">
         <div>
             <h2 style="font-size: 16px; font-weight: 800; color: #4338ca;">
@@ -190,13 +292,16 @@
                 Tối ưu chuẩn in A3 Landscape (Khổ ngang A3). Bạn có thể bấm nút In hoặc phím Ctrl+P để xuất file PDF hoặc in giấy.
             </p>
         </div>
-        <div style="display: flex; gap: 10px;">
+        <div style="display: flex; gap: 10px; align-items: center;">
             <a href="index.html" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Quay lại ứng dụng
             </a>
             <a href="cantonese_pinyin_print_a3.html" class="btn btn-secondary">
                 <i class="fas fa-table"></i> Bảng Tiếng Quảng Đông
             </a>
+            <button id="themeToggleBtn" onclick="toggleTheme()" class="btn btn-secondary" title="Bật/Tắt chế độ tối">
+                <i id="themeIcon" class="fas fa-sun text-yellow-400"></i> <span id="themeText">Chế độ sáng</span>
+            </button>
             <button onclick="window.print()" class="btn btn-primary">
                 <i class="fas fa-print"></i> In / Xuất PDF (A3)
             </button>
@@ -217,7 +322,118 @@
 
         <div class="table-container">
             <table class="pinyin-table">
-                
+                <thead>
+                    <tr>
+                        <th class="p-2 border border-purple-200 text-purple-800 font-bold sticky left-0 z-20 bg-purple-200">
+                            Phụ âm<br />↓ / Vận mẫu →
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            a<br /><span class="text-xs text-red-500 font-normal">a</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            o<br /><span class="text-xs text-red-500 font-normal">ô</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            e<br /><span class="text-xs text-red-500 font-normal">ưa</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ai<br /><span class="text-xs text-red-500 font-normal">ai</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ei<br /><span class="text-xs text-red-500 font-normal">ây</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ao<br /><span class="text-xs text-red-500 font-normal">ao</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ou<br /><span class="text-xs text-red-500 font-normal">âu</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            an<br /><span class="text-xs text-red-500 font-normal">an</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            en<br /><span class="text-xs text-red-500 font-normal">ân</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ang<br /><span class="text-xs text-red-500 font-normal">ang</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            eng<br /><span class="text-xs text-red-500 font-normal">âng</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ong<br /><span class="text-xs text-red-500 font-normal">ung</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            i<br /><span class="text-xs text-red-500 font-normal">i</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ia<br /><span class="text-xs text-red-500 font-normal">ia</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ie<br /><span class="text-xs text-red-500 font-normal">iê</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            iao<br /><span class="text-xs text-red-500 font-normal">iêu</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            iu<br /><span class="text-xs text-red-500 font-normal">iu</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ian<br /><span class="text-xs text-red-500 font-normal">iên</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            in<br /><span class="text-xs text-red-500 font-normal">in</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            iang<br /><span class="text-xs text-red-500 font-normal">iang</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ing<br /><span class="text-xs text-red-500 font-normal">inh</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            iong<br /><span class="text-xs text-red-500 font-normal">iung</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            u<br /><span class="text-xs text-red-500 font-normal">u</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ua<br /><span class="text-xs text-red-500 font-normal">oa</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            uo<br /><span class="text-xs text-red-500 font-normal">uô</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            uai<br /><span class="text-xs text-red-500 font-normal">oai</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ui<br /><span class="text-xs text-red-500 font-normal">uây</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            uan<br /><span class="text-xs text-red-500 font-normal">oan</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            un<br /><span class="text-xs text-red-500 font-normal">uân</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            uang<br /><span class="text-xs text-red-500 font-normal">oang</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ueng<br /><span class="text-xs text-red-500 font-normal">uâng</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ü<br /><span class="text-xs text-red-500 font-normal">uy</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            üe<br /><span class="text-xs text-red-500 font-normal">uê</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            üan<br /><span class="text-xs text-red-500 font-normal">uyên</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ün<br /><span class="text-xs text-red-500 font-normal">uyn</span>
+                        </th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr class="hover:bg-purple-50 transition-colors">
                                         <td
@@ -1665,7 +1881,118 @@
 
         <div class="table-container">
             <table class="pinyin-table">
-                
+                <thead>
+                    <tr>
+                        <th class="p-2 border border-purple-200 text-purple-800 font-bold sticky left-0 z-20 bg-purple-200">
+                            Phụ âm<br />↓ / Vận mẫu →
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            a<br /><span class="text-xs text-red-500 font-normal">a</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            o<br /><span class="text-xs text-red-500 font-normal">ô</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            e<br /><span class="text-xs text-red-500 font-normal">ưa</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ai<br /><span class="text-xs text-red-500 font-normal">ai</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ei<br /><span class="text-xs text-red-500 font-normal">ây</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ao<br /><span class="text-xs text-red-500 font-normal">ao</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ou<br /><span class="text-xs text-red-500 font-normal">âu</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            an<br /><span class="text-xs text-red-500 font-normal">an</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            en<br /><span class="text-xs text-red-500 font-normal">ân</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ang<br /><span class="text-xs text-red-500 font-normal">ang</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            eng<br /><span class="text-xs text-red-500 font-normal">âng</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ong<br /><span class="text-xs text-red-500 font-normal">ung</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            i<br /><span class="text-xs text-red-500 font-normal">i</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ia<br /><span class="text-xs text-red-500 font-normal">ia</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ie<br /><span class="text-xs text-red-500 font-normal">iê</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            iao<br /><span class="text-xs text-red-500 font-normal">iêu</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            iu<br /><span class="text-xs text-red-500 font-normal">iu</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ian<br /><span class="text-xs text-red-500 font-normal">iên</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            in<br /><span class="text-xs text-red-500 font-normal">in</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            iang<br /><span class="text-xs text-red-500 font-normal">iang</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ing<br /><span class="text-xs text-red-500 font-normal">inh</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            iong<br /><span class="text-xs text-red-500 font-normal">iung</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            u<br /><span class="text-xs text-red-500 font-normal">u</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ua<br /><span class="text-xs text-red-500 font-normal">oa</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            uo<br /><span class="text-xs text-red-500 font-normal">uô</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            uai<br /><span class="text-xs text-red-500 font-normal">oai</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ui<br /><span class="text-xs text-red-500 font-normal">uây</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            uan<br /><span class="text-xs text-red-500 font-normal">oan</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            un<br /><span class="text-xs text-red-500 font-normal">uân</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            uang<br /><span class="text-xs text-red-500 font-normal">oang</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ueng<br /><span class="text-xs text-red-500 font-normal">uâng</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ü<br /><span class="text-xs text-red-500 font-normal">uy</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            üe<br /><span class="text-xs text-red-500 font-normal">uê</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            üan<br /><span class="text-xs text-red-500 font-normal">uyên</span>
+                        </th>
+                        <th class="p-2 border border-purple-200 font-bold text-slate-700 min-w-[55px]">
+                            ün<br /><span class="text-xs text-red-500 font-normal">uyn</span>
+                        </th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr class="hover:bg-purple-50 transition-colors">
                                         <td
@@ -3111,5 +3438,36 @@
         </div>
     </div>
     
+    <script>
+        const savedTheme = localStorage.getItem("theme");
+        const isDark = savedTheme ? savedTheme === "dark" : true;
+        
+        function applyTheme(dark) {
+            if (dark) {
+                document.body.classList.add("dark");
+                document.documentElement.classList.add("dark");
+                localStorage.setItem("theme", "dark");
+                const icon = document.getElementById("themeIcon");
+                const text = document.getElementById("themeText");
+                if (icon) icon.className = "fas fa-sun text-yellow-400";
+                if (text) text.textContent = "Chế độ sáng";
+            } else {
+                document.body.classList.remove("dark");
+                document.documentElement.classList.remove("dark");
+                localStorage.setItem("theme", "light");
+                const icon = document.getElementById("themeIcon");
+                const text = document.getElementById("themeText");
+                if (icon) icon.className = "fas fa-moon text-slate-600";
+                if (text) text.textContent = "Chế độ tối";
+            }
+        }
+
+        function toggleTheme() {
+            const currentIsDark = document.body.classList.contains("dark");
+            applyTheme(!currentIsDark);
+        }
+
+        applyTheme(isDark);
+    </script>
 </body>
 </html>
